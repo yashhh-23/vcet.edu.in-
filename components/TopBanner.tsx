@@ -15,8 +15,8 @@ const TopBanner: React.FC = () => {
       {/* Decorative top accent line */}
       <div className="h-1 bg-gradient-to-r from-brand-blue via-brand-gold to-brand-blue"></div>
 
-      {/* ── Mobile compact row (phones only) ── */}
-      <div className="flex md:hidden items-center gap-3 px-4 py-3">
+      {/* ── Mobile compact row — hidden on mobile (Header already shows logo) ── */}
+      <div className="hidden items-center gap-3 px-4 py-3">
         <img
           src="/Images/VCET%20logo.jpeg"
           alt="VCET Logo"
@@ -79,7 +79,7 @@ const TopBanner: React.FC = () => {
           </div>{/* closes logo+text unit */}
 
           {/* Quick Contact - Desktop only */}
-          <div className="hidden lg:flex flex-col gap-1.5 text-right flex-shrink-0">
+          <div className="hidden md:flex flex-col gap-1.5 text-right flex-shrink-0">
             <a href="tel:+917972019446" className="flex items-center gap-2 text-xs text-slate-500 hover:text-brand-blue transition-colors">
               <Phone className="w-3.5 h-3.5" />
               +91 797 201 9446

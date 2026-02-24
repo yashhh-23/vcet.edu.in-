@@ -64,7 +64,7 @@ const About: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <SectionHeader title="Who We Are" subtitle="Pioneering education for a digital world since 1994 — shaping engineers who build the future." />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-14 lg:gap-20 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-20 items-start">
           {/* Left Column */}
           <div className="space-y-8 reveal">
             <p className="text-2xl md:text-3xl font-display font-semibold leading-snug text-slate-800">

@@ -34,8 +34,14 @@ function App() {
 
   return (
     <div className="min-h-screen font-sans bg-white text-slate-800">
-      <TopBanner />
-      <Header />
+      {/*
+        Mobile: TopBanner (ticker only) + Header stick together as one unit at top-0.
+        Desktop (md+): display:contents makes this wrapper invisible — each child manages its own stacking/stickiness.
+      */}
+      <div className="sticky top-0 z-[100] md:contents">
+        <TopBanner />
+        <Header />
+      </div>
       <main>
         <Hero />
         <About />

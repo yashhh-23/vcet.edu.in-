@@ -82,7 +82,7 @@ const Gallery: React.FC = () => {
             Item 0 (campus):  col-span-2, row-span-2  → big featured shot
             Items 1-8 (labs): col-span-1, row-span-1
         */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-[200px] sm:auto-rows-[260px]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 auto-rows-[200px] sm:auto-rows-[260px]">
           {galleryItems.map((item, idx) => {
             const isFeatured = idx === 0;
             return (

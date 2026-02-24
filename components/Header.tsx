@@ -565,7 +565,7 @@ const Header: React.FC = () => {
 
       {/* â”€â”€â”€â”€â”€â”€â”€â”€ MOBILE FULL-SCREEN MENU â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <div
-        className={`fixed inset-0 bg-brand-dark/98 backdrop-blur-lg text-white z-[60] flex flex-col transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] md:hidden ${
+        className={`fixed inset-0 bg-brand-dark/98 backdrop-blur-lg text-white z-[9999] flex flex-col transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] md:hidden ${
           mobileOpen
             ? 'opacity-100 visible translate-x-0'
             : 'opacity-0 invisible translate-x-full pointer-events-none'

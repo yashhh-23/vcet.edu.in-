@@ -85,10 +85,10 @@ const Hero: React.FC = () => {
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10 py-14 sm:py-20 md:py-28">
-        <div className="flex flex-col xl:flex-row items-center justify-between gap-12 xl:gap-16">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-12 md:gap-16">
           
           {/* Left: Main Content */}
-          <div className="w-full xl:w-5/12 relative z-20">
+          <div className="w-full md:w-5/12 relative z-20">
             {/* Badge – delay 0 */}
             <div className="hero-anim" style={{animationDelay: '0.1s'}}>
               <div className="inline-flex items-center gap-2 mb-8 px-4 py-2 bg-white/5 backdrop-blur-md rounded-full border border-white/10">
@@ -142,7 +142,7 @@ const Hero: React.FC = () => {
           </div>
 
           {/* Right: Notices & Events Cards – delay 0.4 — hidden on mobile */}
-          <div className="hero-anim hidden md:flex w-full xl:w-7/12 relative z-30 flex-col md:flex-row gap-5 justify-end items-stretch" style={{animationDelay: '0.4s'}}>
+          <div className="hero-anim hidden md:flex w-full md:w-7/12 relative z-30 flex-col md:flex-row gap-5 justify-end items-stretch" style={{animationDelay: '0.4s'}}>
              
              {/* Notices Card */}
              <div className="w-full md:w-1/2 max-w-sm bg-white/[0.04] backdrop-blur-md border border-white/[0.08] p-6 flex flex-col rounded-xl">

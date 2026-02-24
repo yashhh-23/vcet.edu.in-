@@ -14,8 +14,8 @@ const Admissions: React.FC = () => {
   return (
     <section id="admissions" className="py-20 md:py-28 bg-white">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col lg:flex-row gap-14">
-          <div className="lg:w-1/3">
+        <div className="flex flex-col md:flex-row gap-14">
+          <div className="md:w-1/3">
             <SectionHeader title="Admissions Open 2025" />
             <p className="text-base text-slate-500 mb-8 leading-relaxed">
               Join a community of diverse minds. Our admission process is designed to identify students with passion and potential.
@@ -26,7 +26,7 @@ const Admissions: React.FC = () => {
             </div>
           </div>
 
-          <div className="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className="md:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-5">
             {steps.map((step, idx) => (
               <div key={idx} className="border border-gray-100 rounded-xl p-7 hover:border-brand-blue/20 hover:shadow-lg transition-all duration-300 relative group">
                 <span className="absolute top-5 right-5 text-5xl font-bold text-gray-50 group-hover:text-brand-blue/5 transition-colors">
