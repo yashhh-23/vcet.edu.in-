@@ -37,23 +37,24 @@ const TopBanner: React.FC = () => {
       {/* ── Desktop full row (md+) ── */}
       <div className="hidden md:block">
       <div className="container mx-auto px-4 md:px-6 py-6 md:py-7">
-        <div className="flex flex-col md:flex-row items-center justify-center gap-5 md:gap-8">
-          
-          {/* Logo */}
-          <div className="flex-shrink-0">
-            <img 
-              src="/Images/VCET%20logo.jpeg" 
-              alt="VCET Logo" 
-              className="w-24 h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 object-contain drop-shadow-sm"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.style.display = 'none';
-              }}
-            />
-          </div>
+        <div className="flex flex-row items-center justify-between gap-4">
+
+          {/* Logo + College Name — tight unit, centered */}
+          <div className="flex flex-row items-center gap-5 flex-1 justify-center">
+            <div className="flex-shrink-0">
+              <img 
+                src="/Images/VCET%20logo.jpeg" 
+                alt="VCET Logo" 
+                className="w-24 h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 object-contain drop-shadow-sm"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                }}
+              />
+            </div>
 
           {/* College Name & Info */}
-          <div className="text-center flex-grow">
+          <div className="text-left">
             <h1 className="text-lg md:text-2xl lg:text-[1.65rem] font-extrabold uppercase tracking-tight text-brand-blue leading-tight">
               Vidyavardhini's College of Engineering & Technology
             </h1>
@@ -63,7 +64,7 @@ const TopBanner: React.FC = () => {
             <p className="text-[11px] md:text-xs font-medium text-slate-500 mt-2 tracking-wide">
               Approved by AICTE, DTE Maharashtra &bull; an Autonomous Institute Affiliated to University of Mumbai
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-2 mt-3">
+            <div className="flex flex-wrap items-center justify-start gap-2 mt-3">
               <span className="inline-flex items-center gap-1.5 bg-brand-blue/5 border border-brand-blue/10 text-brand-blue px-3 py-1 rounded text-[11px] font-bold uppercase tracking-wider">
                 <span className="w-1.5 h-1.5 bg-brand-gold rounded-full"></span>
                 NAAC Accredited
@@ -74,6 +75,8 @@ const TopBanner: React.FC = () => {
               </span>
             </div>
           </div>
+
+          </div>{/* closes logo+text unit */}
 
           {/* Quick Contact - Desktop only */}
           <div className="hidden lg:flex flex-col gap-1.5 text-right flex-shrink-0">

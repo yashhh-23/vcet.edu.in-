@@ -193,15 +193,18 @@ const Header: React.FC = () => {
           scrolled ? 'text-brand-blue' : 'text-white'
         }`}>
           
-          {/* Logo */}
+          {/* Logo — only visible after scroll */}
           <a href="#home" className="flex items-center gap-3 flex-shrink-0">
             <img 
               src="/Images/VCET%20logo.jpeg" 
               alt="VCET Logo" 
-              className="h-14 md:h-16 w-auto rounded-sm"
+              className={`w-auto rounded-sm transition-all duration-500 ${
+                scrolled
+                  ? 'h-10 md:h-12 opacity-100 pointer-events-auto'
+                  : 'h-0 opacity-0 pointer-events-none'
+              }`}
               onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
             />
-
           </a>
 
           {/* Desktop Nav */}
