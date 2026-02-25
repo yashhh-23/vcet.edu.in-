@@ -37,7 +37,17 @@ const Bar: React.FC<{ pct: string; gold?: boolean }> = ({ pct, gold }) => (
 
 // -- Main ----------------------------------------------------------------------
 const Recruiters: React.FC = () => (
-  <section className="py-24 relative overflow-hidden" style={{ background: "#F8FAFC" }}>
+  <section className="py-24 relative overflow-hidden">
+
+    {/* Background image */}
+    <img
+      src="/Images/PLACEMENT/corporate.jpg"
+      alt=""
+      className="absolute inset-0 w-full h-full object-cover"
+      aria-hidden="true"
+    />
+    {/* Light overlay so content stays readable */}
+    <div className="absolute inset-0" style={{ background: "rgba(248,250,252,0.82)" }} />
 
     {/* Ambient glows */}
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -97,20 +107,26 @@ const Recruiters: React.FC = () => (
 
         {/* 1 — Hero stat: Campus Offers */}
         <BentoBox
-          className="md:col-span-2 p-8 justify-between min-h-[220px]"
-          style={{ background: "#0B3D91" }}
+          className="md:col-span-2 p-8 justify-between min-h-[220px] border"
+          style={{
+            background: "rgba(255,255,255,0.55)",
+            backdropFilter: "blur(20px)",
+            WebkitBackdropFilter: "blur(20px)",
+            borderColor: "rgba(11,61,145,0.15)",
+            boxShadow: "0 8px 32px rgba(11,61,145,0.08), inset 0 1px 0 rgba(255,255,255,0.8)",
+          }}
         >
           <div>
-            <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#EAF2FB" }}>
+            <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#0B3D91" }}>
               2024-25 &middot; Placements
             </p>
-            <h3 className="text-4xl sm:text-6xl md:text-7xl font-extrabold text-white leading-none tracking-tight">
+            <h3 className="text-4xl sm:text-6xl md:text-7xl font-extrabold leading-none tracking-tight" style={{ color: "#0B3D91" }}>
               285
             </h3>
-            <p className="text-2xl font-medium mt-2" style={{ color: "#EAF2FB" }}>Campus Offers Made</p>
+            <p className="text-2xl font-medium mt-2" style={{ color: "#1E293B" }}>Campus Offers Made</p>
           </div>
           <div className="mt-6 space-y-3">
-            <p className="text-sm leading-relaxed" style={{ color: "rgba(234,242,251,0.7)" }}>
+            <p className="text-sm leading-relaxed" style={{ color: "#64748B" }}>
               Our dedicated placement cell connects every student with industry leaders for interviews and full-time roles.
             </p>
             <Bar pct="80%" gold />
@@ -120,7 +136,13 @@ const Recruiters: React.FC = () => (
         {/* 2 — Highest Package */}
         <BentoBox
           className="p-8 justify-between min-h-[220px] border"
-          style={{ background: "#EAF2FB", borderColor: "#C7DDEF" }}
+          style={{
+            background: "rgba(255,255,255,0.55)",
+            backdropFilter: "blur(20px)",
+            WebkitBackdropFilter: "blur(20px)",
+            borderColor: "rgba(11,61,145,0.15)",
+            boxShadow: "0 8px 32px rgba(11,61,145,0.08), inset 0 1px 0 rgba(255,255,255,0.8)",
+          }}
         >
           <div>
             <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#0B3D91" }}>
@@ -129,7 +151,7 @@ const Recruiters: React.FC = () => (
             <h3 className="text-5xl font-extrabold leading-none" style={{ color: "#F4B400" }}>
               ₹21 LPA
             </h3>
-            <p className="text-sm mt-2" style={{ color: "#1E4DB7" }}>Best offer &middot; 2024-25 batch</p>
+            <p className="text-sm mt-2" style={{ color: "#64748B" }}>Best offer &middot; 2024-25 batch</p>
           </div>
           <Bar pct="90%" gold />
         </BentoBox>
@@ -137,7 +159,13 @@ const Recruiters: React.FC = () => (
         {/* 3 — Placement Rate */}
         <BentoBox
           className="p-8 justify-between border"
-          style={{ background: "#FFFFFF", borderColor: "#E2E8F0" }}
+          style={{
+            background: "rgba(255,255,255,0.55)",
+            backdropFilter: "blur(20px)",
+            WebkitBackdropFilter: "blur(20px)",
+            borderColor: "rgba(11,61,145,0.15)",
+            boxShadow: "0 8px 32px rgba(11,61,145,0.08), inset 0 1px 0 rgba(255,255,255,0.8)",
+          }}
         >
           <div>
             <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#64748B" }}>
@@ -152,7 +180,13 @@ const Recruiters: React.FC = () => (
         {/* 4 — Average Package */}
         <BentoBox
           className="md:col-span-2 p-8 justify-between border"
-          style={{ background: "#FFFFFF", borderColor: "#E2E8F0" }}
+          style={{
+            background: "rgba(255,255,255,0.55)",
+            backdropFilter: "blur(20px)",
+            WebkitBackdropFilter: "blur(20px)",
+            borderColor: "rgba(11,61,145,0.15)",
+            boxShadow: "0 8px 32px rgba(11,61,145,0.08), inset 0 1px 0 rgba(255,255,255,0.8)",
+          }}
         >
           <div>
             <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#64748B" }}>
@@ -167,7 +201,7 @@ const Recruiters: React.FC = () => (
         </BentoBox>
 
         {/* 5 — Hiring Partners static grid */}
-        <div className="md:col-span-3 overflow-hidden" style={{ border: "1px solid #E2E8F0" }}>
+        <div className="md:col-span-3 overflow-hidden border" style={{ borderColor: "rgba(255,255,255,0.12)" }}>
           {/* Header strip */}
           <div className="px-8 pt-8 pb-6" style={{ background: "#0B3D91" }}>
             <div className="flex items-center gap-3 mb-1">
