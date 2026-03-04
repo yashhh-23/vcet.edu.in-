@@ -1,3 +1,9 @@
+# ── Backend / PHP (not pushing until backend phase) ──
+admin/
+api/
+db/
+uploads/
+
 # Logs
 logs
 *.log
