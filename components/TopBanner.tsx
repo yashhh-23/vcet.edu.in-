@@ -15,8 +15,8 @@ const TopBanner: React.FC = () => {
       {/* Decorative top accent line */}
       <div className="h-1 bg-gradient-to-r from-brand-blue via-brand-gold to-brand-blue"></div>
 
-      {/* ── Mobile compact row — hidden on mobile (Header already shows logo) ── */}
-      <div className="hidden items-center gap-3 px-4 py-3">
+      {/* ── Mobile compact row — visible on mobile only ── */}
+      <div className="flex md:hidden items-center gap-3 px-4 py-3">
         <img
           src="/Images/VCET%20logo.jpeg"
           alt="VCET Logo"

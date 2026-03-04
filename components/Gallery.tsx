@@ -90,7 +90,7 @@ const Gallery: React.FC = () => {
                 key={item.title}
                 className={[
                   'relative overflow-hidden rounded-2xl group bg-brand-navy shadow-md',
-                  isFeatured ? 'sm:col-span-2 lg:col-span-2 lg:row-span-2' : '',
+                  isFeatured ? 'sm:col-span-2 lg:col-span-2 md:row-span-2 lg:row-span-2' : '',
                 ].join(' ')}
               >
                 {/* Pixel-reveal image — staggered by card index */}

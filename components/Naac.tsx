@@ -4,7 +4,7 @@ import { Award, TrendingUp, Users, BookOpen } from 'lucide-react';
 const Naac: React.FC = () => {
   return (
     <section id="naac" className="py-20 md:py-28 bg-brand-light relative">
-      <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
         <div className="flex flex-col md:flex-row items-center justify-between mb-14 gap-8">
           <div className="max-w-xl">
             <div className="flex items-center gap-3 mb-3">

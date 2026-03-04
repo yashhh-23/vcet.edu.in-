@@ -77,7 +77,7 @@ const About: React.FC = () => {
             </p>
             
             {/* Image placeholder */}
-            <div className="h-[350px] w-full bg-brand-light overflow-hidden relative group rounded-xl">
+            <div className="h-[250px] sm:h-[300px] md:h-[350px] w-full bg-brand-light overflow-hidden relative group rounded-xl">
               <img 
                 src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='800'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%231B3A5C;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%230F1F33;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23grad)' width='600' height='800'/%3E%3Ctext fill='%23D4A843' font-family='Inter' font-size='22' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EVCET Campus%3C/text%3E%3C/svg%3E" 
                 alt="VCET Campus" 

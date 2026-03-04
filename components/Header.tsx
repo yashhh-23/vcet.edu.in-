@@ -133,9 +133,9 @@ const menuGroups: MenuGroup[] = [
     ],
   },
 
-  // 7. STUDENT LIFE
+  // 7. STUDENT & CAREER
   {
-    label: 'Student Life',
+    label: 'Student & Career',
     dropdown: [
       { label: 'Career @ VCET',          href: '/career-at-vcet' },
       { label: 'Extra-Curricular',       isGroupLabel: true },
@@ -214,7 +214,7 @@ const menuGroups: MenuGroup[] = [
 
   // 12. TRAINING & PLACEMENT
   {
-    label: 'Training & Placemnet',
+    label: 'Training & Placement',
     dropdown: [
       { label: 'Placement', href: '#placements' },
       { label: 'Training',  href: '/training' },
@@ -786,9 +786,9 @@ const Header: React.FC = () => {
     <>
       {/* â”€â”€â”€â”€â”€â”€â”€â”€ STICKY HEADER â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <header className="sticky top-0 w-full z-50 bg-white shadow-[0_2px_16px_rgba(0,0,0,0.08)] border-b border-gray-100">
-        <div className="container mx-auto px-3 sm:px-4 h-14 md:h-16 flex items-center gap-2">
+        <div className="max-w-full mx-auto px-1 sm:px-2 h-14 md:h-16 flex items-center gap-1">
           {/* Logo */}
-          <Link to="/" className="flex-shrink-0 mr-1">
+          <Link to="/" className="flex-shrink-0 mr-0.5">
             <img
               src="/Images/VCET%20logo.jpeg"
               alt="VCET Logo"
@@ -798,8 +798,8 @@ const Header: React.FC = () => {
           </Link>
 
           {/* â”€â”€â”€â”€ Desktop Nav â”€â”€â”€â”€ */}
-          <nav className="hidden md:flex items-center flex-1 min-w-0 overflow-hidden" aria-label="Main navigation">
-            <ul className="flex items-center">
+          <nav className="hidden md:flex items-center flex-1 min-w-0" aria-label="Main navigation">
+            <ul className="flex items-center gap-0.5 lg:gap-1 xl:gap-1.5">
               {menuGroups.map((group, idx) => (
                 <li key={group.label} className="relative flex-shrink-0">
                   {group.dropdown ? (
@@ -810,7 +810,7 @@ const Header: React.FC = () => {
                         onBlur={scheduleClose}
                         aria-haspopup="true"
                         aria-expanded={activeMenu === group.label}
-                        className={`flex items-center gap-0.5 px-[3px] md:px-[4px] lg:px-[5px] xl:px-[6px] py-1.5 lg:py-2 text-[8px] md:text-[9px] lg:text-[10px] xl:text-[11px] 2xl:text-[12px] font-bold uppercase tracking-normal rounded-md transition-all duration-200 whitespace-nowrap select-none ${
+                        className={`flex items-center gap-0.5 px-1 lg:px-2 xl:px-2.5 py-1.5 lg:py-2 text-[8.5px] md:text-[9px] lg:text-[10px] xl:text-[11px] 2xl:text-[12px] font-bold uppercase tracking-wide rounded-md transition-all duration-200 whitespace-nowrap select-none ${
                           activeMenu === group.label
                             ? 'bg-brand-blue text-white'
                             : 'text-slate-700 hover:bg-brand-blue/8 hover:text-brand-blue'
@@ -822,7 +822,7 @@ const Header: React.FC = () => {
                   ) : group.href?.startsWith('/') ? (
                     <Link
                       to={group.href}
-                      className="block px-[3px] md:px-[4px] lg:px-[5px] xl:px-[6px] py-1.5 lg:py-2 text-[8px] md:text-[9px] lg:text-[10px] xl:text-[11px] 2xl:text-[12px] font-bold uppercase tracking-normal rounded-md transition-all duration-200 whitespace-nowrap text-slate-700 hover:bg-brand-blue/8 hover:text-brand-blue"
+                      className="block px-1 lg:px-2 xl:px-2.5 py-1.5 lg:py-2 text-[8.5px] md:text-[9px] lg:text-[10px] xl:text-[11px] 2xl:text-[12px] font-bold uppercase tracking-wide rounded-md transition-all duration-200 whitespace-nowrap text-slate-700 hover:bg-brand-blue/8 hover:text-brand-blue"
                     >
                       {group.label}
                     </Link>
@@ -831,7 +831,7 @@ const Header: React.FC = () => {
                       href={group.href}
                       target={group.href?.startsWith('http') ? '_blank' : '_self'}
                       rel="noopener noreferrer"
-                      className="block px-[3px] md:px-[4px] lg:px-[5px] xl:px-[6px] py-1.5 lg:py-2 text-[8px] md:text-[9px] lg:text-[10px] xl:text-[11px] 2xl:text-[12px] font-bold uppercase tracking-normal rounded-md transition-all duration-200 whitespace-nowrap text-slate-700 hover:bg-brand-blue/8 hover:text-brand-blue"
+                      className="block px-1 lg:px-2 xl:px-2.5 py-1.5 lg:py-2 text-[8.5px] md:text-[9px] lg:text-[10px] xl:text-[11px] 2xl:text-[12px] font-bold uppercase tracking-wide rounded-md transition-all duration-200 whitespace-nowrap text-slate-700 hover:bg-brand-blue/8 hover:text-brand-blue"
                     >
                       {group.label}
                     </a>
@@ -896,8 +896,7 @@ const Header: React.FC = () => {
             }}
           >
             <div
-              className="bg-white rounded-xl shadow-2xl border border-gray-100/90 min-w-[230px] max-w-[295px] overflow-y-auto py-2 ring-1 ring-black/5"
-              style={{ maxHeight: `${getDropdownMaxH(group.dropdown)}px` }}
+              className="bg-white rounded-xl shadow-2xl border border-gray-100/90 min-w-[230px] max-w-[295px] overflow-visible py-2 ring-1 ring-black/5"
             >
               {group.dropdown.map((item) => (
                 <DesktopDropdownItem key={item.label} item={item} flipSub={shouldFlipSub(idx)} />
@@ -952,7 +951,7 @@ const Header: React.FC = () => {
                       style={{
                         maxHeight:
                           mobileExpanded === group.label
-                            ? `${group.dropdown.length * 50 + 20}px`
+                            ? `${group.dropdown.length * 60 + 30}px`
                             : '0px',
                         opacity: mobileExpanded === group.label ? 1 : 0,
                         transition: 'max-height 0.4s ease-in-out, opacity 0.3s ease-in-out',

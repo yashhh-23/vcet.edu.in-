@@ -201,7 +201,7 @@ const Hero: React.FC = () => {
     return () => clearInterval(timer);
   }, []);
   return (
-    <section id="home" className="relative h-screen w-full flex items-center overflow-hidden bg-brand-dark text-white -mt-12 pt-12">
+    <section id="home" className="relative h-screen w-full flex items-center overflow-hidden bg-brand-dark text-white -mt-14 pt-14 md:-mt-16 md:pt-16">
 
       {/* ── Static Background ──────────────────────────────────────────── */}
       <div className="absolute inset-0 z-0 overflow-hidden">
@@ -213,7 +213,7 @@ const Hero: React.FC = () => {
       </div>
 
       {/* ── Right Banner Slideshow Panel ───────────────────────────────── */}
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-[40%] max-w-[560px] shadow-2xl rounded-lg overflow-hidden">
+      <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 z-10 w-[40%] max-w-[560px] shadow-2xl rounded-lg overflow-hidden">
         <div className="relative w-full">
           {/* Spacer image to set natural aspect ratio */}
           <img
@@ -255,13 +255,13 @@ const Hero: React.FC = () => {
         >
         {/* Single floating card */}
         <div
-          className="w-[340px] sm:w-[380px] flex flex-col overflow-hidden border border-white/10 shadow-2xl"
+          className="w-[calc(100vw-3rem)] sm:w-[380px] flex flex-col overflow-hidden border border-white/10 shadow-2xl"
           style={{
             background: 'rgba(10, 20, 45, 0.72)',
             backdropFilter: 'blur(18px)',
             WebkitBackdropFilter: 'blur(18px)',
-            height: 'calc(100vh - 100px)',
-            maxHeight: 'calc(100vh - 100px)',
+            height: 'calc(100dvh - 100px)',
+            maxHeight: 'calc(100dvh - 100px)',
           }}
         >
 
@@ -394,7 +394,7 @@ const Hero: React.FC = () => {
       {/* ENQUIRE NOW — vertical tab on left edge */}
       <button
         onClick={() => setCardOpen(o => !o)}
-        className="absolute left-0 top-[38%] -translate-y-1/2 z-20 flex flex-col items-center justify-center gap-2 py-10 px-3 shadow-2xl transition-all duration-200 hover:brightness-110 active:scale-95"
+        className="hidden md:flex absolute left-0 top-[38%] -translate-y-1/2 z-20 flex-col items-center justify-center gap-2 py-10 px-3 shadow-2xl transition-all duration-200 hover:brightness-110 active:scale-95"
         style={{
           background: 'rgba(11, 61, 145, 0.45)',
           backdropFilter: 'blur(16px)',
@@ -417,7 +417,7 @@ const Hero: React.FC = () => {
       {/* PACKAGES — vertical tab below ENQUIRE NOW */}
       <button
         onClick={() => { setPackagesOpen(true); setPackageIndex(0); setPkgZoom(1); }}
-        className="absolute left-0 z-20 flex flex-col items-center justify-center gap-2 py-10 px-3 shadow-2xl transition-all duration-200 hover:brightness-110 active:scale-95"
+        className="hidden md:flex absolute left-0 z-20 flex-col items-center justify-center gap-2 py-10 px-3 shadow-2xl transition-all duration-200 hover:brightness-110 active:scale-95"
         style={{
           background: 'rgba(196, 149, 53, 0.55)',
           backdropFilter: 'blur(16px)',

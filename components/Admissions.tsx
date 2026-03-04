@@ -13,7 +13,7 @@ const steps = [
 const Admissions: React.FC = () => {
   return (
     <section id="admissions" className="py-20 md:py-28 bg-white">
-      <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
         <div className="flex flex-col md:flex-row gap-14">
           <div className="md:w-1/3">
             <SectionHeader title="Admissions Open 2025" />

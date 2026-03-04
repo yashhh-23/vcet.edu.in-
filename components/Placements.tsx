@@ -92,7 +92,7 @@ const Placements: React.FC = () => {
     <section id="placements" ref={sectionRef} className="relative bg-brand-dark text-white overflow-hidden">
 
       {/* Lamp Header */}
-      <LampContainer className="pt-10 pb-0 min-h-[320px]">
+      <LampContainer className="pt-10 pb-0 min-h-[200px] md:min-h-[320px]">
         <motion.div
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -253,9 +253,8 @@ const ExploreUs: React.FC = () => {
                   href={item.link}
                   onMouseEnter={() => { setHoveredId(item.id); pauseScroll(6000); }}
                   onMouseLeave={() => { setHoveredId(null); pausedRef.current = false; }}
-                  className={`flex-shrink-0 w-[260px] sm:w-[290px] md:w-[310px] rounded-2xl relative overflow-hidden group bg-gradient-to-br ${item.bg}`}
+                  className={`flex-shrink-0 w-[260px] sm:w-[290px] md:w-[310px] h-[260px] sm:h-[280px] md:h-[300px] rounded-2xl relative overflow-hidden group bg-gradient-to-br ${item.bg}`}
                   style={{
-                    height: '300px',
                     border: isHovered
                       ? `1.5px solid ${item.accent}60`
                       : isActive

@@ -84,7 +84,7 @@ function ParallaxRow({ items, baseVelocity, onImageClick }: ParallaxRowProps) {
         {doubled.map((a, i) => (
           <div
             key={`${a.id}-${i}`}
-            className="group relative flex-shrink-0 w-[280px] md:w-[340px] h-[210px] md:h-[250px] rounded-2xl overflow-hidden shadow-md cursor-pointer"
+            className="group relative flex-shrink-0 w-[260px] sm:w-[280px] md:w-[340px] h-[195px] sm:h-[210px] md:h-[250px] rounded-2xl overflow-hidden shadow-md cursor-pointer"
             onClick={() => onImageClick(a)}
           >
             {/* Photo */}

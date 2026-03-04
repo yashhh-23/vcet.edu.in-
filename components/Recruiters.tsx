@@ -288,7 +288,7 @@ const Recruiters: React.FC = () => (
       <div className="absolute bottom-3 right-3 w-5 h-5 border-b border-r" style={{ borderColor: "rgba(11,61,145,0.2)" }} />
     </div>
 
-    <div className="container mx-auto px-4 sm:px-6 max-w-6xl relative z-10">
+    <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10">
 
       {/* Section Header */}
       <div className="mb-8 md:mb-14 text-center">
