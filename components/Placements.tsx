@@ -15,7 +15,6 @@ const placementData = [
 ];
 
 const CHART_H = 260; // px — usable bar area height
-const GRID_STEPS = 4; // horizontal grid lines
 
 const Placements: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -85,11 +84,6 @@ const Placements: React.FC = () => {
   const covidIndices = placementData.map((d, i) => d.isCovid ? i : -1).filter(i => i !== -1);
   const covidStartIdx = covidIndices[0];
   const covidEndIdx   = covidIndices[covidIndices.length - 1];
-
-  // Grid line values
-  const gridValues = Array.from({ length: GRID_STEPS + 1 }, (_, i) =>
-    Math.round((maxCount / GRID_STEPS) * i)
-  );
 
   return (
     <section id="placements" ref={sectionRef} className="relative bg-brand-dark text-white overflow-hidden">
@@ -168,28 +162,6 @@ const Placements: React.FC = () => {
               onMouseMove={handleMouseMove}
             >
               <div className="relative min-w-max" style={{ height: `${CHART_H + 80}px` }}>
-
-                {/* Grid lines + Y-axis labels */}
-                <div
-                  className="absolute left-0 right-0 top-0"
-                  style={{ height: `${CHART_H}px` }}
-                >
-                  {gridValues.slice(1).map((val, gi) => {
-                    const yPct = 100 - (val / maxCount) * 100;
-                    return (
-                      <div
-                        key={gi}
-                        className="absolute left-0 right-0 flex items-center gap-2"
-                        style={{ top: `${yPct}%` }}
-                      >
-                        <span className="text-[9px] text-white/25 font-mono w-8 text-right flex-shrink-0">
-                          {val}
-                        </span>
-                        <div className="flex-1 border-t border-dashed border-white/8" />
-                      </div>
-                    );
-                  })}
-                </div>
 
                 {/* Bars row */}
                 <div
@@ -328,11 +300,7 @@ const Placements: React.FC = () => {
                   ))}
                 </div>
 
-                {/* Baseline axis */}
-                <div
-                  className="absolute left-12 right-0 border-t border-white/15"
-                  style={{ bottom: '36px' }}
-                />
+
               </div>
             </div>
 
