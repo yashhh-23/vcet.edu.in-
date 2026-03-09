@@ -5,9 +5,9 @@ import { LampContainer } from '../ui/lamp';
 const placementData = [
   { year: '2017-18', count: 299 },
   { year: '2018-19', count: 320 },
-  { year: '2019-20', count: 263 },
-  { year: '2020-21', count: 305 },
-  { year: '2021-22', count: 257 },
+  { year: '2019-20', count: 263, isCovid: true },
+  { year: '2020-21', count: 305, isCovid: true },
+  { year: '2021-22', count: 257, isCovid: true },
   { year: '2022-23', count: 261 },
   { year: '2023-24', count: 228 },
   { year: '2024-25', count: 241 },
@@ -15,7 +15,6 @@ const placementData = [
 ];
 
 const CHART_H = 260; // px — usable bar area height
-const GRID_STEPS = 4; // horizontal grid lines
 
 const Placements: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -82,11 +81,9 @@ const Placements: React.FC = () => {
 
   const maxCount = Math.max(...placementData.map(d => d.count));
   const maxIdx   = placementData.findIndex(d => d.count === maxCount);
-
-  // Grid line values
-  const gridValues = Array.from({ length: GRID_STEPS + 1 }, (_, i) =>
-    Math.round((maxCount / GRID_STEPS) * i)
-  );
+  const covidIndices = placementData.map((d, i) => d.isCovid ? i : -1).filter(i => i !== -1);
+  const covidStartIdx = covidIndices[0];
+  const covidEndIdx   = covidIndices[covidIndices.length - 1];
 
   return (
     <section id="placements" ref={sectionRef} className="relative bg-brand-dark text-white overflow-hidden">
@@ -166,37 +163,35 @@ const Placements: React.FC = () => {
             >
               <div className="relative min-w-max" style={{ height: `${CHART_H + 80}px` }}>
 
-                {/* Grid lines + Y-axis labels */}
-                <div
-                  className="absolute left-0 right-0 top-0"
-                  style={{ height: `${CHART_H}px` }}
-                >
-                  {gridValues.slice(1).map((val, gi) => {
-                    const yPct = 100 - (val / maxCount) * 100;
-                    return (
-                      <div
-                        key={gi}
-                        className="absolute left-0 right-0 flex items-center gap-2"
-                        style={{ top: `${yPct}%` }}
-                      >
-                        <span className="text-[9px] text-white/25 font-mono w-8 text-right flex-shrink-0">
-                          {val}
-                        </span>
-                        <div className="flex-1 border-t border-dashed border-white/8" />
-                      </div>
-                    );
-                  })}
-                </div>
-
                 {/* Bars row */}
                 <div
                   className="absolute bottom-10 flex items-end gap-5 md:gap-8 px-2 pl-12"
                   style={{ height: `${CHART_H}px` }}
                 >
-                  {placementData.map((item, index) => {
+                  {/* COVID zone backdrop — spans behind the 3 COVID bars */}
+                  {(() => {
+                    const barW = 60;
+                    const gap = 32; // matches gap-8 (2rem)
+                    const left = covidStartIdx * (barW + gap);
+                    const width = covidIndices.length * barW + (covidIndices.length - 1) * gap;
+                    return (
+                      <div
+                        className="absolute top-0 bottom-0 rounded-xl pointer-events-none"
+                        style={{
+                          left: `${left}px`,
+                          width: `${width}px`,
+                          background: 'linear-gradient(180deg, rgba(34,211,238,0.06) 0%, rgba(34,211,238,0.03) 100%)',
+                          border: '1px solid rgba(34,211,238,0.12)',
+                        }}
+                      >
+                      </div>
+                    );
+                  })()}
+                {placementData.map((item, index) => {
                     const barH = (item.count / maxCount) * CHART_H * 0.92;
                     const isPeak = index === maxIdx;
                     const isCurrent = item.year.includes('*');
+                    const isCovid = !!item.isCovid;
                     const isHovered = hoveredIdx === index;
 
                     return (
@@ -216,15 +211,20 @@ const Placements: React.FC = () => {
                             transition: `opacity 0.5s ease ${index * 100 + 600}ms, transform 0.5s ease ${index * 100 + 600}ms`,
                           }}
                         >
+                          {isCovid && (
+                            <span className="absolute -top-6 left-1/2 -translate-x-1/2 text-[11px] font-extrabold text-cyan-300 uppercase tracking-wider whitespace-nowrap drop-shadow-[0_0_6px_rgba(34,211,238,0.6)]">
+                              Consistent
+                            </span>
+                          )}
                           <span
                             className={`text-xl md:text-2xl font-extrabold tabular-nums transition-colors duration-200 ${
-                              isPeak ? 'text-amber-300' : isHovered ? 'text-white' : 'text-brand-gold'
+                              isPeak ? 'text-amber-300' : isCovid ? 'text-cyan-300' : isHovered ? 'text-white' : 'text-brand-gold'
                             }`}
                           >
                             {animatedCounts[index]}
                           </span>
                           {isPeak && (
-                            <span className="absolute -top-4 left-1/2 -translate-x-1/2 text-[9px] text-amber-300/80 font-bold uppercase tracking-wider whitespace-nowrap">
+                            <span className="absolute -top-6 left-1/2 -translate-x-1/2 text-[13px] text-amber-200 font-extrabold uppercase tracking-wider whitespace-nowrap drop-shadow-[0_0_8px_rgba(251,191,36,0.7)]">
                               ★ Best
                             </span>
                           )}
@@ -243,6 +243,8 @@ const Placements: React.FC = () => {
                             className={`absolute inset-0 rounded-t-xl transition-all duration-300 ${
                               isPeak
                                 ? 'bg-gradient-to-t from-amber-700 via-amber-400 to-amber-200'
+                                : isCovid
+                                ? 'bg-gradient-to-t from-cyan-900 via-cyan-500/80 to-cyan-300/70'
                                 : isCurrent
                                 ? 'bg-gradient-to-t from-yellow-900/80 via-brand-gold/60 to-brand-gold/30'
                                 : 'bg-gradient-to-t from-yellow-800 via-brand-gold/75 to-brand-gold/50'
@@ -260,10 +262,14 @@ const Placements: React.FC = () => {
                           {isPeak && (
                             <div className="absolute inset-0 rounded-t-xl shadow-[0_0_24px_6px_rgba(251,191,36,0.25)]" />
                           )}
+                          {/* COVID resilience glow */}
+                          {isCovid && (
+                            <div className="absolute inset-0 rounded-t-xl shadow-[0_0_18px_4px_rgba(34,211,238,0.20)]" />
+                          )}
                         </div>
 
                         {/* Baseline tick */}
-                        <div className={`w-full h-[3px] rounded-b-sm mt-0 ${isPeak ? 'bg-amber-300/70' : 'bg-brand-gold/40'}`} />
+                        <div className={`w-full h-[3px] rounded-b-sm mt-0 ${isPeak ? 'bg-amber-300/70' : isCovid ? 'bg-cyan-400/60' : 'bg-brand-gold/40'}`} />
                       </div>
                     );
                   })}
@@ -285,7 +291,7 @@ const Placements: React.FC = () => {
                     >
                       <span
                         className={`block text-center text-[10px] font-semibold uppercase tracking-wider whitespace-nowrap transition-colors duration-200 ${
-                          hoveredIdx === index ? 'text-brand-gold' : 'text-white/45'
+                          hoveredIdx === index ? 'text-brand-gold' : item.isCovid ? 'text-cyan-400/70' : 'text-white/45'
                         }`}
                       >
                         {item.year}
@@ -294,27 +300,27 @@ const Placements: React.FC = () => {
                   ))}
                 </div>
 
-                {/* Baseline axis */}
-                <div
-                  className="absolute left-12 right-0 border-t border-white/15"
-                  style={{ bottom: '36px' }}
-                />
+
               </div>
             </div>
 
             {/* Footer note */}
             <div className="mt-5 flex items-center justify-between flex-wrap gap-2">
-              <div className="flex items-center gap-4 text-[10px] text-white/30 uppercase tracking-widest">
-                <span className="flex items-center gap-1.5">
-                  <span className="inline-block w-3 h-3 rounded-sm bg-gradient-to-t from-yellow-800 to-brand-gold/50" />
-                  Placed students
+              <div className="flex items-center gap-5 text-[13px] font-semibold uppercase tracking-widest">
+                <span className="flex items-center gap-2">
+                  <span className="inline-block w-4 h-4 rounded-sm bg-gradient-to-t from-yellow-800 to-brand-gold/50" />
+                  <span className="text-white/80">Placed students</span>
                 </span>
-                <span className="flex items-center gap-1.5">
-                  <span className="inline-block w-3 h-3 rounded-sm bg-gradient-to-t from-amber-700 to-amber-200" />
-                  Peak year
+                <span className="flex items-center gap-2">
+                  <span className="inline-block w-4 h-4 rounded-sm bg-gradient-to-t from-amber-700 to-amber-200" />
+                  <span className="text-amber-200">Peak year</span>
+                </span>
+                <span className="flex items-center gap-2">
+                  <span className="inline-block w-4 h-4 rounded-sm bg-gradient-to-t from-cyan-900 to-cyan-300/70" />
+                  <span className="text-cyan-300">COVID years — Placements unaffected</span>
                 </span>
               </div>
-              <p className="text-white/25 text-[10px] uppercase tracking-widest">* Current Academic Year (In Progress)</p>
+              <p className="text-white/80 text-[13px] font-semibold uppercase tracking-widest">* Current Academic Year (In Progress)</p>
             </div>
           </motion.div>
         </div>

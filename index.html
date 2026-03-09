@@ -140,6 +140,62 @@
         -webkit-text-fill-color: transparent;
         background-clip: text;
       }
+      /* ── Info Card (editorial header-band) ─────────── */
+      .info-card {
+        border-radius: 1rem;
+        overflow: hidden;
+        border: 1px solid rgba(18, 58, 110, 0.10);
+        box-shadow: 0 3px 22px rgba(18, 58, 110, 0.08);
+        transition: transform 0.32s ease, box-shadow 0.32s ease;
+      }
+      .info-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 36px rgba(18, 58, 110, 0.14);
+      }
+      .info-card-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.65rem 1.75rem;
+        background: linear-gradient(90deg, #EEF3F9 0%, #dde8f4 100%);
+        border-bottom: 1px solid rgba(18, 58, 110, 0.10);
+      }
+      .info-card-body {
+        background: #ffffff;
+        padding: 1.5rem 1.75rem 1.85rem;
+      }
+      /* ── Glass Card with Shine Ray ─────────────────── */
+      .glass-card {
+        position: relative;
+        background: rgba(18, 58, 110, 0.055);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(18, 58, 110, 0.13);
+        border-left: 3px solid rgba(26, 79, 140, 0.45);
+        border-radius: 1rem;
+        box-shadow: 0 2px 16px rgba(18, 58, 110, 0.07), inset 0 1px 0 rgba(255,255,255,0.45);
+        overflow: hidden;
+        transition: box-shadow 0.35s ease, transform 0.35s ease, border-color 0.35s ease;
+      }
+      
+      .glass-card > * { position: relative; z-index: 1; }
+      .glass-card::after {
+        content: '';
+        position: absolute;
+        top: 0; left: -100%;
+        width: 55%;
+        height: 100%;
+        background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);
+        transition: left 1s ease;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .glass-card:hover::after { left: 140%; }
+      .glass-card:hover {
+        transform: translateY(-2px);
+        border-left-color: rgba(26, 79, 140, 0.70);
+        box-shadow: 0 6px 24px rgba(18, 58, 110, 0.12), inset 0 1px 0 rgba(255,255,255,0.55);
+      }
       /* ── Scroll Progress Bar ─────────────────────────── */
       #scroll-progress {
         position: fixed;

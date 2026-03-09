@@ -274,26 +274,28 @@ const Hero: React.FC = () => {
             ) : (
               <div className="flex flex-col h-full">
                 {/* Tab switcher */}
-                <div className="flex flex-shrink-0 gap-1 mb-5">
+                <div className="mb-5 grid flex-shrink-0 grid-cols-2 gap-2">
                   <button
                     onClick={() => setActiveTab('notices')}
-                    className={`flex-1 flex items-center justify-center gap-1.5 py-2 text-[10px] font-bold uppercase tracking-widest rounded-lg transition-all duration-200 ${
+                    aria-pressed={activeTab === 'notices'}
+                    className={`flex items-center justify-center gap-2 rounded-xl border px-3 py-2.5 text-[12px] font-bold uppercase tracking-[0.14em] transition-all duration-200 ${
                       activeTab === 'notices'
-                        ? 'bg-brand-gold text-brand-dark shadow-md'
-                        : 'bg-white/8 text-white/50 hover:bg-white/12 hover:text-white/80'
+                        ? 'border-brand-gold bg-brand-gold text-brand-dark shadow-md'
+                        : 'border-white/20 bg-white/8 text-white/75 hover:border-brand-gold/60 hover:bg-white/12 hover:text-white'
                     }`}
                   >
-                    <Bell className="w-3 h-3" /> Notices
+                    <Bell className="h-3.5 w-3.5" /> Notices
                   </button>
                   <button
                     onClick={() => setActiveTab('events')}
-                    className={`flex-1 flex items-center justify-center gap-1.5 py-2 text-[10px] font-bold uppercase tracking-widest rounded-lg transition-all duration-200 ${
+                    aria-pressed={activeTab === 'events'}
+                    className={`flex items-center justify-center gap-2 rounded-xl border px-3 py-2.5 text-[12px] font-bold uppercase tracking-[0.14em] transition-all duration-200 ${
                       activeTab === 'events'
-                        ? 'bg-brand-gold text-brand-dark shadow-md'
-                        : 'bg-white/8 text-white/50 hover:bg-white/12 hover:text-white/80'
+                        ? 'border-brand-gold bg-brand-gold text-brand-dark shadow-md'
+                        : 'border-white/20 bg-white/8 text-white/75 hover:border-brand-gold/60 hover:bg-white/12 hover:text-white'
                     }`}
                   >
-                    <Calendar className="w-3 h-3" /> Events
+                    <Calendar className="h-3.5 w-3.5" /> Events
                   </button>
                 </div>
 

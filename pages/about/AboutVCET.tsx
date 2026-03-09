@@ -1,9 +1,31 @@
 import React from 'react';
 import PageLayout from '../../components/PageLayout';
 import PageBanner from '../../components/PageBanner';
-import { Target, Eye, BookOpen, Award, MapPin, Calendar, Users, GraduationCap } from 'lucide-react';
+import { Target, Eye, BookOpen, Award, MapPin, Calendar, Users, GraduationCap, Sparkles, Building2 } from 'lucide-react';
 
 const AboutVCET: React.FC = () => {
+  const quickFacts = [
+    { icon: Calendar, value: '1994', label: 'Established' },
+    { icon: MapPin, value: '12.27', label: 'Acres Campus' },
+    { icon: GraduationCap, value: '5000+', label: 'Students' },
+    { icon: Users, value: '200+', label: 'Faculty' },
+  ];
+
+  const missionPoints = [
+    'To provide technologically inspiring environment for learning.',
+    'To promote creativity, innovation and professional activities.',
+    'To inculcate ethical and moral values.',
+    'To cater personal, professional and societal needs through quality education.',
+  ];
+
+  const accreditationPoints = [
+    'Approved by AICTE',
+    'DTE Maharashtra',
+    'Affiliated to University of Mumbai',
+    'NBA Accredited',
+    'NAAC Accredited (B++)',
+  ];
+
   return (
     <PageLayout>
       <PageBanner
@@ -14,100 +36,103 @@ const AboutVCET: React.FC = () => {
         ]}
       />
 
-      {/* Main Content */}
       <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-3 lg:items-stretch lg:gap-16">
 
-            {/* Left: Main Content */}
-            <div className="lg:col-span-2 space-y-8">
-              {/* Introduction */}
-              <div className="reveal">
-                <p className="text-lg md:text-xl text-slate-600 leading-relaxed">
-                  Vidyavardhini means a Body committed to enhancement of Knowledge. Vidyavardhini
-                  was established as a registered society in 1970 by late <span className="font-semibold text-brand-blue">Padmashri H. G. alias
-                  Bhausaheb Vartak</span> for the noble cause of education in rural areas.
-                </p>
-              </div>
+            <div className="space-y-8 lg:col-span-2 lg:flex lg:h-full lg:flex-col">
+              <div id="history" className="info-card reveal">
+                <div className="info-card-top">
+                  <span className="flex items-center gap-2">
+                    <Sparkles className="h-4 w-4 text-brand-blue" />
+                    <span className="text-xs font-bold uppercase tracking-[0.15em] text-brand-blue">Foundation &amp; Heritage</span>
+                  </span>
 
-              <div className="reveal" style={{ transitionDelay: '0.1s' }}>
-                <p className="text-base text-slate-500 leading-relaxed">
-                  Vidyavardhini's College of Engineering and Technology, Vasai is located on the
-                  sprawling campus of Vidyavardhini, spread over an area of <strong className="text-brand-blue">12.27 acres</strong>. It is a
-                  short, two minutes walk from Vasai Road (W) Railway Station. The college is also
-                  accessible by road from Mumbai.
-                </p>
-              </div>
-
-              <div className="reveal" style={{ transitionDelay: '0.15s' }}>
-                <p className="text-base text-slate-500 leading-relaxed">
-                  Vidyavardhini Society received approval from AICTE to start the new college of
-                  Engineering & Technology with effect from July, 1994. The college is affiliated
-                  to the University of Mumbai for the four year degree program leading to the
-                  degree of Bachelor of Engineering.
-                </p>
-              </div>
-
-              {/* Image Placeholder */}
-              <div className="reveal rounded-2xl overflow-hidden bg-brand-light h-[300px] md:h-[400px] flex items-center justify-center border border-gray-100" style={{ transitionDelay: '0.2s' }}>
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-brand-blue/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <MapPin className="w-8 h-8 text-brand-blue/40" />
-                  </div>
-                  <p className="text-sm font-medium text-slate-400">VCET Campus Aerial View</p>
-                  <p className="text-xs text-slate-300 mt-1">about-vcet-campus.jpg</p>
+                </div>
+                <div className="info-card-body">
+                  <h2 className="mb-3 text-2xl font-display font-bold leading-tight text-brand-navy md:text-3xl">Legacy Rooted in Knowledge</h2>
+                  <p className="text-xl leading-relaxed text-slate-700 md:text-2xl">
+                    Vidyavardhini means a Body committed to enhancement of Knowledge. Vidyavardhini
+                    was established as a registered society in 1970 by late <span className="font-semibold text-brand-blue">Padmashri H. G. alias
+                    Bhausaheb Vartak</span> for the noble cause of education in rural areas.
+                  </p>
                 </div>
               </div>
 
-              {/* Quick Facts */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 reveal" style={{ transitionDelay: '0.25s' }}>
-                {[
-                  { icon: Calendar, value: '1994', label: 'Established' },
-                  { icon: MapPin, value: '12.27', label: 'Acres Campus' },
-                  { icon: GraduationCap, value: '5000+', label: 'Students' },
-                  { icon: Users, value: '200+', label: 'Faculty' },
-                ].map((stat, idx) => (
-                  <div key={idx} className="bg-brand-light rounded-xl p-5 text-center group hover:shadow-md transition-all duration-300 hover:-translate-y-1">
-                    <stat.icon className="w-5 h-5 mx-auto mb-2 text-brand-gold group-hover:text-brand-blue transition-colors duration-300" />
-                    <span className="text-2xl font-bold text-brand-navy block">{stat.value}</span>
-                    <span className="text-[10px] font-semibold uppercase tracking-widest text-slate-400 mt-1 block">{stat.label}</span>
-                  </div>
-                ))}
+              <div id="campus" className="info-card reveal" style={{ transitionDelay: '0.08s' }}>
+                <div className="info-card-top">
+                  <span className="flex items-center gap-2">
+                    <Building2 className="h-4 w-4 text-brand-blue" />
+                    <span className="text-xs font-bold uppercase tracking-[0.15em] text-brand-blue">Campus &amp; Location</span>
+                  </span>
+
+                </div>
+                <div className="info-card-body">
+                  <h2 className="mb-3 text-2xl font-display font-bold leading-tight text-brand-navy md:text-3xl">Campus and Connectivity</h2>
+                  <p className="text-lg leading-relaxed text-slate-700 md:text-xl">
+                    Vidyavardhini's College of Engineering and Technology, Vasai is located on the
+                    sprawling campus of Vidyavardhini, spread over an area of <strong className="text-brand-blue">12.27 acres</strong>. It is a
+                    short, two minutes walk from Vasai Road (W) Railway Station. The college is also
+                    accessible by road from Mumbai.
+                  </p>
+                </div>
               </div>
+
+              <div className="info-card reveal" style={{ transitionDelay: '0.12s' }}>
+                <div className="info-card-top">
+                  <span className="flex items-center gap-2">
+                    <BookOpen className="h-4 w-4 text-brand-blue" />
+                    <span className="text-xs font-bold uppercase tracking-[0.15em] text-brand-blue">Academics &amp; Affiliation</span>
+                  </span>
+
+                </div>
+                <div className="info-card-body">
+                  <h2 className="mb-3 text-2xl font-display font-bold leading-tight text-brand-navy md:text-3xl">Academic Journey Since 1994</h2>
+                  <p className="text-lg leading-relaxed text-slate-700 md:text-xl">
+                    Vidyavardhini Society received approval from AICTE to start the new college of
+                    Engineering &amp; Technology with effect from July, 1994. The college is affiliated
+                    to the University of Mumbai for the four year degree program leading to the
+                    degree of Bachelor of Engineering.
+                  </p>
+                </div>
+              </div>
+
+              <div className="reveal flex h-[300px] items-center justify-center overflow-hidden rounded-2xl border border-brand-blue/10 bg-brand-light shadow-sm md:h-[430px] lg:h-auto lg:min-h-[520px] lg:flex-1" style={{ transitionDelay: '0.16s' }}>
+                <div className="text-center">
+                  <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-blue/10">
+                    <MapPin className="h-8 w-8 text-brand-blue/40" />
+                  </div>
+                  <p className="text-sm font-medium text-slate-500">VCET Campus Image Slot</p>
+                  <p className="mt-1 text-xs text-slate-400">about-vcet-campus.jpg</p>
+                </div>
+              </div>
+
             </div>
 
-            {/* Right Sidebar */}
             <div className="space-y-8">
-              {/* Vision */}
-              <div className="reveal bg-gradient-to-br from-brand-blue to-brand-navy rounded-2xl p-8 text-white" style={{ transitionDelay: '0.1s' }}>
+              <div id="mission-vision" className="reveal rounded-2xl bg-gradient-to-br from-brand-blue to-brand-navy p-8 text-white shadow-lg shadow-brand-blue/25" style={{ transitionDelay: '0.1s' }}>
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center">
                     <Eye className="w-5 h-5 text-brand-gold" />
                   </div>
-                  <h3 className="text-lg font-display font-bold">Vision</h3>
+                  <h3 className="text-2xl font-display font-bold leading-tight">Vision</h3>
                 </div>
-                <p className="text-white/70 text-sm leading-relaxed">
+                <p className="text-lg leading-relaxed text-white/90">
                   To be a premier institution of technical education, aiming at becoming a
                   valuable resource for industry and society.
                 </p>
               </div>
 
-              {/* Mission */}
-              <div className="reveal bg-brand-light rounded-2xl p-8" style={{ transitionDelay: '0.2s' }}>
+              <div className="reveal rounded-2xl border border-brand-blue/10 bg-brand-light p-8" style={{ transitionDelay: '0.16s' }}>
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 bg-brand-blue/10 rounded-xl flex items-center justify-center">
                     <Target className="w-5 h-5 text-brand-blue" />
                   </div>
-                  <h3 className="text-lg font-display font-bold text-brand-navy">Mission</h3>
+                  <h3 className="text-2xl font-display font-bold leading-tight text-brand-navy">Mission</h3>
                 </div>
                 <ul className="space-y-3">
-                  {[
-                    'To provide technologically inspiring environment for learning.',
-                    'To promote creativity, innovation and professional activities.',
-                    'To inculcate ethical and moral values.',
-                    'To cater personal, professional and societal needs through quality education.',
-                  ].map((item, idx) => (
-                    <li key={idx} className="flex gap-3 text-sm text-slate-600">
+                  {missionPoints.map((item, idx) => (
+                    <li key={idx} className="flex gap-3 text-lg leading-relaxed text-slate-700">
                       <span className="w-1.5 h-1.5 rounded-full bg-brand-gold flex-shrink-0 mt-1.5" />
                       {item}
                     </li>
@@ -115,33 +140,37 @@ const AboutVCET: React.FC = () => {
                 </ul>
               </div>
 
-              {/* Accreditations */}
-              <div className="reveal bg-white rounded-2xl p-8 border border-gray-100 shadow-sm" style={{ transitionDelay: '0.3s' }}>
+              <div id="accreditations" className="reveal rounded-2xl border border-gray-100 bg-white p-8 shadow-sm" style={{ transitionDelay: '0.22s' }}>
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 bg-brand-gold/10 rounded-xl flex items-center justify-center">
                     <Award className="w-5 h-5 text-brand-gold" />
                   </div>
-                  <h3 className="text-lg font-display font-bold text-brand-navy">Accreditations</h3>
+                  <h3 className="text-2xl font-display font-bold leading-tight text-brand-navy">Accreditations</h3>
                 </div>
-                <ul className="space-y-3">
-                  {[
-                    'Approved by AICTE',
-                    'DTE Maharashtra',
-                    'Affiliated to University of Mumbai',
-                    'NBA Accredited',
-                    'NAAC Accredited (B++)',
-                  ].map((item, idx) => (
-                    <li key={idx} className="flex items-center gap-3 text-sm text-slate-600">
-                      <div className="w-6 h-6 bg-green-50 rounded-md flex items-center justify-center flex-shrink-0">
-                        <BookOpen className="w-3.5 h-3.5 text-green-500" />
-                      </div>
+                <ul className="space-y-2.5">
+                  {accreditationPoints.map((item, idx) => (
+                    <li key={idx} className="flex items-center gap-3 text-lg text-slate-700">
+                      <span className="flex-shrink-0 w-5 h-5 rounded-full bg-brand-blue/10 flex items-center justify-center">
+                        <span className="w-1.5 h-1.5 rounded-full bg-brand-blue block" />
+                      </span>
                       {item}
                     </li>
                   ))}
                 </ul>
               </div>
-            </div>
 
+              <div className="reveal grid grid-cols-2 gap-4" style={{ transitionDelay: '0.26s' }}>
+                {quickFacts.map((stat, idx) => (
+                  <div key={idx} className="rounded-xl border border-brand-blue/10 bg-white p-5 text-center shadow-sm transition-all duration-300 hover:border-brand-blue/25 hover:shadow-md">
+                    <div className="mx-auto mb-2 flex h-9 w-9 items-center justify-center rounded-lg bg-brand-blue/8">
+                      <stat.icon className="h-4 w-4 text-brand-blue" />
+                    </div>
+                    <span className="block text-[2.25rem] leading-none font-bold text-brand-navy">{stat.value}</span>
+                    <span className="mt-1.5 block text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">{stat.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
