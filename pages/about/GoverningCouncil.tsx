@@ -1,278 +1,142 @@
-import React from 'react';
+﻿import React from 'react';
+import { Crown, Home, ChevronRight } from 'lucide-react';
 import PageLayout from '../../components/PageLayout';
-import PageBanner from '../../components/PageBanner';
-import { Crown } from 'lucide-react';
 
-/* ─────────────────────────────────────────
-   DATA
-───────────────────────────────────────── */
-interface Member {
-  role: string;
-  name: string;
-  description: string;
-  initials: string;
-  imagePlaceholder: string;
-  category: 'management' | 'ex-officio' | 'staff';
-}
+const chairman = {
+  id: 1,
+  role: 'Chairman',
+  name: 'Mr. Vikas Vartak',
+  description: 'Chairman Vidyavardhini',
+  image: 'https://picsum.photos/seed/vikas/400/400',
+};
 
-const members: Member[] = [
-  {
-    role: 'Member',
-    name: 'Mr. M.N. alias Bhausaheb Mohol',
-    description: 'Industrialist',
-    initials: 'BM',
-    imagePlaceholder: 'member-bhausaheb-mohol.jpg',
-    category: 'management',
-  },
-  {
-    role: 'Member',
-    name: 'Mr. Pandurang alias Babansheth Naik',
-    description: 'Educationist',
-    initials: 'PN',
-    imagePlaceholder: 'member-pandurang-naik.jpg',
-    category: 'management',
-  },
-  {
-    role: 'Member',
-    name: 'Mr. Hasmukh Shah',
-    description: 'Industrialist',
-    initials: 'HS',
-    imagePlaceholder: 'member-hasmukh-shah.jpg',
-    category: 'management',
-  },
-  {
-    role: 'Member',
-    name: 'Mr. Madhurkar B. Parekh',
-    description: 'Industrialist, Chairman of Pidilite Industries',
-    initials: 'MP',
-    imagePlaceholder: 'member-madhurkar-parekh.jpg',
-    category: 'management',
-  },
-  {
-    role: 'Member',
-    name: 'Director of Technical Education (M.S.)',
-    description: 'Ex-Officio Member',
-    initials: 'DTE',
-    imagePlaceholder: 'member-dte.jpg',
-    category: 'ex-officio',
-  },
-  {
-    role: 'Member',
-    name: 'Nominee of the University',
-    description: 'Ex-Officio Member',
-    initials: 'NU',
-    imagePlaceholder: 'member-university-nominee.jpg',
-    category: 'ex-officio',
-  },
-  {
-    role: 'Member',
-    name: 'Director, WRO AICTE',
-    description: 'Ex-Officio Member',
-    initials: 'WA',
-    imagePlaceholder: 'member-wro-aicte.jpg',
-    category: 'ex-officio',
-  },
-  {
-    role: 'Member',
-    name: 'Educationalist / Industrialist',
-    description: 'Nominated by AICTE',
-    initials: 'EI',
-    imagePlaceholder: 'member-aicte-nominee.jpg',
-    category: 'ex-officio',
-  },
-  {
-    role: 'Member',
-    name: 'Dr. Uday Aswalekar',
-    description: 'Staff Representative, Professor — Mechanical Engg.',
-    initials: 'UA',
-    imagePlaceholder: 'member-uday-aswalekar.jpg',
-    category: 'staff',
-  },
-  {
-    role: 'Member',
-    name: 'Dr. Archana Ekbote',
-    description: 'Staff Representative, Asst. Professor — IT',
-    initials: 'AE',
-    imagePlaceholder: 'member-archana-ekbote.jpg',
-    category: 'staff',
-  },
+const members = [
+  { id: 2,  role: 'Member',           name: 'Mr. M.N. alias Bhausaheb Mohol',         description: 'Industrialist',                                  image: 'https://picsum.photos/seed/mohol/400/400'  },
+  { id: 3,  role: 'Member',           name: 'Mr. Pandurang alias Babansheth Naik',    description: 'Educationist',                                   image: 'https://picsum.photos/seed/naik/400/400'   },
+  { id: 4,  role: 'Member',           name: 'Mr. Hasmukh Shah',                       description: 'Industrialist',                                  image: 'https://picsum.photos/seed/shah/400/400'   },
+  { id: 5,  role: 'Member',           name: 'Mr. Madhurkar B. Parekh',                description: 'Industrialist, Chairman of Pidilite Industries', image: 'https://picsum.photos/seed/parekh/400/400' },
+  { id: 6,  role: 'Member',           name: 'Director of Technical Education (M.S.)', description: 'Ex-Officio',                                     image: 'https://picsum.photos/seed/dte/400/400'    },
+  { id: 7,  role: 'Member',           name: 'Nominee of the University',              description: 'Ex-Officio',                                     image: 'https://picsum.photos/seed/uni/400/400'    },
+  { id: 8,  role: 'Member',           name: 'Director, WRO AICTE',                   description: 'Ex-Officio',                                     image: 'https://picsum.photos/seed/aicte/400/400'  },
+  { id: 9,  role: 'Member',           name: 'Educationalist / Industrialist',         description: 'Nominated by AICTE',                             image: 'https://picsum.photos/seed/edu/400/400'    },
+  { id: 10, role: 'Member Secretary', name: 'Dr. Rakesh Himte',                       description: 'Principal',                                      image: 'https://picsum.photos/seed/himte/400/400'  },
 ];
 
-const mgmt      = members.filter(m => m.category === 'management');
-const exOfficio = members.filter(m => m.category === 'ex-officio');
-const staff     = members.filter(m => m.category === 'staff');
-
-/* ─────────────────────────────────────────
-   SUB-COMPONENTS
-───────────────────────────────────────── */
-
-/** Horizontal member row inside a grouped panel */
-const MemberRow: React.FC<{ member: Member; delay: number }> = ({ member, delay }) => (
-  <div
-    className="reveal flex items-center gap-4 py-4 border-b border-gray-100 last:border-0"
-    style={{ transitionDelay: `${delay}s` }}
-  >
-    <div className="w-11 h-11 shrink-0 bg-gradient-to-br from-brand-blue/10 to-brand-gold/10 rounded-xl flex items-center justify-center border border-gray-100">
-      <span className="text-sm font-display font-bold text-brand-blue/40 select-none">
-        {member.initials}
-      </span>
-    </div>
-    <div className="min-w-0">
-      <p className="text-[10px] tracking-[0.2em] font-bold uppercase text-brand-gold leading-none mb-0.5">
-        {member.role}
-      </p>
-      <h3 className="font-display font-bold text-brand-navy text-[15px] leading-snug">
-        {member.name}
-      </h3>
-      <p className="text-xs text-slate-400 mt-0.5">{member.description}</p>
-    </div>
-  </div>
-);
-
-/** Section group heading */
-const GroupHeading: React.FC<{ label: string; delay?: number }> = ({ label, delay = 0 }) => (
-  <div className="reveal flex items-center gap-3 mb-3" style={{ transitionDelay: `${delay}s` }}>
-    <div className="w-1 h-5 bg-brand-gold rounded-full shrink-0" />
-    <h3 className="text-xs font-bold uppercase tracking-[0.22em] text-slate-400">{label}</h3>
-    <div className="flex-1 h-px bg-gray-100" />
-  </div>
-);
-
-/* ─────────────────────────────────────────
-   PAGE
-───────────────────────────────────────── */
-const GoverningCouncil: React.FC = () => {
+export default function GoverningCouncil() {
   return (
     <PageLayout>
-      <PageBanner
-        title="Governing Council"
-        breadcrumbs={[
-          { label: 'About Us', href: '/about-us' },
-          { label: 'Governing Council' },
-        ]}
-      />
+      <div className="w-full bg-white min-h-screen font-sans">
 
-      <section className="py-16 md:py-24 bg-white">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-5xl mx-auto">
+        {/* Blue Hero Header */}
+        <div className="bg-[#1a4b7c] py-16 md:py-24 px-6 md:px-12 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-white/5 rounded-full -translate-y-1/2 translate-x-1/3 blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-500/10 rounded-full translate-y-1/2 -translate-x-1/3 blur-3xl pointer-events-none" />
 
-            {/* ── Page intro ── */}
-            <div className="reveal text-center mb-14">
-              <div className="flex items-center justify-center gap-3 mb-4">
-                <div className="w-10 h-0.5 bg-brand-gold" />
-                <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-gold">
-                  Leadership &amp; Governance
-                </span>
-                <div className="w-10 h-0.5 bg-brand-gold" />
-              </div>
-              <h2 className="text-2xl md:text-3xl font-display font-bold text-brand-navy">
-                The Governing Council
-              </h2>
-              <p className="text-slate-500 mt-3 max-w-2xl mx-auto leading-relaxed">
-                A distinguished assembly of educators, industrialists, and visionaries
-                dedicated to shaping the future of our academic community.
-              </p>
+          <div className="max-w-5xl mx-auto text-center relative z-10">
+            {/* Breadcrumb */}
+            <div className="flex items-center justify-center text-sm text-blue-200/80 mb-8 gap-2 font-medium">
+              <Home className="w-4 h-4" />
+              <ChevronRight className="w-4 h-4" />
+              <span className="hover:text-white cursor-pointer transition-colors">About Us</span>
+              <ChevronRight className="w-4 h-4" />
+              <span className="text-[#fdb813]">Governing Council</span>
             </div>
 
-            {/* ═══════════════════════════════════════
-                TWO-COLUMN LAYOUT
-            ═══════════════════════════════════════ */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-14 items-start">
+            {/* Eyebrow */}
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <div className="w-12 h-px bg-[#fdb813]" />
+              <p className="font-sans text-xs tracking-[0.3em] text-[#fdb813] font-bold uppercase">
+                Leadership &amp; Governance
+              </p>
+              <div className="w-12 h-px bg-[#fdb813]" />
+            </div>
 
-              {/* ─── LEFT: Chairman featured card (sticky) ─── */}
-              <div className="reveal lg:col-span-1">
-                <div className="sticky top-32">
-                  <div className="bg-brand-light rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg hover:border-brand-gold/30 transition-all duration-500 group">
+            <h1 className="font-serif text-5xl md:text-6xl text-white mb-6">
+              The Governing Council
+            </h1>
+            <p className="font-serif text-lg text-blue-100 max-w-2xl mx-auto leading-relaxed italic">
+              A distinguished assembly of educators, industrialists, and visionaries
+              dedicated to shaping the future of our academic community.
+            </p>
+          </div>
+        </div>
 
-                    {/* Photo placeholder */}
-                    <div className="aspect-[4/3] bg-gradient-to-br from-brand-blue/10 to-brand-gold/10 flex items-center justify-center relative overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/5 to-transparent" />
-                      <div className="text-center relative z-10">
-                        <div className="w-24 h-24 bg-white/60 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-105 transition-transform duration-500">
-                          <span className="text-4xl font-display font-bold text-brand-blue/30 select-none">
-                            VV
-                          </span>
-                        </div>
-                        <p className="text-xs text-slate-400">chairman-vikas-vartak.jpg</p>
-                      </div>
-                    </div>
+        {/* Body */}
+        <div className="max-w-5xl mx-auto px-6 md:px-12 py-16">
+          <div className="space-y-16">
 
-                    {/* Chairman info */}
-                    <div className="p-6 text-center">
-                      <div className="flex items-center justify-center gap-2 mb-2">
-                        <Crown className="w-4 h-4 text-brand-gold" />
-                        <span className="text-[10px] tracking-[0.22em] font-bold uppercase text-brand-gold">
-                          Chairman
-                        </span>
-                      </div>
-                      <h2 className="text-xl font-display font-bold text-brand-navy">
-                        Mr. Vikas Vartak
-                      </h2>
-                      <p className="text-sm text-slate-500 mt-1">Chairman, Vidyavardhini</p>
-
-                      <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent my-5" />
-
-                      {/* Member Secretary inline below */}
-                      <div className="flex items-center gap-4 text-left">
-                        <div className="w-11 h-11 shrink-0 bg-gradient-to-br from-brand-blue/10 to-brand-gold/10 rounded-lg flex items-center justify-center border border-gray-100">
-                          <span className="text-sm font-display font-bold text-brand-blue/40 select-none">RH</span>
-                        </div>
-                        <div>
-                          <p className="text-[10px] tracking-[0.18em] font-bold uppercase text-brand-gold leading-none mb-0.5">
-                            Member Secretary
-                          </p>
-                          <p className="text-xl font-display font-bold text-brand-navy leading-snug">
-                            Dr. Rakesh Himte
-                          </p>
-                          <p className="text-xs text-slate-400">Principal, VCET</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+            {/* Chairman featured card */}
+            <div className="flex flex-col md:flex-row items-center gap-8 bg-[#f8fafc] p-8 md:p-12 rounded-tr-[4rem] rounded-bl-[4rem] border border-gray-100 shadow-sm">
+              {/* Photo with Crown badge */}
+              <div className="relative shrink-0">
+                <div className="w-40 h-40 md:w-52 md:h-52 rounded-full overflow-hidden border-4 border-[#fdb813] shadow-lg">
+                  <img
+                    src={chairman.image}
+                    alt={chairman.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="absolute -bottom-2 -right-2 w-10 h-10 bg-[#1a4b7c] rounded-full flex items-center justify-center shadow-md border-2 border-white">
+                  <Crown className="w-5 h-5 text-[#fdb813]" />
                 </div>
               </div>
 
-              {/* ─── RIGHT: Grouped member lists ─── */}
-              <div className="lg:col-span-2 space-y-8">
+              {/* Text */}
+              <div className="text-center md:text-left">
+                <p className="text-xs font-bold tracking-[0.25em] uppercase text-[#fdb813] mb-2">
+                  {chairman.role}
+                </p>
+                <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1a4b7c] mb-3">
+                  {chairman.name}
+                </h2>
+                <p className="text-slate-500 italic leading-relaxed text-lg">
+                  {chairman.description}
+                </p>
+                <div className="mt-5 w-16 h-1 bg-[#fdb813] rounded-full md:mx-0 mx-auto" />
+              </div>
+            </div>
 
-                {/* Management Members */}
-                <div className="reveal">
-                  <GroupHeading label="Management Members" delay={0.05} />
-                  <div className="bg-brand-light rounded-2xl px-6 py-1 border border-gray-100">
-                    {mgmt.map((m, i) => (
-                      <MemberRow key={m.name} member={m} delay={0.08 + i * 0.06} />
-                    ))}
+            {/* Remaining members grid */}
+            <div>
+              <div className="flex items-center gap-3 mb-10">
+                <div className="w-8 h-px bg-[#fdb813]" />
+                <p className="text-xs font-bold tracking-[0.25em] uppercase text-[#fdb813]">
+                  Council Members
+                </p>
+                <div className="flex-1 h-px bg-gray-200" />
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+                {members.map((member) => (
+                  <div key={member.id} className="flex items-center gap-5 group">
+                    {/* Circular photo */}
+                    <div className="w-16 h-16 shrink-0 rounded-full overflow-hidden border-2 border-transparent group-hover:border-[#fdb813] transition-all duration-300 shadow-sm">
+                      <img
+                        src={member.image}
+                        alt={member.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+
+                    {/* Text */}
+                    <div className="min-w-0">
+                      <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#fdb813] leading-none mb-1">
+                        {member.role}
+                      </p>
+                      <h3 className="font-serif font-bold text-[#1a4b7c] text-base leading-snug">
+                        {member.name}
+                      </h3>
+                      <p className="text-sm text-slate-500 mt-0.5">{member.description}</p>
+                    </div>
                   </div>
-                </div>
-
-                {/* Ex-Officio & Nominated */}
-                <div className="reveal" style={{ transitionDelay: '0.1s' }}>
-                  <GroupHeading label="Ex-Officio &amp; Nominated Members" delay={0.1} />
-                  <div className="bg-brand-light rounded-2xl px-6 py-1 border border-gray-100">
-                    {exOfficio.map((m, i) => (
-                      <MemberRow key={m.name} member={m} delay={0.12 + i * 0.06} />
-                    ))}
-                  </div>
-                </div>
-
-                {/* Staff Representatives */}
-                <div className="reveal" style={{ transitionDelay: '0.15s' }}>
-                  <GroupHeading label="Staff Representatives" delay={0.15} />
-                  <div className="bg-brand-light rounded-2xl px-6 py-1 border border-gray-100">
-                    {staff.map((m, i) => (
-                      <MemberRow key={m.name} member={m} delay={0.18 + i * 0.06} />
-                    ))}
-                  </div>
-                </div>
-
+                ))}
               </div>
             </div>
 
           </div>
         </div>
-      </section>
+
+      </div>
     </PageLayout>
   );
-};
-
-export default GoverningCouncil;
+}
