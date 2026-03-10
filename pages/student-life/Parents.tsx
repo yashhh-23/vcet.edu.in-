@@ -19,14 +19,14 @@ const stats = [
   { icon: TrendingUp, label: 'Design Patents', value: '10+' },
 ];
 
-const Parents: React.FC = () => {
+const Patents: React.FC = () => {
   return (
     <PageLayout>
       <PageBanner
-        title="Parents"
+        title="Patents"
         breadcrumbs={[
           { label: 'Research', href: '/research' },
-          { label: 'Parents' },
+          { label: 'Patents' },
         ]}
       />
 
@@ -128,4 +128,4 @@ const Parents: React.FC = () => {
   );
 };
 
-export default Parents;
+export default Patents;
