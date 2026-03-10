@@ -45,7 +45,7 @@ export default function GoverningCouncil() {
 
           <div className="max-w-5xl mx-auto text-left relative z-10">
 
-            {/* Eyebrow */
+            {/* Eyebrow */}
             <div className="flex items-center justify-start gap-3 mb-6">
               <div className="w-12 h-px bg-[#fdb813]" />
               <p className="font-sans text-xs tracking-[0.3em] text-[#fdb813] font-bold uppercase">
