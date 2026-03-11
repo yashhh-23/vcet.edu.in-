@@ -67,6 +67,9 @@ const ResearchFacility = lazy(() => import('./pages/research/ResearchFacility'))
 const ResearchConventions = lazy(() => import('./pages/research/ResearchConventions'));
 const ResearchPolicy = lazy(() => import('./pages/research/ResearchPolicy'));
 const NIRF = lazy(() => import('./pages/research/NIRF'));
+const ResearchPatents = lazy(() => import('./pages/research/Patents'));
+const ResearchIIC = lazy(() => import('./pages/research/IIC'));
+const ResearchDownloads = lazy(() => import('./pages/research/ResearchDownloads'));
 
 // pages/facilities
 const CentralComputing = lazy(() => import('./pages/facilities/CentralComputing'));
@@ -225,14 +228,15 @@ function App() {
           <Route path="/research" element={<ResearchIntro />} />
           <Route path="/funded-research" element={<FundedResearch />} />
           <Route path="/publications" element={<Publications />} />
-          <Route path="/patents" element={<Patents />} />
+          <Route path="/patents" element={<ResearchPatents />} />
           <Route path="/parents" element={<Patents />} />
           <Route path="/consultancy-projects" element={<ConsultancyProjects />} />
           <Route path="/research-facility" element={<ResearchFacility />} />
           <Route path="/research-conventions" element={<ResearchConventions />} />
           <Route path="/research-policy" element={<ResearchPolicy />} />
-          <Route path="/iic" element={<IIC />} />
+          <Route path="/iic" element={<ResearchIIC />} />
           <Route path="/nirf" element={<NIRF />} />
+          <Route path="/research-downloads" element={<ResearchDownloads />} />
           <Route path="/downloads" element={<Downloads />} />
 
           {/* Facilities */}
