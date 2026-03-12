@@ -1,6 +1,6 @@
 ﻿import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Menu, X, ArrowUpRight, Search, ChevronDown, ChevronRight } from 'lucide-react';
+import { Menu, X, Search, ChevronDown, ChevronRight } from 'lucide-react';
 
 /* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    TYPE DEFINITIONS
@@ -842,29 +842,22 @@ const Header: React.FC = () => {
             </ul>
           </nav>
 
-          {/* Right actions â€” search + apply */}
+          {/* Right actions â€” search */}
           <div className="hidden md:flex items-center gap-1 flex-shrink-0">
-            <div className="w-px h-5 bg-gray-200 mx-1" />
             <button
               onClick={() => setSearchOpen(true)}
-              className="p-2 rounded-lg text-slate-500 hover:bg-brand-blue/8 hover:text-brand-blue transition-all duration-200"
+              className="p-2 rounded-lg bg-brand-gold text-blue hover:bg-brand-gold-light transition-all duration-200"
               aria-label="Search"
             >
               <Search className="w-4 h-4" />
             </button>
-            <a
-              href="#admissions"
-              className="ml-0.5 flex items-center gap-1 px-2 lg:px-3 py-1.5 lg:py-2 rounded-lg text-[9px] lg:text-[10px] xl:text-[12px] font-bold uppercase tracking-wide bg-brand-blue text-white hover:bg-brand-navy shadow-sm hover:shadow-md transition-all duration-200 whitespace-nowrap"
-            >
-              Apply Now <ArrowUpRight className="w-3 h-3" />
-            </a>
           </div>
 
           {/* Mobile controls */}
           <div className="md:hidden flex items-center gap-1 ml-auto text-slate-700">
             <button
               onClick={() => setSearchOpen(true)}
-              className="p-2 rounded-lg hover:bg-brand-blue/8 hover:text-brand-blue transition-all"
+              className="p-2 rounded-lg bg-brand-gold text-blue hover:bg-brand-gold-light transition-all"
               aria-label="Search"
             >
               <Search className="w-5 h-5" />
@@ -994,13 +987,6 @@ const Header: React.FC = () => {
 
           {/* Mobile footer actions */}
           <div className="mt-8 pt-6 border-t border-white/10">
-            <a
-              href="#admissions"
-              onClick={() => setMobileOpen(false)}
-              className="block w-full text-center bg-brand-gold text-brand-dark font-bold uppercase tracking-wider py-3.5 rounded-xl hover:bg-brand-gold-light transition-colors text-sm"
-            >
-              Apply Now
-            </a>
             <div className="mt-6 text-sm text-white/40 space-y-1">
               <p>vcet_inbox@vcet.edu.in</p>
               <p>+91 0250-2338234</p>
