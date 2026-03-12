@@ -1,7 +1,7 @@
 # ── Backend / PHP (separate repo: ivory-26/vcet) ──
-api/
-db/
-uploads/
+/api/
+/db/
+/uploads/
 
 # Logs
 logs
