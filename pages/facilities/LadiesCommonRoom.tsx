@@ -768,7 +768,6 @@ const LadiesCommonRoom: React.FC = () => {
       <PageBanner
         title="Ladies Common Room"
         breadcrumbs={[
-          { label: 'Facilities', href: '/facilities' },
           { label: 'Ladies Common Room' },
         ]}
       />
