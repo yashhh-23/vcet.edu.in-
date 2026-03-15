@@ -33,7 +33,7 @@ function buildHeaders(input?: HeadersInit): Headers {
 }
 
 async function ensureCsrfCookie(forceRefresh = false): Promise<void> {
-  if (!forceRefresh && (csrfToken || getCookie("XSRF-TOKEN"))) {
+  if (!forceRefresh && csrfToken) {
     return;
   }
 
@@ -52,9 +52,7 @@ async function ensureCsrfCookie(forceRefresh = false): Promise<void> {
         throw new Error(message || `Unable to initialize CSRF protection (HTTP ${res.status})`);
       }
 
-      csrfToken = typeof payload?.token === "string" && payload.token.length > 0
-        ? payload.token
-        : getCookie("XSRF-TOKEN");
+      csrfToken = payload?.token ?? "";
     }).finally(() => {
       csrfBootstrapPromise = null;
     });
@@ -64,9 +62,8 @@ async function ensureCsrfCookie(forceRefresh = false): Promise<void> {
 }
 
 function applyCsrfHeader(headers: Headers): void {
-  const token = csrfToken ?? getCookie("XSRF-TOKEN");
-  if (token) {
-    headers.set("X-XSRF-TOKEN", token);
+  if (csrfToken) {
+    headers.set("X-XSRF-TOKEN", csrfToken);
   }
 }
 
