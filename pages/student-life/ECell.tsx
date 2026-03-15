@@ -60,7 +60,6 @@ const ECell: React.FC = () => {
       <PageBanner
         title="E-Cell"
         breadcrumbs={[
-          { label: 'Training & Placement', href: '#' },
           { label: 'E-Cell' },
         ]}
       />
