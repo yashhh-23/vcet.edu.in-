@@ -118,6 +118,9 @@ async function requestForm<T>(
   if (!SAFE_METHODS.has(normalizedMethod)) {
     await ensureCsrfCookie();
     applyCsrfHeader(headers);
+    if (csrfToken) {
+      body.append("_token", csrfToken);
+    }
   }
 
   const res = await fetch(`${API_BASE}${path}`, {
