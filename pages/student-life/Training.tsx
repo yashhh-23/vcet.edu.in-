@@ -149,8 +149,131 @@ const Training: React.FC = () => {
             </section>
           )}
 
+          {/* Events Tab */}
+          {activeId === 'events' && (
+            <section className="reveal bg-white rounded-2xl p-8 lg:p-12 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] border border-slate-100">
+              <div className="space-y-6 text-[#5b6574] leading-relaxed text-[15px]">
+                <h3 className="text-2xl font-bold text-[#183a68] border-b border-slate-100 pb-3 mb-6">Events</h3>
+                
+                <div className="overflow-x-auto mt-6">
+                  <table className="w-full text-left border-collapse min-w-[600px]">
+                    <thead>
+                      <tr className="bg-slate-50 text-[#183a68] border-b border-slate-200">
+                        <th className="p-4 font-semibold w-16">SR.</th>
+                        <th className="p-4 font-semibold w-1/4">Name of the Event</th>
+                        <th className="p-4 font-semibold w-1/2">Company Name / Resource Person</th>
+                        <th className="p-4 font-semibold w-32">Date of conduction</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100">
+                      
+                      {/* Row 1 */}
+                      <tr className="hover:bg-slate-50/50 transition-colors">
+                        <td className="p-4 align-top font-medium text-slate-500">1</td>
+                        <td className="p-4 align-top font-semibold text-brand-navy">Aptitude Training</td>
+                        <td className="p-4 align-top space-y-3">
+                          <p>
+                            <span className="text-brand-gold mr-2">❖</span> 
+                            Career Launcher (a part of CL Educate Ltd) focuses on diverse segments of learners across multiple age groups. Led by a team of highly qualified professionals, including IIT-IIM alumni, with a passion for excellence in education.
+                          </p>
+                          <p>
+                            <span className="text-brand-gold mr-2">❖</span> 
+                            Aptitude Training for students is arranged by Career Launcher team.
+                          </p>
+                        </td>
+                        <td className="p-4 align-top whitespace-nowrap text-slate-500">Since 2019</td>
+                      </tr>
+
+                      {/* Row 2 */}
+                      <tr className="hover:bg-slate-50/50 transition-colors">
+                        <td className="p-4 align-top font-medium text-slate-500">2</td>
+                        <td className="p-4 align-top font-semibold text-brand-navy">AMCAT Test</td>
+                        <td className="p-4 align-top space-y-3">
+                          <p>
+                            <span className="text-brand-gold mr-2">❖</span>
+                            AMCAT (Aspiring Minds Computer Adaptive Assessment) is India&apos;s largest Employability Assessment and is recognized by over many companies. AMCAT gives candidates detailed feedback of their employability (seven stroke feedback) and helps connect them to over 40,000 entry level jobs every year.
+                          </p>
+                          <p>
+                            <span className="text-brand-gold mr-2">❖</span>
+                            Duration of test &ndash; 03 hours
+                          </p>
+                        </td>
+                        <td className="p-4 align-top whitespace-nowrap text-slate-500">Since 2019</td>
+                      </tr>
+
+                      {/* Row 3 */}
+                      <tr className="hover:bg-slate-50/50 transition-colors">
+                        <td className="p-4 align-top font-medium text-slate-500">3</td>
+                        <td className="p-4 align-top font-semibold text-brand-navy">Aptitude Test Series</td>
+                        <td className="p-4 align-top space-y-3">
+                          <p>
+                            <span className="text-brand-gold mr-2">❖</span>
+                            CoCubes is India&apos;s leading assessment and hiring platform. They run assessments to measure employability across all domains &ndash; from programming to plumbing
+                          </p>
+                          <p>
+                            <span className="text-brand-gold mr-2">❖</span>
+                            CoCubes schedules regular aptitude exams and its assessments for our students allround the year
+                          </p>
+                        </td>
+                        <td className="p-4 align-top whitespace-nowrap text-slate-500">Since 2017</td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+            </section>
+          )}
+
+          {/* Career Guidance Tab */}
+          {activeId === 'career' && (
+            <section className="reveal bg-white rounded-2xl p-8 lg:p-12 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] border border-slate-100">
+              <div className="space-y-6 text-[#5b6574] leading-relaxed text-[15px]">
+                <h3 className="text-2xl font-bold text-[#183a68] border-b border-slate-100 pb-3 mb-6">Career Guidance</h3>
+                <p>
+                  In line with objectiveof helping in placing students in competitively good companies, apropos initiatives are taken to counsel the students with respect to career guidance and higher education. Some of them are:
+                </p>
+                <div className="mt-8">
+                  <ul className="list-disc pl-5 space-y-3">
+                    <li>Seminars on Higher Studies</li>
+                    <li>Talks on Career Guidance</li>
+                    <li>Motivational lectures by Alumni, Entrepreneurs, Industry guests and Faculty.</li>
+                    <li>Provision of books, magazines, periodicals on Competitive/Civil service/GATE/GRE/TOEFL etc. exams in the library</li>
+                    <li>Subscription of newspapers related to career opportunities such as Rojgar Samachar</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+          )}
+
+          {/* Internship Tab */}
+          {activeId === 'internship' && (
+            <section className="reveal bg-white rounded-2xl p-8 lg:p-12 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] border border-slate-100">
+              <div className="space-y-6 text-[#5b6574] leading-relaxed text-[15px]">
+                <h3 className="text-2xl font-bold text-[#183a68] border-b border-slate-100 pb-3 mb-6">Internship</h3>
+                <p>
+                  Gaining from course books, lectures and other investigation material doesn&apos;t get the job done for all encompassing learning. Down to earth and hands-on learning is fundamental for better comprehension of work forms. Industry internships are sorted out to uncover the students for industry condition which upgrades the down to earth comprehension of the ideas. The students are urged to take up internship programs during their semester break. Training and Placement cell give their guidelines, recommendations, scope and contact subtleties of industries. They additionally help the students by interacting with the industry persons, give them recommendation letters and other fundamental backings.
+                </p>
+                <div className="mt-8">
+                  <h4 className="text-lg font-bold text-[#183a68] mb-4">Procedure:</h4>
+                  <ol className="list-decimal pl-5 space-y-3">
+                    <li>At first Training and Placement cell issue a letter for summer/winter internship for each student.</li>
+                    <li>Students submit this letter to individual organization/industry from where they need to seek training as an intern.</li>
+                    <li>After completion of training, industry gives a certificate or assessment letter.</li>
+                    <li>Students submit Xerox copy of their training certificate issued by industry to training and placement cell.</li>
+                    <li>Students submit feedback and training report for the completed internship.</li>
+                  </ol>
+                </div>
+                <p className="mt-6 pt-4 font-semibold text-[#183a68]">
+                  Some of the industries where students regularly go for Internships are:
+                </p>
+              </div>
+            </section>
+          )}
+
           {/* Placeholders for other tabs */}
-          {activeId !== 'training' && (
+          {activeId !== 'training' && activeId !== 'events' && activeId !== 'career' && activeId !== 'internship' && (
             <section className="reveal bg-white rounded-2xl p-12 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] border border-slate-100 flex flex-col items-center justify-center text-center min-h-[400px]">
               <div className="w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center mb-6">
                 <i className={`ph ${activeLink?.icon ?? 'ph-folder'} text-3xl text-[#183a68]`} />
