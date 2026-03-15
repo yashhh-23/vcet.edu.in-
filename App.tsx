@@ -126,6 +126,7 @@ const SSRCycle1 = lazy(() => import('./pages/naac/SSRCycle1'));
 const SSRCycle2 = lazy(() => import('./pages/naac/SSRCycle2'));
 const BestPractices = lazy(() => import('./pages/naac/BestPractices'));
 const NAACScore = lazy(() => import('./pages/naac/NAACScore'));
+const NaacPage = lazy(() => import('./pages/naac/NaacPage'));
 
 // pages/contact
 const ContactUs = lazy(() => import('./pages/contact/ContactUs'));
@@ -311,6 +312,7 @@ function App() {
           <Route path="/sedg-cell" element={<SEDGCell />} />
 
           {/* NAAC */}
+          <Route path="/naac-ssr-cycle-1" element={<NaacPage />} />
           <Route path="/sss" element={<SSS />} />
           <Route path="/sss-report" element={<SSSReport />} />
           <Route path="/ssr-cycle-1" element={<SSRCycle1 />} />
