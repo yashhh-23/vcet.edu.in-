@@ -57,7 +57,6 @@ const DeptFE = lazy(() => import('./pages/departments/DeptFE'));
 const DeanAcademics = lazy(() => import('./pages/academics/DeanAcademics'));
 const AcademicCalendar = lazy(() => import('./pages/academics/AcademicCalendar'));
 const TeachingLearning = lazy(() => import('./pages/academics/TeachingLearning'));
-const SwayamNPTEL = lazy(() => import('./pages/academics/SwayamNPTEL'));
 const HonoursMinor = lazy(() => import('./pages/academics/HonoursMinor'));
 const ExamCell = lazy(() => import('./pages/academics/ExamCell'));
 
@@ -129,6 +128,54 @@ const NaacPage = lazy(() => import('./pages/naac/NAACPage'));
 
 // pages/contact
 const ContactUs = lazy(() => import('./pages/contact/ContactUs'));
+
+// pages/mms
+const MMSHome = lazy(() => import('./pages/mms/MMSHome'));
+const MMSAbout = lazy(() => import('./pages/mms/about/MMSAbout'));
+const MMSPrincipalsDesk = lazy(() => import('./pages/mms/about/MMSPrincipalsDesk'));
+const MMSHODsDesk = lazy(() => import('./pages/mms/about/MMSHODsDesk'));
+const MMSFaculty = lazy(() => import('./pages/mms/about/MMSFaculty'));
+const MMSVisionMission = lazy(() => import('./pages/mms/about/MMSVisionMission'));
+const MMSDAB = lazy(() => import('./pages/mms/about/MMSDAB'));
+const MMSProgramOutcomes = lazy(() => import('./pages/mms/about/MMSProgramOutcomes'));
+const MMSAdmission = lazy(() => import('./pages/mms/admission/MMSAdmission'));
+const MMSScholarship = lazy(() => import('./pages/mms/admission/MMSScholarship.tsx'));
+const MMSDocumentsRequired = lazy(() => import('./pages/mms/admission/MMSDocumentsRequired'));
+const MMSFeesStructure = lazy(() => import('./pages/mms/admission/MMSFeesStructure'));
+const MMSExperientialLearning = lazy(() => import('./pages/mms/experiential-learning/MMSExperientialLearning'));
+const MMSExperientialRolePlay = lazy(() => import('./pages/mms/experiential-learning/MMSExperientialRolePlay'));
+const MMSExperientialGroupDiscussion = lazy(() => import('./pages/mms/experiential-learning/MMSExperientialGroupDiscussion'));
+const MMSExperientialEntrepreneurialDrive = lazy(() => import('./pages/mms/experiential-learning/MMSExperientialEntrepreneurialDrive'));
+const MMSExperientialFinancialLiteracy = lazy(() => import('./pages/mms/experiential-learning/MMSExperientialFinancialLiteracy'));
+const MMSExperientialNesco = lazy(() => import('./pages/mms/experiential-learning/MMSExperientialNesco'));
+const MMSExperientialModelMaking = lazy(() => import('./pages/mms/experiential-learning/MMSExperientialModelMaking'));
+const MMSTraining = lazy(() => import('./pages/mms/training-placement/MMSTraining'));
+const MMSTrainingEvents = lazy(() => import('./pages/mms/training-placement/MMSTrainingEvents'));
+const MMSTrainingCareerGuidance = lazy(() => import('./pages/mms/training-placement/MMSTrainingCareerGuidance'));
+const MMSTrainingInternship = lazy(() => import('./pages/mms/training-placement/MMSTrainingInternship'));
+const MMSTrainingGallery = lazy(() => import('./pages/mms/training-placement/MMSTrainingGallery'));
+const MMSPlacement = lazy(() => import('./pages/mms/training-placement/MMSPlacement'));
+const MMSPlacementSoftSkillTraining = lazy(() => import('./pages/mms/training-placement/MMSPlacementSoftSkillTraining'));
+const MMSPlacementPsycometricTest = lazy(() => import('./pages/mms/training-placement/MMSPlacementPsycometricTest'));
+const MMSPlacementCell = lazy(() => import('./pages/mms/training-placement/MMSPlacementCell'));
+const MMSPlacementGallery = lazy(() => import('./pages/mms/training-placement/MMSPlacementGallery'));
+const MMSPlacementRecruiters = lazy(() => import('./pages/mms/training-placement/MMSPlacementRecruiters'));
+const MMSPlacementStudentsPlacements = lazy(() => import('./pages/mms/training-placement/MMSPlacementStudentsPlacements'));
+const MMSPlacementInternships = lazy(() => import('./pages/mms/training-placement/MMSPlacementInternships'));
+const MMSStudentsLife = lazy(() => import('./pages/mms/students-life/MMSStudentsLife'));
+const MMSStudentsLifeVEcstatic = lazy(() => import('./pages/mms/students-life/MMSStudentsLifeVEcstatic'));
+const MMSStudentsLifeDLLE = lazy(() => import('./pages/mms/students-life/MMSStudentsLifeDLLE'));
+const MMSStudentsLifeBookReview = lazy(() => import('./pages/mms/students-life/MMSStudentsLifeBookReview'));
+const MMSStudentsLifeAboutAddOnCourses = lazy(() => import('./pages/mms/students-life/MMSStudentsLifeAboutAddOnCourses'));
+const MMSStudentsLifePowerBi = lazy(() => import('./pages/mms/students-life/MMSStudentsLifePowerBi'));
+const MMSStudentsLifeAdavanceExcel = lazy(() => import('./pages/mms/students-life/MMSStudentsLifeAdavanceExcel'));
+const MMSStudentsLifeIndustryExpertSessions = lazy(() => import('./pages/mms/students-life/MMSStudentsLifeIndustryExpertSessions'));
+const MMSStudentsLifeNSIMTraining = lazy(() => import('./pages/mms/students-life/MMSStudentsLifeNSIMTraining'));
+const MMSStudentsLifeOscillations = lazy(() => import('./pages/mms/students-life/MMSStudentsLifeOscillations'));
+const MMSStudentsLifeIdeathon = lazy(() => import('./pages/mms/students-life/MMSStudentsLifeIdeathon'));
+const MMSStudentsLifeRankers = lazy(() => import('./pages/mms/students-life/MMSStudentsLifeRankers'));
+const MMSFacilities = lazy(() => import('./pages/mms/facilities/MMSFacilities'));
+const MMSFAQs = lazy(() => import('./pages/mms/faqs/MMSFAQs'));
 
 /* ── Admin Panel Pages (lazy) ── */
 const AdminLogin      = lazy(() => import('./admin/pages/Login'));
@@ -255,7 +302,6 @@ function App() {
           <Route path="/dean-academics" element={<DeanAcademics />} />
           <Route path="/academic-calendar" element={<AcademicCalendar />} />
           <Route path="/teaching-learning" element={<TeachingLearning />} />
-          <Route path="/swayam-nptel" element={<SwayamNPTEL />} />
           <Route path="/honours-minor" element={<HonoursMinor />} />
 
           {/* Research */}
@@ -326,6 +372,60 @@ function App() {
           <Route path="/e-cell" element={<ECell />} />
           <Route path="/iiic" element={<IIIC />} />
           <Route path="/exam-cell" element={<ExamCell />} />
+
+          {/* MMS mini-site */}
+          <Route path="/mms" element={<MMSHome />} />
+          <Route path="/mms/about" element={<MMSAbout />} />
+          <Route path="/mms/about/principals-desk" element={<MMSPrincipalsDesk />} />
+          <Route path="/mms/about/hods-desk" element={<MMSHODsDesk />} />
+          <Route path="/mms/about/faculty" element={<MMSFaculty />} />
+          <Route path="/mms/about/vision-mission" element={<MMSVisionMission />} />
+          <Route path="/mms/about/dab" element={<MMSDAB />} />
+          <Route path="/mms/about/program-outcomes" element={<MMSProgramOutcomes />} />
+          <Route path="/mms/admission" element={<MMSAdmission />} />
+          <Route path="/mms/admission/scholarship" element={<MMSScholarship />} />
+          <Route path="/mms/admission/documents-required" element={<MMSDocumentsRequired />} />
+          <Route path="/mms/admission/fees-structure" element={<MMSFeesStructure />} />
+          <Route path="/mms/admission-details" element={<MMSAdmission />} />
+          <Route path="/mms/admission-details/scholarship" element={<MMSScholarship />} />
+          <Route path="/mms/admission-details/documents-required" element={<MMSDocumentsRequired />} />
+          <Route path="/mms/admission-details/fees-structure" element={<MMSFeesStructure />} />
+          <Route path="/mms/experiential-learning" element={<MMSExperientialLearning />} />
+          <Route path="/mms/experiential-learning/role-play" element={<MMSExperientialRolePlay />} />
+          <Route path="/mms/experiential-learning/group-discussion" element={<MMSExperientialGroupDiscussion />} />
+          <Route path="/mms/experiential-learning/entrepreneurial-drive" element={<MMSExperientialEntrepreneurialDrive />} />
+          <Route path="/mms/experiential-learning/financial-literacy-program" element={<MMSExperientialFinancialLiteracy />} />
+          <Route path="/mms/experiential-learning/nesco-bombay-exhibition-centre" element={<MMSExperientialNesco />} />
+          <Route path="/mms/experiential-learning/3d-model-making-presentation" element={<MMSExperientialModelMaking />} />
+          <Route path="/mms/training-placement/training" element={<MMSTraining />} />
+          <Route path="/mms/training-placement/training/events" element={<MMSTrainingEvents />} />
+          <Route path="/mms/training-placement/training/career-guidance" element={<MMSTrainingCareerGuidance />} />
+          <Route path="/mms/training-placement/training/internship" element={<MMSTrainingInternship />} />
+          <Route path="/mms/training-placement/training/gallery" element={<MMSTrainingGallery />} />
+          <Route path="/mms/training-placement/placement" element={<MMSPlacement />} />
+          <Route path="/mms/training-placement/placement/soft-skill-training" element={<MMSPlacementSoftSkillTraining />} />
+          <Route path="/mms/training-placement/placement/psycometric-test" element={<MMSPlacementPsycometricTest />} />
+          <Route path="/mms/training-placement/placement/psychometric-test" element={<MMSPlacementPsycometricTest />} />
+          <Route path="/mms/training-placement/placement/placement-cell" element={<MMSPlacementCell />} />
+          <Route path="/mms/training-placement/placement/gallery" element={<MMSPlacementGallery />} />
+          <Route path="/mms/training-placement/placement/our-recruiters" element={<MMSPlacementRecruiters />} />
+          <Route path="/mms/training-placement/placement/students-placements" element={<MMSPlacementStudentsPlacements />} />
+          <Route path="/mms/training-placement/placement/internships" element={<MMSPlacementInternships />} />
+          <Route path="/mms/students-life" element={<MMSStudentsLife />} />
+          <Route path="/mms/students-life/v-ecstatic" element={<MMSStudentsLifeVEcstatic />} />
+          <Route path="/mms/students-life/dlle" element={<MMSStudentsLifeDLLE />} />
+          <Route path="/mms/students-life/book-review" element={<MMSStudentsLifeBookReview />} />
+          <Route path="/mms/students-life/about-add-on-courses" element={<MMSStudentsLifeAboutAddOnCourses />} />
+          <Route path="/mms/students-life/add-on-courses-powerbi" element={<MMSStudentsLifePowerBi />} />
+          <Route path="/mms/students-life/add-on-courses-advance-excel" element={<MMSStudentsLifeAdavanceExcel />} />
+          <Route path="/mms/students-life/add-on-courses-adavance-excel" element={<MMSStudentsLifeAdavanceExcel />} />
+          <Route path="/mms/students-life/industry-expert-sessions" element={<MMSStudentsLifeIndustryExpertSessions />} />
+          <Route path="/mms/students-life/nsim-training" element={<MMSStudentsLifeNSIMTraining />} />
+          <Route path="/mms/students-life/oscillations" element={<MMSStudentsLifeOscillations />} />
+          <Route path="/mms/students-life/ideathon-1-0" element={<MMSStudentsLifeIdeathon />} />
+          <Route path="/mms/students-life/rankers" element={<MMSStudentsLifeRankers />} />
+          <Route path="/mms/facilities" element={<MMSFacilities />} />
+          <Route path="/mms/faqs" element={<MMSFAQs />} />
 
           {/* ─── Admin Panel ─── */}
           <Route path="/admin/login" element={<AdminLogin />} />

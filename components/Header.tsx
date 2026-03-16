@@ -78,6 +78,7 @@ const menuGroups: MenuGroup[] = [
       { label: 'Electronics & Telecommunication Engineering',       href: '/electronics-telecomm' },
       { label: 'Civil Engineering',                           href: '/civil-engineering' },
       { label: 'First Year Engineering',                      href: '/first-year-engineering' },
+      { label: 'MMS (MBA)',                                   href: '/mms' },
     ],
   },
 
