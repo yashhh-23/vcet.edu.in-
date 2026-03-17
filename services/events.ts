@@ -26,6 +26,8 @@ export const eventsService = {
       ...e,
       image: resolveApiUrl(e.image),
       attachment: resolveApiUrl(e.attachment),
+      external_link: e.external_link || null,
+      external_link_label: e.external_link_label || null,
     }));
   }
 };

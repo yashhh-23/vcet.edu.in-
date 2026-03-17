@@ -19,6 +19,8 @@ const empty: EventPayload = {
   is_active: true,
   expiry_date: '',
   expiry_time: '',
+  external_link: '',
+  external_link_label: '',
 };
 
 const EventForm: React.FC = () => {
@@ -57,6 +59,8 @@ const EventForm: React.FC = () => {
           is_active: ev.is_active,
           expiry_date: ev.expiry_date ?? '',
           expiry_time: ev.expiry_time ?? '',
+          external_link: ev.external_link ?? '',
+          external_link_label: ev.external_link_label ?? '',
         });
         if (ev.attachment) setExistingPdfUrl(ev.attachment);
       })
@@ -209,16 +213,16 @@ const EventForm: React.FC = () => {
 
         {/* Expiry Details */}
         <div className="space-y-6 pt-2">
-          <h3 className="text-base font-bold text-slate-900 border-b border-slate-100 pb-3">Expiry Details</h3>
-          <p className="text-xs text-slate-500 font-medium">When the date and time pass, the event will automatically be marked as "Expired" and hidden from active lists.</p>
+          <h3 className="text-base font-bold text-slate-900 border-b border-slate-100 pb-3">Expiry Details (Optional)</h3>
+          <p className="text-xs text-slate-500 font-medium">When specified, the event will automatically be marked as "Expired" and hidden from active lists after the date and time pass.</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
-              <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2.5">Expiry Date *</label>
-              <input type="date" name="expiry_date" value={form.expiry_date ?? ''} onChange={handleChange} required className="admin-input" />
+              <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2.5">Expiry Date</label>
+              <input type="date" name="expiry_date" value={form.expiry_date ?? ''} onChange={handleChange} className="admin-input" />
             </div>
             <div>
-              <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2.5">Expiry Time *</label>
-              <input type="time" name="expiry_time" value={form.expiry_time ?? ''} onChange={handleChange} required className="admin-input" />
+              <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2.5">Expiry Time</label>
+              <input type="time" name="expiry_time" value={form.expiry_time ?? ''} onChange={handleChange} className="admin-input" />
             </div>
           </div>
         </div>
@@ -289,6 +293,37 @@ const EventForm: React.FC = () => {
               </button>
             </div>
           )}
+        </div>
+
+        {/* External Link */}
+        <div className="space-y-6 pt-2">
+          <h3 className="text-base font-bold text-slate-900 border-b border-slate-100 pb-3">External Link</h3>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2.5">External Link URL</label>
+              <input 
+                type="url" 
+                name="external_link" 
+                value={form.external_link ?? ''} 
+                onChange={handleChange} 
+                placeholder="e.g., https://example.com/event-details" 
+                className="admin-input" 
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2.5">Link Label</label>
+              <input 
+                type="text" 
+                name="external_link_label" 
+                value={form.external_link_label ?? ''} 
+                onChange={handleChange} 
+                placeholder="e.g., Learn More, Register, Details" 
+                className="admin-input" 
+              />
+            </div>
+          </div>
         </div>
 
         {/* Visibility Controls */}

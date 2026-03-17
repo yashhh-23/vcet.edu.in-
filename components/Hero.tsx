@@ -13,6 +13,7 @@ import {
 import { post } from "../services/api";
 import { useEvents } from "../hooks/useEvents";
 import { useNotices } from "../hooks/useNotices";
+import ImagePreviewModal from "./ImagePreviewModal";
 
 const departments = [
   "Computer Engineering",
@@ -335,6 +336,8 @@ const Hero: React.FC = () => {
   const [packageIndex, setPackageIndex] = useState(0);
   const [pkgZoom, setPkgZoom] = useState(1);
   const [slideIndex, setSlideIndex] = useState(0);
+  const [selectedImageUrl, setSelectedImageUrl] = useState<string | null>(null);
+  const [imageModalOpen, setImageModalOpen] = useState(false);
   const { notices, loading: noticesLoading } = useNotices();
   const { events, loading: eventsLoading } = useEvents();
 
@@ -580,14 +583,16 @@ const Hero: React.FC = () => {
                                 )}
                                 <div className="mt-2 flex flex-wrap gap-1.5">
                                   {ev.image && (
-                                    <a
-                                      href={ev.image}
-                                      target="_blank"
-                                      rel="noreferrer"
-                                      className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-brand-gold text-brand-dark rounded hover:brightness-110 transition-all"
+                                    <button
+                                      onClick={(e) => {
+                                        e.preventDefault();
+                                        setSelectedImageUrl(ev.image);
+                                        setImageModalOpen(true);
+                                      }}
+                                      className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-brand-gold text-brand-dark rounded hover:brightness-110 transition-all cursor-pointer"
                                     >
                                       Open Poster
-                                    </a>
+                                    </button>
                                   )}
                                   {ev.attachment && (
                                     <a
@@ -597,6 +602,16 @@ const Hero: React.FC = () => {
                                       className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-white/10 text-white rounded border border-white/20 hover:bg-white/20 transition-colors"
                                     >
                                       Open PDF
+                                    </a>
+                                  )}
+                                  {ev.external_link && (
+                                    <a
+                                      href={ev.external_link}
+                                      target="_blank"
+                                      rel="noreferrer"
+                                      className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+                                    >
+                                      {ev.external_link_label || 'Learn More'}
                                     </a>
                                   )}
                                 </div>
@@ -810,6 +825,17 @@ const Hero: React.FC = () => {
         </span>
         <ArrowDown className="w-4 h-4 text-white/30 animate-bounce" />
       </div>
+
+      {/* Image Preview Modal */}
+      <ImagePreviewModal
+        isOpen={imageModalOpen}
+        onClose={() => {
+          setImageModalOpen(false);
+          setSelectedImageUrl(null);
+        }}
+        imageUrl={selectedImageUrl}
+        title="Event Poster"
+      />
     </section>
   );
 };
