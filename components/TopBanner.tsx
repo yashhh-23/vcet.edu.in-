@@ -1,15 +1,10 @@
 import React from 'react';
-import { Phone, Mail, Bell, Facebook, Instagram, Linkedin, Youtube } from 'lucide-react';
-
-const tickerItems = [
-  '🎓 Admissions Open 2025–26 — Apply Now for B.E. & M.E. Programs',
-  '📋 Semester Exam Timetable Released — Check Student Portal',
-  '🏆 VCET Students Win National Hackathon 2025 — Congratulations!',
-  '📢 Guest Lecture on AI & Machine Learning — Register at Front Office',
-  '🌐 NBA Accreditation Renewed for All Eligible Programs',
-];
+import { Phone, Mail, Bell, Facebook, Instagram, Linkedin, Youtube, ExternalLink } from 'lucide-react';
+import { useNewsTicker } from '../hooks/useNewsTicker';
 
 const TopBanner: React.FC = () => {
+  const { items: tickerItems, loading } = useNewsTicker();
+
   return (
     <div className="bg-white border-b border-gray-100 relative overflow-hidden print:hidden">
       {/* Decorative top accent line */}
