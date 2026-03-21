@@ -18,7 +18,6 @@ import Achievements from './components/Achievements';
 import ExploreUs from './components/ExploreUs';
 import Gallery from './components/Gallery';
 import Testimonials from './components/Testimonials';
-import Facilities from './components/Facilities';
 import Footer from './components/Footer';
 import SplashScreen from './components/SplashScreen';
 
@@ -263,7 +262,6 @@ const HomePage: React.FC = () => {
         <ExploreUs />
         <Gallery />
         <Testimonials />
-        <Facilities />
       </main>
       <Footer />
     </div>
