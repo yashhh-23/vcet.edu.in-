@@ -5,7 +5,7 @@
 
 import type {
   Notice, Event, Placement, HeroSlide, NewsTicker,
-  Achievement, Testimonial, GalleryImage, PlacementPartner, Enquiry, Faculty,
+  Achievement, Testimonial, GalleryImage, PlacementPartner, Enquiry, Faculty, Department,
   ListResponse, ItemResponse, DeleteResponse,
 } from '../types';
 
@@ -594,3 +594,46 @@ export function createEnquiriesCrud(seed: Enquiry[]) {
     },
   };
 }
+
+// ── Departments ────────────────────────────────────────────────────────────────
+export const MOCK_DEPARTMENTS: Department[] = [
+  {
+    id: 1,
+    name: 'Computer Engineering',
+    slug: 'computer-engineering',
+    is_active: true,
+    created_at: now(),
+    updated_at: now(),
+    content: {
+      about: 'The Department of Computer Engineering is committed to excellence in teaching, research, and innovation. We prepare students for leadership roles in the tech industry.',
+      vision: 'To be a center of excellence in Computer Engineering education and research, producing globally competent professionals.',
+      mission: [
+        'To provide high-quality education in computer engineering fundamentals and advanced technologies.',
+        'To foster a culture of research, innovation, and entrepreneurship among students and faculty.',
+        'To collaborate with industry and premier institutions for mutual growth and societal benefit.'
+      ],
+      dabMembers: [
+        { name: 'Dr. John Doe', designation: 'Professor', organization: 'IIT Bombay' },
+        { name: 'Mr. Jane Smith', designation: 'Senior Engineer', organization: 'TCS' }
+      ],
+      mou: 'We have active MoUs with top tech companies including Microsoft, AWS Academy, and Red Hat for student training and internships.',
+      patents: 'The department holds 5 granted patents and has filed over 20 patents in fields like AI, IoT, and Cybersecurity.',
+      pos: '1. Engineering Knowledge\n2. Problem Analysis\n3. Design/Development of Solutions',
+      peo: '1. Graduates will have successful careers in the software industry or pursue higher studies.',
+      pso: '1. Ability to apply standard software engineering practices and strategies in software project development.',
+      faculty: [1, 2], // IDs of 'Dr. Sunita Mehta' and 'Prof. Rahul Sharma' from MOCK_FACULTY
+      toppers: [
+        { name: 'Aarav Patel', year: '2023-24', cgpa: '9.8' },
+        { name: 'Riya Gupta', year: '2022-23', cgpa: '9.7' }
+      ],
+      syllabus: [
+        { year: 'FE', link: 'https://mum.digitaluniversity.ac/fe-syllabus' },
+        { year: 'SE', link: 'https://mum.digitaluniversity.ac/se-syllabus' }
+      ],
+      newsletter: [
+        { title: 'Jan 2024 Edition', link: 'https://vcet.edu.in/newsletter-2024.pdf' }
+      ],
+      timetable: ''
+    }
+  }
+];

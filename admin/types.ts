@@ -396,3 +396,52 @@ export interface FacultyPayload {
   memberships?: string;
   is_active?: boolean;
 }
+
+// ── Department ────────────────────────────────────────────────────────────────
+
+export interface Department {
+  id: number;
+  name: string;
+  slug: string;
+  content: {
+    about: string;
+    vision: string;
+    mission: string[];
+    dabMembers: { name: string; designation: string; organization: string }[];
+    mou: string;
+    patents: string;
+    pos: string;
+    peo: string;
+    pso: string;
+    faculty: number[];
+    toppers: { name: string; year: string; cgpa: string }[];
+    syllabus: { year: string; link: string }[];
+    newsletter: { title: string; link: string }[];
+    timetable: string;
+  };
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface DepartmentPayload {
+  name?: string;
+  slug?: string;
+  content?: {
+    about?: string;
+    vision?: string;
+    mission?: string[];
+    dabMembers?: { name: string; designation: string; organization: string }[];
+    mou?: string;
+    patents?: string;
+    pos?: string;
+    peo?: string;
+    pso?: string;
+    faculty?: number[];
+    toppers?: { name: string; year: string; cgpa: string }[];
+    syllabus?: { year: string; link: string }[];
+    newsletter?: { title: string; link: string }[];
+    timetable?: string;
+  };
+  is_active?: boolean;
+}
