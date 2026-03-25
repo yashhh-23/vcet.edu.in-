@@ -333,6 +333,7 @@ const fallbackBannerSlides = [
 const Hero: React.FC = () => {
   const [panelOpen, setPanelOpen] = useState(false);
   const [mobileAdmissionOpen, setMobileAdmissionOpen] = useState(false);
+  const [mobilePanel, setMobilePanel] = useState<"admission" | "notices" | "events">("admission");
   const [activeTab, setActiveTab] = useState<"notices" | "events">("notices");
   const [cardOpen, setCardOpen] = useState(true);
   const [packagesOpen, setPackagesOpen] = useState(false);
@@ -370,7 +371,7 @@ const Hero: React.FC = () => {
         <img
           src="/Images/Home%20background/VCET-Home-1-scaled.jpg"
           alt="VCET Campus"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-contain lg:object-cover object-center"
         />
       </div>
 
@@ -416,19 +417,34 @@ const Hero: React.FC = () => {
             <p className="mt-2 text-xs leading-relaxed text-white/80">
               Explore programs, campus life, and placement support. Open the admission form when you are ready.
             </p>
-            <div className="mt-3 flex gap-2">
+            <div className="mt-3 grid grid-cols-2 gap-2">
               <button
-                onClick={() => setMobileAdmissionOpen(true)}
+                onClick={() => {
+                  setMobilePanel("admission");
+                  setMobileAdmissionOpen(true);
+                }}
                 className="flex-1 rounded-xl bg-brand-gold text-brand-dark text-xs font-extrabold uppercase tracking-wider py-2.5"
               >
                 Apply Now
               </button>
-              <a
-                href="/mms"
+              <button
+                onClick={() => {
+                  setMobilePanel("notices");
+                  setMobileAdmissionOpen(true);
+                }}
                 className="flex-1 rounded-xl border border-white/30 bg-white/10 text-white text-xs font-bold uppercase tracking-wider py-2.5 text-center"
               >
-                Explore MMS
-              </a>
+                Notices
+              </button>
+              <button
+                onClick={() => {
+                  setMobilePanel("events");
+                  setMobileAdmissionOpen(true);
+                }}
+                className="col-span-2 rounded-xl border border-white/30 bg-white/10 text-white text-xs font-bold uppercase tracking-wider py-2.5 text-center"
+              >
+                Events
+              </button>
             </div>
           </div>
         </div>
@@ -886,7 +902,13 @@ const Hero: React.FC = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between px-4 py-3 border-b border-white/10">
-              <h3 className="text-sm font-extrabold uppercase tracking-wider text-white">Admission Enquiry</h3>
+              <h3 className="text-sm font-extrabold uppercase tracking-wider text-white">
+                {mobilePanel === "admission"
+                  ? "Admission Enquiry"
+                  : mobilePanel === "notices"
+                    ? "Latest Notices"
+                    : "Upcoming Events"}
+              </h3>
               <button
                 onClick={() => setMobileAdmissionOpen(false)}
                 className="w-8 h-8 rounded-full bg-white/10 border border-white/20 flex items-center justify-center"
@@ -896,7 +918,88 @@ const Hero: React.FC = () => {
               </button>
             </div>
             <div className="px-4 py-3 overflow-y-auto max-h-[calc(76dvh-56px)]">
-              <AdmissionForm />
+              {mobilePanel === "admission" ? (
+                <AdmissionForm />
+              ) : mobilePanel === "notices" ? (
+                <div className="space-y-3">
+                  {noticesLoading ? (
+                    <p className="text-sm text-white/75">Loading latest notices...</p>
+                  ) : notices.length === 0 ? (
+                    <p className="text-sm text-white/75">No active notices available right now.</p>
+                  ) : (
+                    notices.slice(0, 8).map((n) => (
+                      <div key={n.id} className="rounded-xl border border-white/15 bg-white/5 p-3">
+                        {n.pdf_url || n.link_url ? (
+                          <a
+                            href={n.pdf_url ?? n.link_url ?? "#"}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="text-sm font-semibold leading-snug text-white hover:text-brand-gold"
+                          >
+                            {n.title}
+                          </a>
+                        ) : (
+                          <p className="text-sm font-semibold leading-snug text-white">{n.title}</p>
+                        )}
+                        <p className="mt-1 text-[11px] uppercase tracking-wide text-white/60">
+                          {new Date(n.created_at).toLocaleDateString("en-US", {
+                            month: "short",
+                            day: "2-digit",
+                            year: "numeric",
+                          })}
+                        </p>
+                      </div>
+                    ))
+                  )}
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  {eventsLoading ? (
+                    <p className="text-sm text-white/75">Loading upcoming events...</p>
+                  ) : events.length === 0 ? (
+                    <p className="text-sm text-white/75">No upcoming events right now.</p>
+                  ) : (
+                    events.slice(0, 8).map((ev) => (
+                      <div key={ev.id} className="rounded-xl border border-white/15 bg-white/5 p-3">
+                        {ev.image ? (
+                          <button
+                            onClick={() => {
+                              setSelectedImageUrl(ev.image);
+                              setImageModalOpen(true);
+                            }}
+                            className="text-left text-sm font-semibold leading-snug text-white hover:text-brand-gold"
+                          >
+                            {ev.title}
+                          </button>
+                        ) : ev.attachment ? (
+                          <a
+                            href={ev.attachment}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="text-sm font-semibold leading-snug text-white hover:text-brand-gold"
+                          >
+                            {ev.title}
+                          </a>
+                        ) : (
+                          <p className="text-sm font-semibold leading-snug text-white">{ev.title}</p>
+                        )}
+                        {ev.description && (
+                          <p className="mt-1 text-xs leading-relaxed text-white/65 line-clamp-2">{ev.description}</p>
+                        )}
+                        {ev.date && (
+                          <p className="mt-1 text-[11px] uppercase tracking-wide text-white/60">
+                            {new Date(ev.date).toLocaleDateString("en-US", {
+                              month: "short",
+                              day: "2-digit",
+                              year: "numeric",
+                            })}
+                          </p>
+                        )}
+                      </div>
+                    ))
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </div>
