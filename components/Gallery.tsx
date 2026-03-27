@@ -102,6 +102,7 @@ const Gallery: React.FC = () => {
             let linkTo = null;
             if (item.title === 'AICTE IDEA Lab') linkTo = '/aicte-idea-vcet';
             if (item.title === 'Center of Excellence') linkTo = '/coe-siemens';
+            if (item.title === 'Machinery Diagnostics') linkTo = '/machinery-diagnostics';
             
             return (
               <div
