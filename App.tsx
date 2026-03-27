@@ -134,6 +134,9 @@ const ContactUs = lazy(() => import('./pages/contact/ContactUs'));
 // pages/aicte-idea-vcet
 const AICTEIdeaVCET = lazy(() => import('./pages/AICTEIdeaVCET'));
 
+// pages/coe-siemens
+const CenterOfExcellenceSiemens = lazy(() => import('./pages/CenterOfExcellenceSiemens'));
+
 // pages/footer
 const GermanLanguageClubLayout = lazy(() => import('./pages/footer/german-language-club/GermanLanguageClubLayout'));
 const GermanClubAbout = lazy(() => import('./pages/footer/german-language-club/GermanClubAbout'));
@@ -418,6 +421,7 @@ function App() {
             {/* Contact & Others */}
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/aicte-idea-vcet" element={<AICTEIdeaVCET />} />
+            <Route path="/coe-siemens" element={<CenterOfExcellenceSiemens />} />
             <Route path="/training" element={<Training />} />
             <Route path="/placement" element={<Placement />} />
             <Route path="/e-cell" element={<ECell />} />
