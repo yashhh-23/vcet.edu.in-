@@ -2,11 +2,13 @@ import { client } from './client';
 import type { 
   AdmissionData, AdmissionPayload, 
   AcademicsData, AcademicsPayload,
+  ExamData, ExamPayload,
   ItemResponse 
 } from '../types';
 import { 
   createAdmissionCrud, 
-  createAcademicsCrud 
+  createAcademicsCrud,
+  createExamCrud
 } from './mockStore';
 
 const USE_MOCK = import.meta.env.VITE_MOCK_AUTH === 'true';
@@ -14,6 +16,7 @@ const USE_MOCK = import.meta.env.VITE_MOCK_AUTH === 'true';
 // Mock instances
 const mockAdmission = createAdmissionCrud();
 const mockAcademics = createAcademicsCrud();
+const mockExam = createExamCrud();
 
 function buildFormData(formData: FormData, data: any, parentKey?: string) {
   if (data && typeof data === 'object' && !(data instanceof Date) && !(data instanceof File)) {
@@ -78,6 +81,21 @@ export const pagesApi = {
       }
 
       return client.requestForm<ItemResponse<AcademicsData>>('/pages/academics', formData);
+    }
+  },
+
+  exam: {
+    get: () => USE_MOCK 
+      ? mockExam.get() 
+      : client.request<ItemResponse<ExamData>>('/pages/exam'),
+    
+    update: (payload: ExamPayload) => {
+      if (USE_MOCK) return mockExam.update(payload);
+      
+      const formData = new FormData();
+      buildFormData(formData, payload);
+      
+      return client.requestForm<ItemResponse<ExamData>>('/pages/exam', formData);
     }
   }
 };
