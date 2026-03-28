@@ -788,8 +788,21 @@ const MOCK_ACADEMICS: AcademicsData = {
 
 export const MOCK_EXAM: ExamData = {
   syllabus: [
-    { title: 'AI & DS - SE Revised 2019-20', description: 'Artificial Intelligence and Data Science', year: '2024-25', fileUrl: 'https://vcet.edu.in/syllabus/ai-ds-se.pdf', fileName: 'ai-ds-se.pdf' },
-    { title: 'Civil Engineering - TE Revised 2019-20', description: 'Civil Engineering', year: '2024-25', fileUrl: 'https://vcet.edu.in/syllabus/civil-te.pdf', fileName: 'civil-te.pdf' },
+    {
+      department: 'Artificial Intelligence and Data Science',
+      documents: [
+        { title: 'AI & DS_SE_Revised 2019-20', description: 'Syllabus for Second Year', year: '2024-25', fileUrl: 'https://vcet.edu.in/syllabus/ai-ds-se.pdf', fileName: 'ai-ds-se.pdf' },
+        { title: 'AI & DS_TE_Revised 2019-20', description: 'Syllabus for Third Year', year: '2024-25', fileUrl: null, fileName: null },
+        { title: 'AI & DS_BE_Revised 2019-20', description: 'Syllabus for Final Year', year: '2024-25', fileUrl: null, fileName: null },
+      ]
+    },
+    {
+      department: 'Civil Engineering',
+      documents: [
+        { title: 'CIVIL_BE_2016', description: 'Syllabus for Final Year', year: '2024-25', fileUrl: 'https://vcet.edu.in/syllabus/civil-te.pdf', fileName: 'civil-te.pdf' },
+        { title: 'CIVIL_SE_2019C', description: 'Syllabus for Second Year', year: '2024-25', fileUrl: null, fileName: null },
+      ]
+    }
   ],
   timetable: [
     { title: 'FE Semester I FH2024', description: 'First Year Engineering', year: '2023-24', fileUrl: 'https://vcet.edu.in/exams/fe-sem1-fh2024.pdf', fileName: 'fe-sem1-fh2024.pdf' },
@@ -801,7 +814,22 @@ export const MOCK_EXAM: ExamData = {
     { title: 'Sample Paper - Discrete Structures', description: 'Common for all branches', year: '2024-25', fileUrl: 'https://vcet.edu.in/exams/sample-ds.pdf', fileName: 'sample-ds.pdf' },
   ],
   results: [
-    { title: 'BE Semester VIII Result - May 2024', description: 'Final Year Engineering', year: '2023-24', fileUrl: 'https://vcet.edu.in/exams/be-sem8-may2024.pdf', fileName: 'be-sem8-may2024.pdf' },
+    {
+      title: 'December 2021',
+      department: 'Artificial Intelligence and Data Science',
+      documents: [
+        { title: 'SEM-III_Rev-2019_AIDSC-Scheme', description: 'Standard Semester III', year: '2023-24', fileUrl: 'https://vcet.edu.in/exams/be-sem8-may2024.pdf', fileName: 'be-sem8-may2024.pdf' },
+        { title: 'SEM III_Rev 2019_AIDS_DSE(C-Scheme)', description: 'Direct Second Year', year: '2023-24', fileUrl: null, fileName: null },
+      ]
+    },
+    {
+      title: 'December 2021',
+      department: 'Computer Science and Engineering (Data Science)',
+      documents: [
+        { title: 'SEM III_Rev 2019_CSEDS(C-Scheme)', description: 'Standard Semester III', year: '2023-24', fileUrl: null, fileName: null },
+        { title: 'SEM III DSE_(C-Scheme) _FEB 2022', description: 'Direct Second Year', year: '2023-24', fileUrl: null, fileName: null },
+      ]
+    }
   ],
   notices: [
     { title: 'KT Form Notice - Sem III to VI May 2024', description: 'Exam Cell Notice', year: '2023-24', fileUrl: 'https://vcet.edu.in/notices/kt-form-may2024.pdf', fileName: 'kt-form-may2024.pdf' },
