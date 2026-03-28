@@ -54,6 +54,11 @@ const admissionEditables = [
     description: 'Update the official college brochure and other admission assets.',
     links: [{ label: 'Edit Brochure', section: 'brochure' }],
   },
+  {
+    title: 'Scholarships',
+    description: 'Manage institutional and government scholarship details and application forms.',
+    links: [{ label: 'Edit Scholarships', section: 'scholarships' }],
+  },
 ];
 
 const academicsEditables = [

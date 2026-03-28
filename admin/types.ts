@@ -503,6 +503,7 @@ export interface AdmissionData {
   };
   documentsRequired: AdmissionDocument[];
   cutOffs: AdmissionDocument[];
+  scholarships: AdmissionDocument[];
   updatedAt: string;
 }
 
@@ -515,6 +516,7 @@ export interface AdmissionPayload {
   feesStructure?: AdmissionDocument[];
   documentsRequired?: AdmissionDocument[];
   cutOffs?: AdmissionDocument[];
+  scholarships?: (AdmissionDocument & { file?: File | null })[];
 
   // Single Files
   brochureFile?: File | null;

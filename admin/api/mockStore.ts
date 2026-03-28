@@ -762,6 +762,10 @@ const MOCK_ADMISSION: AdmissionData = {
     { title: 'F.E. (First Year Engineering) 2024-25', description: 'Engineering Department', year: '2024-25', fileUrl: 'https://vcet.edu.in/wp-content/uploads/2024/09/FE-CAP-1-2024-25.pdf', fileName: 'FE-CAP-1.pdf' },
     { title: 'DSE (Direct Second Year) 2024-25', description: 'Engineering Department', year: '2024-25', fileUrl: 'https://vcet.edu.in/wp-content/uploads/2024/09/DSE-CAP-1-2024-25.pdf', fileName: 'DSE-CAP-1.pdf' },
   ],
+  scholarships: [
+    { title: 'Rajarshi Chhatrapati Shahu Maharaj Shikshan Shulkh Shishyavrutti Yojna - EBC', description: 'Government Scholarship', year: '2025-26', fileUrl: 'https://vcet.edu.in/ebc-scholarship.pdf', fileName: 'EBC-Scholarship.pdf' },
+    { title: 'Post Matric Scholarship to OBC Students - OBC Scholarship', description: 'Government Scholarship', year: '2025-26', fileUrl: 'https://vcet.edu.in/obc-scholarship.pdf', fileName: 'OBC-Scholarship.pdf' },
+  ],
   updatedAt: new Date().toISOString(),
 };
 

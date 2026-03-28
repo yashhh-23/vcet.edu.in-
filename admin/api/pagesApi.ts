@@ -15,6 +15,32 @@ const USE_MOCK = import.meta.env.VITE_MOCK_AUTH === 'true';
 const mockAdmission = createAdmissionCrud();
 const mockAcademics = createAcademicsCrud();
 
+function buildFormData(formData: FormData, data: any, parentKey?: string) {
+  if (data && typeof data === 'object' && !(data instanceof Date) && !(data instanceof File)) {
+    if (Array.isArray(data)) {
+      if (data.length === 0 && parentKey) {
+        formData.append(parentKey, '');
+      } else {
+        data.forEach((value, index) => {
+          buildFormData(formData, value, parentKey ? `${parentKey}[${index}]` : index.toString());
+        });
+      }
+    } else {
+      Object.keys(data).forEach(key => {
+        buildFormData(formData, data[key], parentKey ? `${parentKey}[${key}]` : key);
+      });
+    }
+  } else {
+    if (data !== null && data !== undefined) {
+      if (typeof data === 'boolean') {
+        formData.append(parentKey!, data ? '1' : '0');
+      } else {
+        formData.append(parentKey!, data);
+      }
+    }
+  }
+}
+
 /**
  * API for standalone pages (Admission, Academics)
  */
@@ -28,20 +54,8 @@ export const pagesApi = {
       if (USE_MOCK) return mockAdmission.update(payload);
       
       const formData = new FormData();
-      if (payload.courses) formData.append('courses', JSON.stringify(payload.courses));
+      buildFormData(formData, payload);
       
-      if (payload.brochureFile) formData.append('brochure', payload.brochureFile);
-
-      // Note: Handling arrays of files in FormData typically requires indexed keys
-      // e.g. feesStructure[0][file], feesStructure[0][title], etc.
-      // This implementation depends on backend expectations.
-      if (payload.feesStructure) {
-        formData.append('feesStructure', JSON.stringify(payload.feesStructure.map(f => ({ ...f, file: undefined }))));
-      }
-      if (payload.documentsRequired) {
-        formData.append('documentsRequired', JSON.stringify(payload.documentsRequired.map(f => ({ ...f, file: undefined }))));
-      }
-
       return client.requestForm<ItemResponse<AdmissionData>>('/pages/admission', formData);
     }
   },
