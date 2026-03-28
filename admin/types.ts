@@ -520,6 +520,94 @@ export interface AdmissionPayload {
   brochureFile?: File | null;
 }
 
+// ── Admission Sections (new structured admission system) ────────────────────────
+
+export interface AdmissionItem {
+  id: number;
+  admission_section_id: number;
+  item_type: string;
+  title: string;
+  subtitle: string | null;
+  description: string | null;
+  category: string | null;
+  academic_year: string | null;
+  badge: string | null;
+  tag: string | null;
+  group_key: string | null;
+  group_label: string | null;
+  intake: number | null;
+  metadata: Record<string, unknown> | null;
+  external_url: string | null;
+  image_name: string | null;
+  image_mime_type: string | null;
+  image_size: number | null;
+  has_image: boolean;
+  image_url: string | null;
+  admin_image_url: string | null;
+  has_pdf: boolean;
+  pdf_name: string | null;
+  pdf_mime_type: string | null;
+  pdf_size: number | null;
+  pdf_url: string | null;
+  admin_pdf_url: string | null;
+  has_document: boolean;
+  document_url: string | null;
+  is_active: boolean;
+  sort_order: number;
+}
+
+export interface AdmissionSection {
+  id: number;
+  slug: string;
+  navigation_title: string | null;
+  title: string;
+  summary: string | null;
+  description: string | null;
+  section_type: string | null;
+  has_dropdown: boolean;
+  dropdown_key: string | null;
+  content: Record<string, unknown> | null;
+  is_active: boolean;
+  sort_order: number;
+  items?: AdmissionItem[];
+}
+
+export interface AdmissionSectionPayload {
+  slug: string;
+  navigation_title?: string | null;
+  title: string;
+  summary?: string | null;
+  description?: string | null;
+  section_type?: string | null;
+  has_dropdown?: boolean;
+  dropdown_key?: string | null;
+  content?: Record<string, unknown> | null;
+  is_active?: boolean;
+  sort_order?: number;
+}
+
+export interface AdmissionItemPayload {
+  item_type: string;
+  title: string;
+  subtitle?: string | null;
+  description?: string | null;
+  category?: string | null;
+  academic_year?: string | null;
+  badge?: string | null;
+  tag?: string | null;
+  group_key?: string | null;
+  group_label?: string | null;
+  intake?: number | null;
+  metadata?: Record<string, unknown> | null;
+  external_url?: string | null;
+  is_active?: boolean;
+  sort_order?: number;
+  image?: File | null;
+  pdf?: File | null;
+  remove_image?: boolean;
+  remove_pdf?: boolean;
+}
+
 // ── Academics ────────────────────────────────────────────────────────────────
 
 export interface AcademicsData {
