@@ -1,4 +1,4 @@
-﻿import type { FacultyData } from '../csds/FacultyProfileView';
+import type { FacultyData } from '../csds/FacultyProfileView';
 
 const faculty: FacultyData = {
   name: "Ms. Kshitija Gharat",
@@ -8,7 +8,7 @@ const faculty: FacultyData = {
   email: "kshitija.gharat@vcet.edu.in",
   experienceYears: "2.7",
   papersPublished: "3",
-  photo: "/Images/departments/aids/faculty/kshitija-gharat.jpg",
+  photo: "/images/departments/aids/faculty/kshitija-gharat.jpg",
   qualifications: [
     "M.E. (Computer)",
   ],

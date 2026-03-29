@@ -1,4 +1,4 @@
-﻿import type { FacultyData } from '../csds/FacultyProfileView';
+import type { FacultyData } from '../csds/FacultyProfileView';
 
 const faculty: FacultyData = {
   name: "Mr. Raunak Joshi",
@@ -8,7 +8,7 @@ const faculty: FacultyData = {
   email: "ronak.joshi@vcet.edu.in",
   experienceYears: "2.5",
   papersPublished: "20",
-  photo: "/Images/departments/aids/faculty/raunak-joshi.jpg",
+  photo: "/images/departments/aids/faculty/raunak-joshi.jpg",
   qualifications: [
     "M.E. (Computer)",
   ],
