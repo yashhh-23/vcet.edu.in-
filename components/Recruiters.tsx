@@ -451,7 +451,7 @@ const Recruiters: React.FC = () => {
 
         {/* 2 — Highest Package */}
         <BentoBox
-          className="p-5 sm:p-6 md:p-8 justify-between min-h-[220px] border"
+          className="p-5 sm:p-6 md:p-8 justify-between min-h-[220px] md:min-h-[320px] md:row-span-2 border"
           style={{
             background: "rgba(255,255,255,0.55)",
             backdropFilter: "blur(20px)",
@@ -470,27 +470,6 @@ const Recruiters: React.FC = () => {
             <p className="text-sm mt-2" style={{ color: "#64748B" }}>Best offer &middot; 2024-25 batch</p>
           </div>
           <Bar pct="90%" gold />
-        </BentoBox>
-
-        {/* 3 — Placement Rate */}
-        <BentoBox
-          className="p-5 sm:p-6 md:p-8 justify-between border"
-          style={{
-            background: "rgba(255,255,255,0.55)",
-            backdropFilter: "blur(20px)",
-            WebkitBackdropFilter: "blur(20px)",
-            borderColor: "rgba(11,61,145,0.15)",
-            boxShadow: "0 8px 32px rgba(11,61,145,0.08), inset 0 1px 0 rgba(255,255,255,0.8)",
-          }}
-        >
-          <div>
-            <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#64748B" }}>
-              Placement Rate
-            </p>
-            <h3 className="text-5xl font-extrabold leading-none" style={{ color: "#0B3D91" }}>95%</h3>
-            <p className="text-sm mt-2" style={{ color: "#64748B" }}>Students placed annually</p>
-          </div>
-          <Bar pct="95%" />
         </BentoBox>
 
         {/* 4 — Average Package */}

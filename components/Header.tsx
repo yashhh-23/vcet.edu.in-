@@ -58,7 +58,7 @@ const menuGroups: MenuGroup[] = [
       { label: 'Brochure', href: '/brochure' },
       { label: 'Documents Required', href: '/documents-required' },
       {
-        label: 'Cut Off 24-25',
+        label: 'Cut Off 25-26',
         href: '/cut-off',
         subItems: [
           { label: 'F.E. (First Year Engineering) 2025-26', href: 'https://vcet.edu.in/wp-content/uploads/2026/02/F.E-CUT-OFF-25-26-New.pdf' },
