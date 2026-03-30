@@ -707,13 +707,42 @@ export interface ExamPayload {
 export interface AcademicsData {
   programBooklets: AdmissionDocument[];
   academicCalendars: AdmissionDocument[];
+  dean?: {
+    name: string;
+    qualification: string;
+    designation: string;
+    institution: string;
+    message: string;
+    imageUrl: string | null;
+  };
+  obe?: {
+    title: string;
+    description: string;
+    imageUrl: string | null;
+  };
   updatedAt: string;
 }
 
 export interface AcademicsPayload {
   programBooklets?: (AdmissionDocument & { file?: File | null })[];
   academicCalendars?: (AdmissionDocument & { file?: File | null })[];
+  dean?: {
+    name: string;
+    qualification: string;
+    designation: string;
+    institution: string;
+    message: string;
+    imageUrl: string | null;
+    image?: File | null;
+  };
+  obe?: {
+    title: string;
+    description: string;
+    imageUrl: string | null;
+    image?: File | null;
+  };
 }
+
 
 /* ── SSS Report Uploads ─────────────────────────────────────────────────────── */
 
