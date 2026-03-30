@@ -127,6 +127,39 @@ const StringListManager: React.FC<{ items: string[]; minItems?: number; maxItems
   );
 };
 
+const ConductRulesManager: React.FC<{
+  sections: any[];
+  onChange: (sections: any[]) => void;
+}> = ({ sections = [], onChange }) => {
+  const updateSectionRules = (sectionIndex: number, rules: any[]) => {
+    const next = [...sections];
+    next[sectionIndex] = { ...next[sectionIndex], rules };
+    onChange(next);
+  };
+
+  return (
+    <div className="space-y-6">
+      {sections.map((section, sectionIndex) => (
+        <div key={sectionIndex} className="rounded-2xl border border-slate-200 p-5 bg-slate-50">
+          <h4 className="text-sm font-extrabold text-slate-700 uppercase tracking-wider mb-4">
+            {section.title || `Section ${sectionIndex + 1}`} Rules
+          </h4>
+          <DynamicListManager
+            items={section.rules || []}
+            minItems={2}
+            maxItems={6}
+            onChange={(rules) => updateSectionRules(sectionIndex, rules)}
+            fields={[
+              { key: 'title', label: 'Rule Title', max: 35 },
+              { key: 'description', label: 'Rule Description', max: 360, min: 140, type: 'textarea' },
+            ]}
+          />
+        </div>
+      ))}
+    </div>
+  );
+};
+
 /* ── Main Form ─────────────────────────────────────────────────────────────── */
 interface AboutUsFormProps {
   slug: string;
@@ -262,11 +295,11 @@ const AboutUsForm: React.FC<AboutUsFormProps> = ({ slug, onBack }) => {
               <div className="p-4 mb-4 bg-blue-50 text-blue-700 text-xs font-bold rounded-xl border border-blue-200">
                 Define hierarchy nodes. Support for 4-6 levels, max 8 nodes per level.
               </div>
-              <DynamicListManager items={payload.orgNodes} maxItems={48} onChange={v => updateProp('orgNodes', v)} fields={[
+              <DynamicListManager items={payload.orgNodes} minItems={4} maxItems={48} onChange={v => updateProp('orgNodes', v)} fields={[
                 { key: 'name', label: 'Individual Name', max: 50 },
                 { key: 'title', label: 'Institutional Title', max: 60 },
                 { key: 'parent', label: 'Parent Node ID/Reference', max: 50 },
-                { key: 'order', label: 'Level (1-6)', max: 1 }
+                { key: 'displayOrder', label: 'Display Order', max: 2 }
               ]} />
             </SectionCard>
           </div>
@@ -305,7 +338,7 @@ const AboutUsForm: React.FC<AboutUsFormProps> = ({ slug, onBack }) => {
               { key: 'title', label: 'Section Title', max: 45 },
               { key: 'description', label: 'Headline Description', max: 180, min: 80, type: 'textarea' }
             ]} />
-            {/* Rule Manager would go here or nested. For now, assuming internal rules managed via JSON or separate view */}
+            <ConductRulesManager sections={payload.conductSections || []} onChange={v => updateProp('conductSections', v)} />
           </SectionCard>
         );
 
