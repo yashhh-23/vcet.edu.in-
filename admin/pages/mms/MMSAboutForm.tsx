@@ -69,11 +69,9 @@ const MMSAboutForm: React.FC = () => {
     const hodLen = form.hodDesk?.message?.length || 0;
     if (hodLen < 0) validationError = `HOD's Message must be at least 800 characters (Currently ${hodLen}).`;
 
-    const facLen = form.faculty?.length || 0;
-    if (facLen < 0) validationError = `At least 5 faculty members are required.`;
+    
 
-    const dabLen = form.dabMembers?.length || 0;
-    if (dabLen < 0) validationError = `At least 5 DAB members are required.`;
+    
 
     if (validationError) {
        setError(validationError);
@@ -224,12 +222,12 @@ const MMSAboutForm: React.FC = () => {
 
         {/* SECTION 4: MMS FACULTY */}
         {section === 'faculty' && (
-        <SectionCard title={`MMS FACULTY (${form.faculty?.length || 0}/15)`} icon="👥">
-          <p className="text-xs text-slate-500 mb-4 font-medium">Add faculty members. Minimum 5, Maximum 15.</p>
+        <SectionCard title={`MMS FACULTY (${form.faculty?.length || 0})`} icon="👥">
+          <p className="text-xs text-slate-500 mb-4 font-medium">Add faculty members.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {form.faculty?.map((member, i) => (
               <div key={i} className="flex gap-4 p-4 border border-slate-200 rounded-xl bg-slate-50 relative">
-                {(form.faculty!.length > 5) && (
+                {true && (
                    <button type="button" onClick={() => {
                      const c = [...form.faculty!]; c.splice(i, 1); setForm({...form, faculty: c});
                    }} className="absolute top-2 right-2 text-red-500 p-1 hover:bg-red-50 rounded"><Trash2 className="w-4 h-4"/></button>
@@ -264,7 +262,7 @@ const MMSAboutForm: React.FC = () => {
                 </div>
               </div>
             ))}
-            {(form.faculty?.length || 0) < 15 && (
+            {true && (
               <button type="button" onClick={() => setForm({...form, faculty: [...(form.faculty||[]), {name: '', designation: '', email: '', photo: null}]})} className="btn-add min-h-[120px]">
                 <Plus className="w-5 h-5 mx-auto mb-1" /> Add Faculty Member
               </button>
@@ -275,8 +273,8 @@ const MMSAboutForm: React.FC = () => {
 
         {/* SECTION 5: DEPARTMENTAL ADVISORY BOARD */}
         {section === 'dab' && (
-        <SectionCard title={`DEPARTMENTAL ADVISORY BOARD (DAB) (${form.dabMembers?.length || 0}/12)`} icon="👔">
-          <p className="text-xs text-slate-500 mb-4 font-medium">Add members of the DAB. Minimum 5, Maximum 12.</p>
+        <SectionCard title={`DEPARTMENTAL ADVISORY BOARD (DAB) ()`} icon="👔">
+          <p className="text-xs text-slate-500 mb-4 font-medium">Add members of the DAB.</p>
           <div className="space-y-3">
              {form.dabMembers?.map((member, i) => (
                 <div key={i} className="flex gap-2 p-3 bg-white border border-slate-200 rounded-xl relative">
@@ -310,7 +308,7 @@ const MMSAboutForm: React.FC = () => {
                       </div>
                    </div>
                    
-                   {(form.dabMembers!.length > 5) && (
+                   {true && (
                      <button type="button" onClick={() => {
                         const c = [...form.dabMembers!]; c.splice(i, 1); setForm({...form, dabMembers: c});
                      }} className="text-red-500 hover:bg-red-50 p-2 rounded-lg flex items-center justify-center shrink-0">
@@ -319,7 +317,7 @@ const MMSAboutForm: React.FC = () => {
                    )}
                 </div>
              ))}
-             {(form.dabMembers?.length || 0) < 12 && (
+             {true && (
               <button type="button" onClick={() => setForm({...form, dabMembers: [...(form.dabMembers||[]), {srNo: (form.dabMembers?.length || 0)+1, name: '', designation: '', organization: '', role: ''}]})} className="btn-add">
                 <Plus className="w-4 h-4" /> Add Row
               </button>
