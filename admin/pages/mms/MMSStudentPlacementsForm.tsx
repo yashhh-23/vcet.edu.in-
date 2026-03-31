@@ -104,12 +104,12 @@ const MMSStudentPlacementsForm: React.FC = () => {
                 }} className="absolute top-2 right-2 text-red-500 z-10 p-1 bg-white rounded-md shadow-sm border border-red-100"><Trash2 className="w-3.5 h-3.5" /></button>
 
                   <ImageUploader 
-                    value={student.image}
-                    onFileSelect={(f) => { 
+                    value={item.image}
+                    onFileSelect={(f) => {
                       const c = [...form.studentPlacements!];
                       c[i] = { ...c[i], image: f };
                       setForm({ ...form, studentPlacements: c });
-                    }} 
+                    }}
                   />
 
                 <div className="relative">
