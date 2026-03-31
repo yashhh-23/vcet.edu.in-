@@ -1,14 +1,38 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import MMSLayout from '../../../components/mms/MMSLayout';
 import { StudentsLifeImageHolder, StudentsLifeSectionCard } from './MMSStudentsLifeShared';
-
-const industrySessionDescriptions = [
-  { text: 'MMS students interacting with industry experts during a knowledge-sharing session.', src: '/images/Departments/MMS(MBA)/Students life/mms-studentlife-industryexpertsession-1.jpeg' },
-  { text: 'Group photo with esteemed guest speakers and students after an insightful session.', src: '/images/Departments/MMS(MBA)/Students life/mms-studentlife-industryexpertsession-2.jpeg' },
-  { text: 'Student delivering a presentation during the expert-led session to enhance communication and leadership skills.', src: '/images/Departments/MMS(MBA)/Students life/mms-studentlife-industryexpertsession-3.jpeg' },
-];
+import { get, resolveApiUrl } from '../../../services/api';
+import type { MMSStudentsLifeData } from '../../../admin/types';
 
 export default function MMSStudentsLifeIndustryExpertSessions() {
+  const [data, setData] = useState<MMSStudentsLifeData | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await get<{ data: MMSStudentsLifeData }>('/pages/mms-students-life');
+        setData(response.data);
+      } catch (err) {
+        console.error('Failed to fetch students life data:', err);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const defaultSessions = [
+    { id: 'def-1', text: 'MMS students interacting with industry experts during a knowledge-sharing session.', src: '/images/Departments/MMS(MBA)/Students life/mms-studentlife-industryexpertsession-1.jpeg' },
+    { id: 'def-2', text: 'Group photo with esteemed guest speakers and students after an insightful session.', src: '/images/Departments/MMS(MBA)/Students life/mms-studentlife-industryexpertsession-2.jpeg' },
+    { id: 'def-3', text: 'Student delivering a presentation during the expert-led session to enhance communication and leadership skills.', src: '/images/Departments/MMS(MBA)/Students life/mms-studentlife-industryexpertsession-3.jpeg' },
+  ];
+
+  const backendSessions = (data?.industrySessions?.sessions || []).map((img, i) => ({
+    id: `dyn-${i}`,
+    text: img.label || `Industry Session ${defaultSessions.length + i + 1}`,
+    src: resolveApiUrl(img.image),
+  })).filter(img => img.src);
+
+  const allSessions = [...defaultSessions, ...backendSessions];
+
   return (
     <MMSLayout title="INDUSTRY EXPERT SESSIONS">
       <StudentsLifeSectionCard
@@ -29,8 +53,8 @@ export default function MMSStudentsLifeIndustryExpertSessions() {
         </p>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          {industrySessionDescriptions.map(({ text, src }, index) => (
-            <article key={text} className="space-y-3">
+          {allSessions.map(({ id, text, src }, index) => (
+            <article key={id} className="space-y-3">
               <StudentsLifeImageHolder label={`Industry Session ${index + 1}`} src={src} />
               <p className="border-l-2 border-brand-gold pl-3 text-sm leading-6 text-slate-700">{text}</p>
             </article>
