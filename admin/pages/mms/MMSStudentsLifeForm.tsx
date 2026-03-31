@@ -255,7 +255,7 @@ const MMSStudentsLifeForm: React.FC = () => {
       {section === 'ideation' && (
           <>
             {renderSectionHeader('Ideation', 'STUDENT INNOVATION')}
-            <div className="space-y-6 animate-fade-in">
+            <div className="bg-white rounded-[2.5rem] p-8 border border-slate-200 shadow-xl space-y-8 animate-fade-in">
               {renderTextArea('Description', form.ideation?.description || '', 120, 200, (v) => setForm({...form, ideation: { ...form.ideation, description: v, images: form.ideation?.images || [] }} as any))}
               {renderGalleryEditor('Ideation Gallery', form.ideation?.images || [], 5, 45, (g) => setForm({...form, ideation: { ...form.ideation, images: g, description: form.ideation?.description || '' }} as any))}
             </div>
@@ -265,9 +265,9 @@ const MMSStudentsLifeForm: React.FC = () => {
         {section === 'oscillations' && (
           <>
             {renderSectionHeader('Oscillations', 'ANNUAL FESTIVAL')}
-            <div className="space-y-6 animate-fade-in">
+            <div className="bg-white rounded-[2.5rem] p-8 border border-slate-200 shadow-xl space-y-8 animate-fade-in">
               {renderTextArea('Description', form.oscillations?.description || '', 120, 200, (v) => setForm({...form, oscillations: { ...form.oscillations, description: v, images: form.oscillations?.images || [] }} as any))}
-              {renderGalleryEditor('Oscillations Gallery', form.oscillations?.images || [], 8, 45, (g) => setForm({...form, oscillations: { ...form.oscillations, images: g, description: form.oscillations?.description || '' }} as any))}
+              {renderGalleryEditor('Oscillations Gallery', form.oscillations?.images || [], 8, 45, (g) => setForm({...form, oscillations: { ...form.oscillations, images: g, description: form.oscillations?.description || '' }} as any))}     
             </div>
           </>
         )}
@@ -275,10 +275,7 @@ const MMSStudentsLifeForm: React.FC = () => {
         {section === 'nsimTraining' && (
           <>
             {renderSectionHeader('NSIM Training', 'SKILL DEVELOPMENT')}
-            <div className="space-y-6 animate-fade-in">
-              {renderTextArea('Description', form.nsimTraining?.description || '', 120, 200, (v) => setForm({...form, nsimTraining: { ...form.nsimTraining, description: v, images: form.nsimTraining?.images || [] }} as any))}
-              {renderGalleryEditor('Training Gallery', form.nsimTraining?.images || [], 5, 45, (g) => setForm({...form, nsimTraining: { ...form.nsimTraining, images: g, description: form.nsimTraining?.description || '' }} as any))}
-            </div>
+            <div className="bg-white rounded-[2.5rem] p-8 border border-slate-200 shadow-xl space-y-8 animate-fade-in">
           </>
         )}
 
