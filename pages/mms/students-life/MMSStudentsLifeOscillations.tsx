@@ -6,6 +6,7 @@ import type { MMSStudentsLifeData } from '../../../admin/types';
 
 export default function MMSStudentsLifeOscillations() {
   const [data, setData] = useState<MMSStudentsLifeData | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,10 +15,26 @@ export default function MMSStudentsLifeOscillations() {
         setData(response.data);
       } catch (err) {
         console.error('Failed to fetch students life data:', err);
+      } finally {
+        setLoading(false);
       }
     };
     fetchData();
   }, []);
+
+  if (loading) {
+    return (
+      <MMSLayout title="Loading...">
+        <div className="flex justify-center items-center min-h-[50vh]">
+          <div className="animate-pulse flex flex-col items-center gap-4">
+            <div className="w-12 h-12 rounded-full border-4 border-slate-200 border-t-brand-blue animate-spin"></div>
+            <div className="text-slate-400 font-medium tracking-widest uppercase text-sm">Loading Content...</div>
+          </div>
+        </div>
+      </MMSLayout>
+    );
+  }
+
 
   const fbDesc = `Vidyavardhini's College of Engineering and Technology organized VNPS & Oscillations 2025 on April 4-5, providing a national platform for students to present innovative research across engineering and management disciplines. The MMS department's Management Track saw 11 students showcase projects on topics ranging from digital marketing and AI in education to investment trends and microfinance. Presentations were judged by academic experts and evaluated for originality, relevance, and practical application. The event fostered analytical thinking, professional communication, and leadership among participants. Overall, it encouraged academic excellence and highlighted emerging trends in business and management.`;
 
