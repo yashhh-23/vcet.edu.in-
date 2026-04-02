@@ -87,12 +87,12 @@ export default function MMSHeader() {
   const activePath = useMemo(() => location.pathname, [location.pathname]);
 
   return (
-    <header className="sticky top-[64px] z-40 border-t border-[#111827] border-b border-brand-gold/45 bg-[#fff6db]">
-      <div className="mx-auto flex w-full max-w-[1360px] flex-col md:flex-row md:items-center px-3 py-2 sm:px-5 lg:px-7">
-        <nav className="flex flex-1 flex-col md:flex-row md:flex-wrap md:items-center w-full gap-2 md:gap-1 text-[13px] sm:text-sm">
+    <header className="sticky top-0 z-40 border-t border-[#111827] border-b border-brand-gold/45 bg-[#fff6db]">
+      <div className="mx-auto flex w-full max-w-[1360px] px-3 py-2 sm:px-5 lg:px-7">
+        <nav className="flex w-full items-center gap-2 text-[13px] sm:text-sm md:gap-3">
           
           {/* Top Row: MMS Tag & Hamburger */}
-          <div className="flex w-full items-center justify-between md:w-auto">
+          <div className="flex w-full items-center justify-between md:w-auto md:flex-shrink-0">
             <Link
               to="/mms"
               className="inline-flex rounded-none bg-brand-gold px-2.5 py-1 font-bold uppercase tracking-[0.12em] text-brand-navy"
@@ -110,7 +110,7 @@ export default function MMSHeader() {
           </div>
 
           {/* Nav Links (collapsible on mobile) */}
-          <div className={`${isMobileMenuOpen ? 'flex' : 'hidden'} md:flex flex-col md:flex-row md:flex-wrap md:items-center gap-1.5 md:gap-1 w-full pt-2 pb-1 md:pt-0 md:pb-0`}>
+          <div className={`${isMobileMenuOpen ? 'flex' : 'hidden'} md:flex flex-col md:flex-row md:flex-nowrap md:items-center md:flex-1 md:overflow-x-auto no-scrollbar gap-1.5 md:gap-1 w-full pt-2 pb-1 md:pt-0 md:pb-0`}>
             {dynamicNavItems.map((item) => {
             const isActive = !isExternal(item.href) && (activePath === item.href || (item.activeMatchPrefix ? activePath.startsWith(item.activeMatchPrefix) : false));
 
