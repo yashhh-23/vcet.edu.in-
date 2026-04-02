@@ -27,22 +27,28 @@ interface StudentsLifeImageHolderProps {
 }
 
 export function StudentsLifeImageHolder({ label, size = 'default', src }: StudentsLifeImageHolderProps) {
-  const heightClass = size === 'large' ? 'h-[300px] sm:h-[340px]' : 'h-[220px] sm:h-[240px]';
+  const frameClass = size === 'large' ? 'h-[280px] sm:h-[320px]' : 'h-[220px] sm:h-[240px]';
 
   return (
     <article className="group relative overflow-hidden rounded-none border border-brand-blue/20 bg-gradient-to-br from-slate-50 to-brand-light/35 p-[3px] shadow-[0_16px_28px_-20px_rgba(11,61,145,0.6)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_20px_36px_-20px_rgba(11,61,145,0.65)]">
       <div className="rounded-none border border-brand-blue/15 bg-white p-4 h-full">
         {src ? (
-          <img src={src} alt={label} className={`w-full ${heightClass} object-cover`} />
+          <div className={`w-full rounded-none bg-slate-100 ${frameClass}`}>
+            <img src={src} alt={label} className="h-full w-full object-contain" />
+          </div>
         ) : (
-          <div className={`flex ${heightClass} items-center justify-center rounded-none border-2 border-dashed border-brand-blue/30 bg-gradient-to-br from-brand-light/30 to-slate-100 text-center`}>
+          <div className={`flex ${frameClass} items-center justify-center rounded-none border-2 border-dashed border-brand-blue/30 bg-gradient-to-br from-brand-light/30 to-slate-100 text-center`}>
             <div className="space-y-2 px-4">
               <ImageIcon className="mx-auto h-9 w-9 text-brand-blue/65" />
               <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-gold">Image Holder</p>
-              <p className="text-sm font-semibold text-brand-navy">{label}</p>
             </div>
           </div>
         )}
+
+        <div className="mt-3 border-t border-brand-blue/10 pt-3">
+          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-gold">Image Title</p>
+          <p className="mt-1 text-sm font-semibold text-brand-navy">{label}</p>
+        </div>
       </div>
       <div className="pointer-events-none absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-brand-gold via-yellow-300 to-brand-gold/75" />
       <div className="pointer-events-none absolute right-0 top-0 h-8 w-8 border-r-[3px] border-t-[3px] border-brand-gold/90" />
