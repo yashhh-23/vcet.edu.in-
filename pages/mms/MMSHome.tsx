@@ -3,24 +3,93 @@ import Button from '../../components/Button';
 import MMSLayout from '../../components/mms/MMSLayout';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 import { mmsHomeContent } from './mmsHomeContent';
+import { get, resolveApiUrl } from '../../services/api';
 
 const sectionTitleClass = 'text-2xl md:text-3xl font-display font-bold text-brand-blue';
 const sectionKickerClass = 'text-[11px] font-bold uppercase tracking-[0.2em] text-brand-gold';
 
 export default function MMSHome() {
   const [activeHero, setActiveHero] = useState(0);
-  const heroImages = mmsHomeContent.heroSlides;
-  const admissionSection = mmsHomeContent.sections.find((section) => section.id === 'admission');
-  const internshipsSection = mmsHomeContent.sections.find((section) => section.id === 'internships');
-  const eventsSection = mmsHomeContent.sections.find((section) => section.id === 'events');
-  const testimonialSection = mmsHomeContent.sections.find((section) => section.id === 'testimonials');
-  const videosSection = mmsHomeContent.sections.find((section) => section.id === 'experiential-videos');
-  const docsSection = mmsHomeContent.sections.find((section) => section.id === 'pdf-docs');
-
-  const activeHeroSlide = useMemo(() => heroImages[activeHero], [activeHero, heroImages]);
+  const [data, setData] = useState<any>(null);
 
   useEffect(() => {
-    if (heroImages.length <= 1) return;
+    get<any>('/pages/mms-home')
+      .then((res) => {
+        if (res?.data) setData(res.data);
+      })
+      .catch((e) => console.error('Failed to fetch mms home page data:', e));
+  }, []);
+
+const toArray = (obj: any): any[] => {
+    if (!obj) return [];
+    if (Array.isArray(obj)) return obj;
+    if (typeof obj === 'object') return Object.values(obj);
+    return [];
+  };
+
+  const slidersList = toArray(data?.sliders);
+  const heroImages = slidersList.some((s:any)=> s.title || s.subtitle || s.image || s.desktopImage || s.mobileImage)
+    ? slidersList.filter((s:any)=> s.title || s.subtitle || s.image || s.desktopImage || s.mobileImage).map((s:any, i:number) => ({
+      id: `hero-${i}`,
+      title: s.title || '',
+      subtitle: s.subtitle || '',
+      imageUrl: resolveApiUrl(s.desktopImage || s.image || s.mobileImage) || '' 
+    }))
+    : mmsHomeContent.heroSlides;
+
+  const getFallback = (id: string) => mmsHomeContent.sections.find((s) => s.id === id);
+
+  const admissionSection = {
+    id: 'admission',
+    title: 'Admission',
+    items: [{
+       heading: data?.admission?.heading || (getFallback('admission') as any)?.items?.[0]?.heading || 'Admission Highlight',
+       body: data?.admission?.description || (getFallback('admission') as any)?.items?.[0]?.body || 'Explore admission details.',
+       ctaText: 'Apply Now',
+       ctaPath: '/mms/admission',
+       imageUrl: resolveApiUrl(data?.admission?.banner) || (getFallback('admission') as any)?.items?.[0]?.imageUrl || ''
+    }]
+  };
+
+  const internshipsList = toArray(data?.internships);
+  const internshipsSection = internshipsList.some((i:any)=> i.logo || i.title)
+    ? { id: 'internships', title: "Summer Internship's", items: internshipsList.filter((i:any)=> i.logo || i.title).map((i:any, idx:number) => ({ id: String(idx), imageUrl: resolveApiUrl(i.logo), alt: i.altText || i.title })) }
+    : getFallback('internships');
+
+  const eventsList = toArray(data?.events);
+  const eventsSection = eventsList.some((e:any)=> e.image || e.title)
+    ? { id: 'events', title: 'Our Events', items: eventsList.filter((e:any)=> e.image || e.title).map((e:any, idx:number) => ({ id: String(idx), imageUrl: resolveApiUrl(e.image), title: e.title || e.eventTitle || '' })) }
+    : getFallback('events');
+
+  const testimonialsList = toArray(data?.testimonials);
+  const testimonialSection = testimonialsList.some((t:any)=> t.name || t.quote)
+    ? { id: 'testimonials', title: testimonialsList[0]?.sectionTitle || 'What Our Learners Say', items: testimonialsList.filter((t:any)=> t.name || t.quote).map((t:any, idx:number) => ({ id: String(idx), name: t.name, role: t.role, quote: t.quote })) }
+    : getFallback('testimonials');
+
+  const videosList = toArray(data?.videos);
+  const videosSection = videosList.some((v:any)=> v.videoUrl || v.videoFile)
+    ? { id: 'experiential-videos', title: videosList[0]?.sectionTitle || 'Experiential Learning Videos', items: videosList.filter((v:any)=> v.videoUrl || v.videoFile).map((v:any, idx:number) => ({ id: String(idx), title: v.videoTitle, videoUrl: v.videoUrl, fileUrl: resolveApiUrl(v.videoFile), poster: resolveApiUrl(v.poster) || '' })) }
+    : getFallback('experiential-videos');
+
+  const documentsList = toArray(data?.documents);
+  const docsSection = documentsList.some((d:any)=> d.url || d.pdfFile)
+    ? { id: 'pdf-docs', title: 'Documents', items: documentsList.filter((d:any)=> d.url || d.pdfFile).map((d:any, idx:number) => ({ id: String(idx), label: d.label || d.pdfFile?.name || 'Document', url: resolveApiUrl(d.pdfFile) || d.url })) }
+    : getFallback('pdf-docs');
+
+  const noticesList = toArray(data?.notices);
+  const noticesData = noticesList.some((n:any)=> n.label || n.text)
+    ? { title: 'Notices', items: noticesList.filter((n:any)=> n.label || n.text).map((n:any, idx:number) => ({ id: String(idx), label: n.label || '', content: n.text || '' })) }
+    : mmsHomeContent.notices;
+
+  const notificationsList = toArray(data?.notifications);
+  const notificationsData = notificationsList.some((n:any)=> n.title || n.text)
+    ? { title: 'Latest Notifications', items: notificationsList.filter((n:any)=> n.title || n.text).map((n:any, idx:number) => ({ id: String(idx), title: n.title || n.text || '' })) }
+    : mmsHomeContent.latestNotifications;
+
+  const activeHeroSlide = useMemo(() => heroImages[activeHero] || { title: '', subtitle: '', imageUrl: '' }, [activeHero, heroImages]);
+
+  useEffect(() => {
+    if (!heroImages || heroImages.length <= 1) return;
 
     const timer = window.setInterval(() => {
       setActiveHero((prev) => (prev + 1) % heroImages.length);
@@ -149,31 +218,31 @@ export default function MMSHome() {
         </section>
 
         <section className="animate-fade-in-up grid gap-4 lg:grid-cols-2" style={{ animationDelay: '0.15s' }}>
-          <article className="rounded-xl border border-brand-blue/10 bg-white p-5 shadow-sm">
-            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-brand-gold">Notice Board</p>
-            <h3 className="mt-1 text-xl font-semibold text-brand-blue">{mmsHomeContent.notices.title}</h3>
-            <div className="mt-4 space-y-2">
-              {mmsHomeContent.notices.items.map((notice) => (
-                <div key={notice.id} className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2">
-                  <p className="text-xs font-bold uppercase tracking-[0.12em] text-brand-gold">{notice.label}</p>
-                  <p className="text-sm text-slate-700">{notice.content}</p>
-                </div>
-              ))}
-            </div>
-          </article>
+            <article className="rounded-xl border border-brand-blue/10 bg-white p-5 shadow-sm flex flex-col">
+              <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-brand-gold">Notice Board</p>
+              <h3 className="mt-1 text-xl font-semibold text-brand-blue">{noticesData.title}</h3>
+              <div className="mt-4 space-y-2 max-h-[320px] overflow-y-auto pr-2 custom-scrollbar flex-1">
+                {noticesData.items.map((notice, idx) => (
+                  <div key={notice.id || idx} className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2">
+                    <p className="text-xs font-bold uppercase tracking-[0.12em] text-brand-gold">{notice.label}</p>
+                    <p className="text-sm text-slate-700">{notice.content}</p>
+                  </div>
+                ))}
+              </div>
+            </article>
 
-          <article className="rounded-xl border border-brand-blue/10 bg-white p-5 shadow-sm">
-            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-brand-gold">Updates</p>
-            <h3 className="mt-1 text-xl font-semibold text-brand-blue">{mmsHomeContent.latestNotifications.title}</h3>
-            <ul className="mt-4 space-y-2">
-              {mmsHomeContent.latestNotifications.items.map((notification) => (
-                <li key={notification.id} className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-700">
-                  {notification.title}
-                </li>
-              ))}
-            </ul>
-          </article>
-        </section>
+            <article className="rounded-xl border border-brand-blue/10 bg-white p-5 shadow-sm flex flex-col">
+              <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-brand-gold">Updates</p>
+              <h3 className="mt-1 text-xl font-semibold text-brand-blue">{notificationsData.title}</h3>
+              <ul className="mt-4 space-y-2 max-h-[320px] overflow-y-auto pr-2 custom-scrollbar flex-1">
+                {notificationsData.items.map((notification, idx) => (
+                  <li key={notification.id || idx} className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-700">
+                    {notification.title}
+                  </li>
+                ))}
+              </ul>
+            </article>
+          </section>
 
         <section className="animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
           <div className="mb-6">
@@ -269,11 +338,25 @@ export default function MMSHome() {
                   const poster = (video.poster as string) || '';
 
                   if (source) {
-                    return (
-                      <video
-                        controls
-                        preload="metadata"
-                        className="block h-auto w-full bg-black"
+                      const isYouTube = source.includes('youtube.com') || source.includes('youtu.be');
+                      if (isYouTube) {
+                        const videoId = source.split('v=')[1]?.split('&')[0] || source.split('/').pop()?.split('?')[0];
+                        return (
+                          <iframe
+                            className="block w-full aspect-video bg-black"
+                            src={`https://www.youtube.com/embed/${videoId}`}
+                            title={video.title as string || 'Video'}
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                          />
+                        );
+                      }
+
+                      return (
+                        <video
+                          controls
+                          preload="metadata"
+                          className="block w-full aspect-video bg-black object-cover"
                         poster={poster || undefined}
                         playsInline
                       >
