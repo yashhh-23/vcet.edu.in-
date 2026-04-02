@@ -1,9 +1,7 @@
-import React, { lazy, Suspense } from 'react';
+import React from 'react';
 import PageLayout from '../../components/PageLayout';
 import PageBanner from '../../components/PageBanner';
 import { Github, Linkedin, Globe, Code2, Users } from 'lucide-react';
-
-const DevBackground3D = lazy(() => import('../../components/DevBackground3D'));
 
 interface DevProfile {
   name: string;
@@ -153,11 +151,7 @@ const Developers: React.FC = () => {
       />
 
       <section className="py-16 md:py-24 bg-slate-50/50 relative overflow-hidden">
-        <Suspense fallback={null}>
-          <DevBackground3D />
-        </Suspense>
-        
-        <div className="container mx-auto px-4 max-w-7xl animate-fade-in relative z-10">
+        <div className="container mx-auto px-4 max-w-7xl animate-fade-in">
           
           <div className="text-center mb-16">
             <h2 className="text-sm font-bold text-amber-500 tracking-[0.2em] uppercase mb-2">Guidance & Support</h2>
