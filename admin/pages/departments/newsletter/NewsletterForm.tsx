@@ -73,7 +73,7 @@ const NewsletterForm: React.FC<NewsletterFormProps> = ({
         <div>
           <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Select Department *</label>
           <div className="relative">
-            <select
+            <select id="newsletterform-select-1" name="newsletterform-select-1" aria-label="newsletterform select field"
               value={departmentId}
               onChange={(e) => setDepartmentId(e.target.value)}
               className="w-full bg-slate-50 border border-slate-200 text-slate-800 rounded-xl px-4 py-3 appearance-none focus:outline-none focus:ring-2 focus:ring-[#1e293b] focus:border-transparent font-semibold shadow-inner text-sm transition-all"
@@ -93,7 +93,7 @@ const NewsletterForm: React.FC<NewsletterFormProps> = ({
         {/* Title */}
         <div>
           <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Title *</label>
-          <input
+          <input id="newsletterform-1" name="newsletterform-1" aria-label="newsletterform field"
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
@@ -107,7 +107,7 @@ const NewsletterForm: React.FC<NewsletterFormProps> = ({
         {/* Description */}
         <div>
           <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Description *</label>
-          <textarea
+          <textarea id="newsletterform-textarea-2" name="newsletterform-textarea-2" aria-label="newsletterform textarea field"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="A short summary of this newsletter edition..."
@@ -122,7 +122,7 @@ const NewsletterForm: React.FC<NewsletterFormProps> = ({
             onClick={() => imgInputRef.current?.click()}
             className="border-2 border-dashed border-slate-200 rounded-xl p-4 flex flex-col items-center justify-center cursor-pointer hover:bg-slate-50 hover:border-slate-300 transition-colors group"
           >
-            <input type="file" ref={imgInputRef} accept=".jpg,.jpeg,.png" className="hidden" onChange={handleImageChange} />
+            <input id="newsletterform-2" name="newsletterform-2" aria-label="newsletterform field" type="file" ref={imgInputRef} accept=".jpg,.jpeg,.png" className="hidden" onChange={handleImageChange} />
             <div className={`w-10 h-10 rounded-full flex items-center justify-center mb-2 transition-colors ${imageName ? 'bg-emerald-100 text-emerald-600' : 'bg-slate-100 text-slate-400 group-hover:text-slate-600 group-hover:bg-slate-200'}`}>
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
             </div>
@@ -137,7 +137,7 @@ const NewsletterForm: React.FC<NewsletterFormProps> = ({
              onClick={() => pdfInputRef.current?.click()}
              className="border-2 border-dashed border-slate-200 rounded-xl p-4 flex flex-col items-center justify-center cursor-pointer hover:bg-slate-50 hover:border-slate-300 transition-colors group"
           >
-            <input type="file" ref={pdfInputRef} accept=".pdf" className="hidden" onChange={handlePdfChange} />
+            <input id="newsletterform-3" name="newsletterform-3" aria-label="newsletterform field" type="file" ref={pdfInputRef} accept=".pdf" className="hidden" onChange={handlePdfChange} />
             <div className={`w-10 h-10 rounded-full flex items-center justify-center mb-2 transition-colors ${pdfName ? 'bg-indigo-100 text-indigo-600' : 'bg-slate-100 text-slate-400 group-hover:text-slate-600 group-hover:bg-slate-200'}`}>
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
             </div>

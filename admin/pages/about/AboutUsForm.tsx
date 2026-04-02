@@ -46,7 +46,7 @@ const FileUploadField: React.FC<{
     <div className="space-y-2">
       <label className={labelBase}>{label}</label>
       <div className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4">
-        <input
+        <input id="aboutusform-1" name="aboutusform-1" aria-label="aboutusform field"
           type="file"
           accept={accept}
           className="text-sm font-semibold text-slate-600 file:mr-3 file:rounded-xl file:border-0 file:bg-blue-600 file:px-4 file:py-2 file:text-sm file:font-bold file:text-white hover:file:bg-blue-700"
@@ -84,9 +84,9 @@ const LimitedInput: React.FC<{ value: string; onChange: (v: string) => void; max
     <div className="relative">
       <label className={labelBase}>{label}</label>
       {type === 'text' ? (
-        <input value={value || ''} onChange={e => { if (e.target.value.length <= max) onChange(e.target.value) }} className={`${inputBase} p-4`} placeholder={placeholder} />
+        <input id="aboutusform-2" name="aboutusform-2" aria-label="aboutusform field" value={value || ''} onChange={e => { if (e.target.value.length <= max) onChange(e.target.value) }} className={`${inputBase} p-4`} placeholder={placeholder} />
       ) : (
-        <textarea value={value || ''} onChange={e => { if (e.target.value.length <= max) onChange(e.target.value) }} className={`${inputBase} p-4 min-h-[100px] resize-y`} placeholder={placeholder} />
+        <textarea id="aboutusform-textarea-1" name="aboutusform-textarea-1" aria-label="aboutusform textarea field" value={value || ''} onChange={e => { if (e.target.value.length <= max) onChange(e.target.value) }} className={`${inputBase} p-4 min-h-[100px] resize-y`} placeholder={placeholder} />
       )}
       <div className={`absolute bottom-3 right-4 text-[10px] font-bold ${isError ? 'text-red-500' : 'text-slate-400'}`}>
         {value?.length || 0} / {max} {min ? `(min ${min})` : ''}

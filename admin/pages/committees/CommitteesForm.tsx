@@ -60,7 +60,7 @@ const ListManager: React.FC<{
             </button>
           </div>
           <div className="flex-grow">
-            <input 
+            <input id="committeesform-1" name="committeesform-1" aria-label="committeesform field" 
               value={item} 
               onChange={e => updateItem(idx, e.target.value)}
               className={inputBase}
@@ -128,7 +128,7 @@ const TableManager: React.FC<{
               <tr key={idx} className="border-t border-slate-100 group">
                 {columns.map(col => (
                   <td key={col.key as string} className="px-6 py-4">
-                    <input 
+                    <input id="committeesform-2" name="committeesform-2" aria-label="committeesform field" 
                       value={item[col.key] || ''} 
                       onChange={e => updateItem(idx, col.key, e.target.value)}
                       className="w-full bg-transparent border-none text-sm font-semibold text-slate-700 focus:ring-0 p-0"
@@ -186,7 +186,7 @@ const ReportManager: React.FC<{
           
           <div className="w-full md:w-1/3">
             <label className={labelBase}>Academic Year</label>
-            <select 
+            <select id="committeesform-select-1" name="committeesform-select-1" aria-label="committeesform select field" 
               value={item.year} 
               onChange={e => updateItem(idx, { year: e.target.value })}
               className={inputBase}
@@ -198,7 +198,7 @@ const ReportManager: React.FC<{
           <div className="flex-grow">
             <label className={labelBase}>PDF Report</label>
             <div className="relative h-[2.85rem] bg-white border border-slate-200 rounded-xl px-4 flex items-center justify-between overflow-hidden">
-               <input 
+               <input id="committeesform-3" name="committeesform-3" aria-label="committeesform field" 
                  type="file" 
                  accept=".pdf" 
                  onChange={e => updateItem(idx, { file: e.target.files?.[0] || null })}
@@ -253,7 +253,7 @@ const PDFDocumentManager: React.FC<{
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className={labelBase}>Document Title</label>
-              <input 
+              <input id="committeesform-4" name="committeesform-4" aria-label="committeesform field" 
                 value={item.title} 
                 onChange={e => updateItem(idx, { title: e.target.value })}
                 className={inputBase}
@@ -263,7 +263,7 @@ const PDFDocumentManager: React.FC<{
             <div>
               <label className={labelBase}>File Upload</label>
               <div className="relative h-[2.85rem] bg-white border border-slate-200 rounded-xl px-4 flex items-center justify-between overflow-hidden">
-                 <input 
+                 <input id="committeesform-5" name="committeesform-5" aria-label="committeesform field" 
                    type="file" 
                    accept=".pdf" 
                    onChange={e => updateItem(idx, { file: e.target.files?.[0] || null })}
@@ -281,7 +281,7 @@ const PDFDocumentManager: React.FC<{
           {showUrlField && (
             <div>
               <label className={labelBase}>External PDF URL (Optional)</label>
-              <input 
+              <input id="committeesform-6" name="committeesform-6" aria-label="committeesform field" 
                 value={item.pdfUrl} 
                 onChange={e => updateItem(idx, { pdfUrl: e.target.value })}
                 className={inputBase}

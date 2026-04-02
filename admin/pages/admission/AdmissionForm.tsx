@@ -727,19 +727,19 @@ const AdmissionForm: React.FC<AdmissionFormProps> = ({ activeSection, onBack }) 
         <div className="grid gap-5 md:grid-cols-2">
           <div>
             <label className={labelBase}>Navigation Title</label>
-            <input className={inputBase} value={form.navigation_title} onChange={(event) => updateFormField('navigation_title', event.target.value)} />
+            <input id="admissionform-1" name="admissionform-1" aria-label="admissionform field" className={inputBase} value={form.navigation_title} onChange={(event) => updateFormField('navigation_title', event.target.value)} />
           </div>
           <div>
             <label className={labelBase}>Page Title</label>
-            <input className={inputBase} value={form.title} onChange={(event) => updateFormField('title', event.target.value)} />
+            <input id="admissionform-2" name="admissionform-2" aria-label="admissionform field" className={inputBase} value={form.title} onChange={(event) => updateFormField('title', event.target.value)} />
           </div>
           <div>
             <label className={labelBase}>Summary</label>
-            <input className={inputBase} value={form.summary} onChange={(event) => updateFormField('summary', event.target.value)} />
+            <input id="admissionform-3" name="admissionform-3" aria-label="admissionform field" className={inputBase} value={form.summary} onChange={(event) => updateFormField('summary', event.target.value)} />
           </div>
           <div>
             <label className={labelBase}>Dropdown Key</label>
-            <input
+            <input id="admissionform-4" name="admissionform-4" aria-label="admissionform field"
               className={inputBase}
               value={form.dropdown_key}
               onChange={(event) => updateFormField('dropdown_key', event.target.value)}
@@ -749,19 +749,19 @@ const AdmissionForm: React.FC<AdmissionFormProps> = ({ activeSection, onBack }) 
           </div>
           <div className="md:col-span-2">
             <label className={labelBase}>Description</label>
-            <textarea className={`${inputBase} min-h-[120px] resize-y`} value={form.description} onChange={(event) => updateFormField('description', event.target.value)} />
+            <textarea id="admissionform-textarea-1" name="admissionform-textarea-1" aria-label="admissionform textarea field" className={`${inputBase} min-h-[120px] resize-y`} value={form.description} onChange={(event) => updateFormField('description', event.target.value)} />
           </div>
           <div>
             <label className={labelBase}>Sort Order</label>
-            <input className={inputBase} type="number" min="0" value={form.sort_order} onChange={(event) => updateFormField('sort_order', event.target.value)} />
+            <input id="admissionform-5" name="admissionform-5" aria-label="admissionform field" className={inputBase} type="number" min="0" value={form.sort_order} onChange={(event) => updateFormField('sort_order', event.target.value)} />
           </div>
           <div className="flex flex-wrap items-center gap-6 rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4">
             <label className="inline-flex items-center gap-3 text-sm font-semibold text-slate-700">
-              <input type="checkbox" checked={form.is_active} onChange={(event) => updateFormField('is_active', event.target.checked)} />
+              <input id="admissionform-6" name="admissionform-6" aria-label="admissionform field" type="checkbox" checked={form.is_active} onChange={(event) => updateFormField('is_active', event.target.checked)} />
               Section Active
             </label>
             <label className="inline-flex items-center gap-3 text-sm font-semibold text-slate-700">
-              <input type="checkbox" checked={form.has_dropdown} onChange={(event) => updateFormField('has_dropdown', event.target.checked)} />
+              <input id="admissionform-7" name="admissionform-7" aria-label="admissionform field" type="checkbox" checked={form.has_dropdown} onChange={(event) => updateFormField('has_dropdown', event.target.checked)} />
               Enable Dropdown Filter
             </label>
           </div>
@@ -779,15 +779,15 @@ const AdmissionForm: React.FC<AdmissionFormProps> = ({ activeSection, onBack }) 
           <div className="grid gap-5 md:grid-cols-3">
             <div>
               <label className={labelBase}>UG Heading</label>
-              <input className={inputBase} value={getSectionHeading(form.content, 'ug', 'Under Graduate Program')} onChange={(event) => updateSectionHeading('ug', event.target.value)} />
+              <input id="admissionform-8" name="admissionform-8" aria-label="admissionform field" className={inputBase} value={getSectionHeading(form.content, 'ug', 'Under Graduate Program')} onChange={(event) => updateSectionHeading('ug', event.target.value)} />
             </div>
             <div>
               <label className={labelBase}>PG Heading</label>
-              <input className={inputBase} value={getSectionHeading(form.content, 'pg', 'Post Graduate Program')} onChange={(event) => updateSectionHeading('pg', event.target.value)} />
+              <input id="admissionform-9" name="admissionform-9" aria-label="admissionform field" className={inputBase} value={getSectionHeading(form.content, 'pg', 'Post Graduate Program')} onChange={(event) => updateSectionHeading('pg', event.target.value)} />
             </div>
             <div>
               <label className={labelBase}>Management Heading</label>
-              <input className={inputBase} value={getSectionHeading(form.content, 'mgmt', 'Management Program')} onChange={(event) => updateSectionHeading('mgmt', event.target.value)} />
+              <input id="admissionform-10" name="admissionform-10" aria-label="admissionform field" className={inputBase} value={getSectionHeading(form.content, 'mgmt', 'Management Program')} onChange={(event) => updateSectionHeading('mgmt', event.target.value)} />
             </div>
           </div>
         </SectionCard>
@@ -800,19 +800,19 @@ const AdmissionForm: React.FC<AdmissionFormProps> = ({ activeSection, onBack }) 
           <div className="grid gap-5 md:grid-cols-2">
             <div>
               <label className={labelBase}>Badge</label>
-              <input className={inputBase} value={getContentValue(form.content, 'badge', 'Academic Administration')} onChange={(event) => updateContentField('badge', event.target.value)} />
+              <input id="admissionform-11" name="admissionform-11" aria-label="admissionform field" className={inputBase} value={getContentValue(form.content, 'badge', 'Academic Administration')} onChange={(event) => updateContentField('badge', event.target.value)} />
             </div>
             <div>
               <label className={labelBase}>Heading</label>
-              <input className={inputBase} value={getContentValue(form.content, 'heading', 'Fee Structure')} onChange={(event) => updateContentField('heading', event.target.value)} />
+              <input id="admissionform-12" name="admissionform-12" aria-label="admissionform field" className={inputBase} value={getContentValue(form.content, 'heading', 'Fee Structure')} onChange={(event) => updateContentField('heading', event.target.value)} />
             </div>
             <div className="md:col-span-2">
               <label className={labelBase}>Intro</label>
-              <textarea className={`${inputBase} min-h-[110px] resize-y`} value={getContentValue(form.content, 'intro')} onChange={(event) => updateContentField('intro', event.target.value)} />
+              <textarea id="admissionform-textarea-2" name="admissionform-textarea-2" aria-label="admissionform textarea field" className={`${inputBase} min-h-[110px] resize-y`} value={getContentValue(form.content, 'intro')} onChange={(event) => updateContentField('intro', event.target.value)} />
             </div>
             <div className="md:col-span-2">
               <label className={labelBase}>Table Heading</label>
-              <input className={inputBase} value={getContentValue(form.content, 'table_heading', 'Program Documentation')} onChange={(event) => updateContentField('table_heading', event.target.value)} />
+              <input id="admissionform-13" name="admissionform-13" aria-label="admissionform field" className={inputBase} value={getContentValue(form.content, 'table_heading', 'Program Documentation')} onChange={(event) => updateContentField('table_heading', event.target.value)} />
             </div>
           </div>
         </SectionCard>
@@ -825,15 +825,15 @@ const AdmissionForm: React.FC<AdmissionFormProps> = ({ activeSection, onBack }) 
           <div className="grid gap-5 md:grid-cols-2">
             <div className="md:col-span-2">
               <label className={labelBase}>Heading</label>
-              <input className={inputBase} value={getContentValue(form.content, 'heading', 'College Brochure')} onChange={(event) => updateContentField('heading', event.target.value)} />
+              <input id="admissionform-14" name="admissionform-14" aria-label="admissionform field" className={inputBase} value={getContentValue(form.content, 'heading', 'College Brochure')} onChange={(event) => updateContentField('heading', event.target.value)} />
             </div>
             <div className="md:col-span-2">
               <label className={labelBase}>Intro</label>
-              <textarea className={`${inputBase} min-h-[110px] resize-y`} value={getContentValue(form.content, 'intro')} onChange={(event) => updateContentField('intro', event.target.value)} />
+              <textarea id="admissionform-textarea-3" name="admissionform-textarea-3" aria-label="admissionform textarea field" className={`${inputBase} min-h-[110px] resize-y`} value={getContentValue(form.content, 'intro')} onChange={(event) => updateContentField('intro', event.target.value)} />
             </div>
             <div className="md:col-span-2">
               <label className={labelBase}>Description</label>
-              <textarea className={`${inputBase} min-h-[110px] resize-y`} value={getContentValue(form.content, 'description')} onChange={(event) => updateContentField('description', event.target.value)} />
+              <textarea id="admissionform-textarea-4" name="admissionform-textarea-4" aria-label="admissionform textarea field" className={`${inputBase} min-h-[110px] resize-y`} value={getContentValue(form.content, 'description')} onChange={(event) => updateContentField('description', event.target.value)} />
             </div>
           </div>
         </SectionCard>
@@ -846,11 +846,11 @@ const AdmissionForm: React.FC<AdmissionFormProps> = ({ activeSection, onBack }) 
           <div className="grid gap-5 md:grid-cols-2">
             <div>
               <label className={labelBase}>Heading</label>
-              <input className={inputBase} value={getContentValue(form.content, 'heading', 'Centralized Admission Process')} onChange={(event) => updateContentField('heading', event.target.value)} />
+              <input id="admissionform-15" name="admissionform-15" aria-label="admissionform field" className={inputBase} value={getContentValue(form.content, 'heading', 'Centralized Admission Process')} onChange={(event) => updateContentField('heading', event.target.value)} />
             </div>
             <div>
               <label className={labelBase}>Subheading</label>
-              <input className={inputBase} value={getContentValue(form.content, 'subheading')} onChange={(event) => updateContentField('subheading', event.target.value)} />
+              <input id="admissionform-16" name="admissionform-16" aria-label="admissionform field" className={inputBase} value={getContentValue(form.content, 'subheading')} onChange={(event) => updateContentField('subheading', event.target.value)} />
             </div>
           </div>
         </SectionCard>
@@ -862,7 +862,7 @@ const AdmissionForm: React.FC<AdmissionFormProps> = ({ activeSection, onBack }) 
         <SectionCard title="Page Copy">
           <div>
             <label className={labelBase}>Heading</label>
-            <input className={inputBase} value={getContentValue(form.content, 'heading', 'Required Documentation')} onChange={(event) => updateContentField('heading', event.target.value)} />
+            <input id="admissionform-17" name="admissionform-17" aria-label="admissionform field" className={inputBase} value={getContentValue(form.content, 'heading', 'Required Documentation')} onChange={(event) => updateContentField('heading', event.target.value)} />
           </div>
         </SectionCard>
       );
@@ -944,11 +944,11 @@ const AdmissionForm: React.FC<AdmissionFormProps> = ({ activeSection, onBack }) 
                         <div className="grid gap-4 md:grid-cols-[1fr_180px_auto]">
                           <div>
                             <label className={labelBase}>Course Name</label>
-                            <input className={inputBase} value={item.title} onChange={(event) => updateItem(index, { title: event.target.value })} placeholder="e.g. Computer Engineering" />
+                            <input id="admissionform-18" name="admissionform-18" aria-label="admissionform field" className={inputBase} value={item.title} onChange={(event) => updateItem(index, { title: event.target.value })} placeholder="e.g. Computer Engineering" />
                           </div>
                           <div>
                             <label className={labelBase}>Intake</label>
-                            <input className={inputBase} type="number" min="1" value={item.intake} onChange={(event) => updateItem(index, { intake: event.target.value })} placeholder="60" />
+                            <input id="admissionform-19" name="admissionform-19" aria-label="admissionform field" className={inputBase} type="number" min="1" value={item.intake} onChange={(event) => updateItem(index, { intake: event.target.value })} placeholder="60" />
                           </div>
                           <div className="flex items-end justify-end">
                             <button type="button" onClick={() => removeItem(index)} className="rounded-xl border border-red-200 px-4 py-3 text-xs font-black uppercase tracking-[0.18em] text-red-600 transition hover:bg-red-50">
@@ -1047,48 +1047,48 @@ const AdmissionForm: React.FC<AdmissionFormProps> = ({ activeSection, onBack }) 
                   <div className="grid gap-4 md:grid-cols-2">
                     <div>
                       <label className={labelBase}>Title</label>
-                      <input className={inputBase} value={item.title} onChange={(event) => updateItem(index, { title: event.target.value })} />
+                      <input id="admissionform-20" name="admissionform-20" aria-label="admissionform field" className={inputBase} value={item.title} onChange={(event) => updateItem(index, { title: event.target.value })} />
                     </div>
                     <div>
                       <label className={labelBase}>Category</label>
-                      <input className={inputBase} value={item.category} onChange={(event) => updateItem(index, { category: event.target.value })} placeholder="e.g. Engineering" />
+                      <input id="admissionform-21" name="admissionform-21" aria-label="admissionform field" className={inputBase} value={item.category} onChange={(event) => updateItem(index, { category: event.target.value })} placeholder="e.g. Engineering" />
                     </div>
 
                     {showAcademicYear && (
                       <div>
                         <label className={labelBase}>Academic Year</label>
-                        <input className={inputBase} value={item.academic_year} onChange={(event) => updateItem(index, { academic_year: event.target.value })} placeholder="2025-26" />
+                        <input id="admissionform-22" name="admissionform-22" aria-label="admissionform field" className={inputBase} value={item.academic_year} onChange={(event) => updateItem(index, { academic_year: event.target.value })} placeholder="2025-26" />
                       </div>
                     )}
 
                     {showTag && (
                       <div>
                         <label className={labelBase}>Tag</label>
-                        <input className={inputBase} value={item.tag} onChange={(event) => updateItem(index, { tag: event.target.value })} placeholder="UG - First Year" />
+                        <input id="admissionform-23" name="admissionform-23" aria-label="admissionform field" className={inputBase} value={item.tag} onChange={(event) => updateItem(index, { tag: event.target.value })} placeholder="UG - First Year" />
                       </div>
                     )}
 
                     {showBadge && (
                       <div>
                         <label className={labelBase}>Badge</label>
-                        <input className={inputBase} value={item.badge} onChange={(event) => updateItem(index, { badge: event.target.value })} placeholder="New" />
+                        <input id="admissionform-24" name="admissionform-24" aria-label="admissionform field" className={inputBase} value={item.badge} onChange={(event) => updateItem(index, { badge: event.target.value })} placeholder="New" />
                       </div>
                     )}
 
                     <div className="md:col-span-2">
                       <label className={labelBase}>Description</label>
-                      <textarea className={`${inputBase} min-h-[110px] resize-y`} value={item.description} onChange={(event) => updateItem(index, { description: event.target.value })} />
+                      <textarea id="admissionform-textarea-5" name="admissionform-textarea-5" aria-label="admissionform textarea field" className={`${inputBase} min-h-[110px] resize-y`} value={item.description} onChange={(event) => updateItem(index, { description: event.target.value })} />
                     </div>
 
                     <div className="md:col-span-2">
                       <label className={labelBase}>Document URL</label>
-                      <input className={inputBase} value={item.external_url} onChange={(event) => updateItem(index, { external_url: event.target.value })} placeholder="https://..." />
+                      <input id="admissionform-25" name="admissionform-25" aria-label="admissionform field" className={inputBase} value={item.external_url} onChange={(event) => updateItem(index, { external_url: event.target.value })} placeholder="https://..." />
                     </div>
 
                     <div className="md:col-span-2">
                       <label className={labelBase}>Upload PDF</label>
                       <div className="rounded-2xl border border-dashed border-slate-300 bg-white px-4 py-4">
-                        <input
+                        <input id="admissionform-26" name="admissionform-26" aria-label="admissionform field"
                           type="file"
                           accept="application/pdf"
                           onChange={(event) => updateItem(index, { pdfFile: event.target.files?.[0] ?? null })}

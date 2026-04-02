@@ -81,7 +81,7 @@ const ImageUpload: React.FC<{
             <span className="text-[10px] font-bold uppercase tracking-widest text-center px-4">Click to upload image</span>
           </div>
         )}
-        <input 
+        <input id="academicsform-1" name="academicsform-1" aria-label="academicsform field" 
           type="file" 
           accept="image/*" 
           onChange={handleFileChange}
@@ -156,7 +156,7 @@ const DocumentListManager: React.FC<{
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="md:col-span-1">
                 <label className={labelBase}>Title</label>
-                <input 
+                <input id="academicsform-2" name="academicsform-2" aria-label="academicsform field" 
                   value={item.title} 
                   onChange={e => updateItem(idx, { title: e.target.value })}
                   className={inputBase}
@@ -165,7 +165,7 @@ const DocumentListManager: React.FC<{
               </div>
               <div className="md:col-span-1 text-right">
                  <label className={labelBase}>Academic Year</label>
-                 <select 
+                 <select id="academicsform-select-1" name="academicsform-select-1" aria-label="academicsform select field" 
                     value={item.year} 
                     onChange={e => updateItem(idx, { year: e.target.value })}
                     className={inputBase}
@@ -177,7 +177,7 @@ const DocumentListManager: React.FC<{
               </div>
               <div className="md:col-span-2">
                 <label className={labelBase}>{type === 'calendars' ? 'Status / Tag (e.g. TENTATIVE)' : 'Description'}</label>
-                <input 
+                <input id="academicsform-3" name="academicsform-3" aria-label="academicsform field" 
                   value={item.description} 
                   onChange={e => updateItem(idx, { description: e.target.value })}
                   className={inputBase}
@@ -187,7 +187,7 @@ const DocumentListManager: React.FC<{
               <div className="md:col-span-2">
                 <label className={labelBase}>PDF Document</label>
                 <div className="relative overflow-hidden bg-white border-2 border-dashed border-slate-200 rounded-2xl p-4 transition-all hover:border-[#2563EB]">
-                  <input 
+                  <input id="academicsform-4" name="academicsform-4" aria-label="academicsform field" 
                     type="file" 
                     accept="application/pdf"
                     onChange={e => updateItem(idx, { file: e.target.files?.[0] || null })}
@@ -322,7 +322,7 @@ const AcademicsForm: React.FC<AcademicsFormProps> = ({ activeSection, onBack }) 
               <div className="space-y-6">
                 <div>
                   <label className={labelBase}>Full Name</label>
-                  <input 
+                  <input id="academicsform-5" name="academicsform-5" aria-label="academicsform field" 
                     value={payload.dean?.name || ''} 
                     onChange={e => setPayload(prev => ({ ...prev, dean: { ...prev.dean!, name: e.target.value } }))}
                     className={inputBase}
@@ -331,7 +331,7 @@ const AcademicsForm: React.FC<AcademicsFormProps> = ({ activeSection, onBack }) 
                 </div>
                 <div>
                   <label className={labelBase}>Qualification</label>
-                  <input 
+                  <input id="academicsform-6" name="academicsform-6" aria-label="academicsform field" 
                     value={payload.dean?.qualification || ''} 
                     onChange={e => setPayload(prev => ({ ...prev, dean: { ...prev.dean!, qualification: e.target.value } }))}
                     className={inputBase}
@@ -340,7 +340,7 @@ const AcademicsForm: React.FC<AcademicsFormProps> = ({ activeSection, onBack }) 
                 </div>
                 <div>
                   <label className={labelBase}>Designation</label>
-                  <input 
+                  <input id="academicsform-7" name="academicsform-7" aria-label="academicsform field" 
                     value={payload.dean?.designation || ''} 
                     onChange={e => setPayload(prev => ({ ...prev, dean: { ...prev.dean!, designation: e.target.value } }))}
                     className={inputBase}
@@ -349,7 +349,7 @@ const AcademicsForm: React.FC<AcademicsFormProps> = ({ activeSection, onBack }) 
                 </div>
                 <div>
                   <label className={labelBase}>Institution / College</label>
-                  <input 
+                  <input id="academicsform-8" name="academicsform-8" aria-label="academicsform field" 
                     value={payload.dean?.institution || ''} 
                     onChange={e => setPayload(prev => ({ ...prev, dean: { ...prev.dean!, institution: e.target.value } }))}
                     className={inputBase}
@@ -359,7 +359,7 @@ const AcademicsForm: React.FC<AcademicsFormProps> = ({ activeSection, onBack }) 
               </div>
               <div className="md:col-span-2">
                 <label className={labelBase}>Dean's Message (Quote)</label>
-                <textarea 
+                <textarea id="academicsform-textarea-2" name="academicsform-textarea-2" aria-label="academicsform textarea field" 
                   value={payload.dean?.message || ''} 
                   onChange={e => setPayload(prev => ({ ...prev, dean: { ...prev.dean!, message: e.target.value } }))}
                   className={`${inputBase} min-h-[200px] resize-none py-4 leading-relaxed`}
@@ -376,7 +376,7 @@ const AcademicsForm: React.FC<AcademicsFormProps> = ({ activeSection, onBack }) 
             <div className="grid grid-cols-1 gap-8">
                <div>
                   <label className={labelBase}>Framework Title</label>
-                  <input 
+                  <input id="academicsform-9" name="academicsform-9" aria-label="academicsform field" 
                     value={payload.obe?.title || ''} 
                     onChange={e => setPayload(prev => ({ ...prev, obe: { ...prev.obe!, title: e.target.value } }))}
                     className={inputBase}
@@ -385,7 +385,7 @@ const AcademicsForm: React.FC<AcademicsFormProps> = ({ activeSection, onBack }) 
                 </div>
                 <div>
                   <label className={labelBase}>Description</label>
-                  <textarea 
+                  <textarea id="academicsform-textarea-3" name="academicsform-textarea-3" aria-label="academicsform textarea field" 
                     value={payload.obe?.description || ''} 
                     onChange={e => setPayload(prev => ({ ...prev, obe: { ...prev.obe!, description: e.target.value } }))}
                     className={`${inputBase} min-h-[100px] resize-none py-4 leading-relaxed`}

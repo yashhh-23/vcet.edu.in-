@@ -150,7 +150,7 @@ const DepartmentList: React.FC = () => {
       <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
         <div className="relative w-full sm:w-96">
           <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" /><path strokeLinecap="round" strokeWidth="2" d="m21 21-4.35-4.35" /></svg>
-          <input
+          <input id="departmentlist-1" name="departmentlist-1" aria-label="departmentlist field"
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}

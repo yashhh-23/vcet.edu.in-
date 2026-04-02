@@ -102,7 +102,7 @@ const FacultyList: React.FC = () => {
       <div className="flex flex-col md:flex-row gap-4 items-center justify-between bg-white p-6 rounded-[2rem] shadow-sm border border-slate-100">
         <div className="relative w-full md:w-96">
           <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" /><path strokeLinecap="round" strokeWidth="2" d="m21 21-4.35-4.35" /></svg>
-          <input
+          <input id="facultylist-1" name="facultylist-1" aria-label="facultylist field"
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -110,7 +110,7 @@ const FacultyList: React.FC = () => {
             className="w-full bg-slate-50 ring-1 ring-slate-200 focus:ring-2 focus:ring-[#1e293b] rounded-2xl pl-11 pr-5 py-3.5 text-sm font-bold transition-all outline-none"
           />
         </div>
-        <select
+        <select id="facultylist-select-1" name="facultylist-select-1" aria-label="facultylist select field"
           value={deptFilter}
           onChange={(e) => setDeptFilter(e.target.value)}
           className="w-full md:w-64 bg-slate-50 ring-1 ring-slate-200 focus:ring-2 focus:ring-[#1e293b] rounded-2xl px-5 py-3.5 text-xs font-bold text-slate-600 transition-all outline-none cursor-pointer"

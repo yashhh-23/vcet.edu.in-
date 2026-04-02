@@ -229,35 +229,35 @@ const FacultyForm: React.FC = () => {
                     <span className="text-[10px] font-black uppercase tracking-widest">Upload photo</span>
                   </div>
                 )}
-                <input type="file" onChange={handleImageChange} accept="image/*" className="absolute inset-0 opacity-0 cursor-pointer" />
+                <input id="facultyform-1" name="facultyform-1" aria-label="facultyform field" type="file" onChange={handleImageChange} accept="image/*" className="absolute inset-0 opacity-0 cursor-pointer" />
               </div>
             </div>
             <div className="w-full md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="sm:col-span-2">
                 <label className={labelBase}>Full Name</label>
-                <input name="fullName" value={form.basicInfo.fullName} onChange={handleBasicChange} placeholder="Dr. Sunita Mehta" className={inputBase} required />
+                <input id="facultyform-2" aria-label="facultyform field" name="fullName" value={form.basicInfo.fullName} onChange={handleBasicChange} placeholder="Dr. Sunita Mehta" className={inputBase} required />
               </div>
               <div>
                 <label className={labelBase}>Designation</label>
-                <input name="designation" value={form.basicInfo.designation} onChange={handleBasicChange} placeholder="Associate Professor" className={inputBase} required />
+                <input id="facultyform-3" aria-label="facultyform field" name="designation" value={form.basicInfo.designation} onChange={handleBasicChange} placeholder="Associate Professor" className={inputBase} required />
               </div>
               <div>
                 <label className={labelBase}>Department</label>
-                <select name="department" value={form.basicInfo.department} onChange={handleBasicChange} className={inputBase}>
+                <select id="facultyform-select-1" aria-label="facultyform select field" name="department" value={form.basicInfo.department} onChange={handleBasicChange} className={inputBase}>
                   {DEPARTMENTS.map(d => <option key={d} value={d}>{d}</option>)}
                 </select>
               </div>
               <div className="sm:col-span-2">
                 <label className={labelBase}>Email</label>
-                <input name="email" type="email" value={form.basicInfo.email} onChange={handleBasicChange} placeholder="sunita@college.edu" className={inputBase} required />
+                <input id="facultyform-4" aria-label="facultyform field" name="email" type="email" value={form.basicInfo.email} onChange={handleBasicChange} placeholder="sunita@college.edu" className={inputBase} required />
               </div>
               <div>
                 <label className={labelBase}>Date of Birth</label>
-                <input name="dob" type="date" value={form.basicInfo.dob} onChange={handleBasicChange} className={inputBase} />
+                <input id="facultyform-5" aria-label="facultyform field" name="dob" type="date" value={form.basicInfo.dob} onChange={handleBasicChange} className={inputBase} />
               </div>
               <div>
                 <label className={labelBase}>Joining Date</label>
-                <input name="joinDate" type="date" value={form.basicInfo.joinDate} onChange={handleBasicChange} className={inputBase} />
+                <input id="facultyform-6" aria-label="facultyform field" name="joinDate" type="date" value={form.basicInfo.joinDate} onChange={handleBasicChange} className={inputBase} />
               </div>
             </div>
           </div>
@@ -269,7 +269,7 @@ const FacultyForm: React.FC = () => {
             <label className={labelBase}>Degrees (add multiple)</label>
             {(form.qualifications?.degrees || []).map((deg, idx) => (
               <div key={idx} className="flex gap-2">
-                <input value={deg} onChange={(e) => handleArrayChange('qualifications', 'degrees', idx, e.target.value)} placeholder="e.g., Ph.D. in Computer Science" className={inputBase} />
+                <input id="facultyform-7" name="facultyform-7" aria-label="facultyform field" value={deg} onChange={(e) => handleArrayChange('qualifications', 'degrees', idx, e.target.value)} placeholder="e.g., Ph.D. in Computer Science" className={inputBase} />
                 <button type="button" onClick={() => removeArrayItem('qualifications', 'degrees', idx)} className="p-2 text-slate-300 hover:text-red-500 transition-colors">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
                 </button>
@@ -281,7 +281,7 @@ const FacultyForm: React.FC = () => {
             </button>
             <div className="pt-4">
               <label className={labelBase}>Specialization</label>
-              <input value={form.qualifications?.specialization} onChange={(e) => handleNestedChange('qualifications', 'specialization', e.target.value)} placeholder="e.g., Machine Learning & Deep Learning" className={inputBase} />
+              <input id="facultyform-8" name="facultyform-8" aria-label="facultyform field" value={form.qualifications?.specialization} onChange={(e) => handleNestedChange('qualifications', 'specialization', e.target.value)} placeholder="e.g., Machine Learning & Deep Learning" className={inputBase} />
             </div>
           </div>
         </SectionCard>
@@ -298,7 +298,7 @@ const FacultyForm: React.FC = () => {
             ].map(stat => (
               <div key={stat.field} className={`${stat.bg} p-4 rounded-3xl text-center border ${stat.border}`}>
                 <label className={`block text-[10px] font-black ${stat.textLabel} uppercase tracking-widest mb-2`}>{stat.label}</label>
-                <input type="number" value={(form.experience as any)?.[stat.field] || 0} onChange={(e) => handleNestedChange('experience', stat.field, Number(e.target.value))} className={`w-full text-center bg-white ring-1 ${stat.ring} focus:ring-2 ${stat.focus} rounded-2xl px-3 py-3 text-lg font-black ${stat.text} outline-none`} />
+                <input id="facultyform-9" name="facultyform-9" aria-label="facultyform field" type="number" value={(form.experience as any)?.[stat.field] || 0} onChange={(e) => handleNestedChange('experience', stat.field, Number(e.target.value))} className={`w-full text-center bg-white ring-1 ${stat.ring} focus:ring-2 ${stat.focus} rounded-2xl px-3 py-3 text-lg font-black ${stat.text} outline-none`} />
               </div>
             ))}
           </div>
@@ -309,13 +309,13 @@ const FacultyForm: React.FC = () => {
           <div className="space-y-6">
             <div>
               <label className={labelBase}>PG Projects Guided (Summary)</label>
-              <input value={form.academic?.pgProjects} onChange={(e) => handleNestedChange('academic', 'pgProjects', e.target.value)} placeholder="e.g., 12 M.Tech projects guided" className={inputBase} />
+              <input id="facultyform-10" name="facultyform-10" aria-label="facultyform field" value={form.academic?.pgProjects} onChange={(e) => handleNestedChange('academic', 'pgProjects', e.target.value)} placeholder="e.g., 12 M.Tech projects guided" className={inputBase} />
             </div>
             <div>
               <label className={labelBase}>Research Domains</label>
               {(form.academic?.researchDomains || []).map((dom, idx) => (
                 <div key={idx} className="flex gap-2 mb-2">
-                  <input value={dom} onChange={(e) => handleArrayChange('academic', 'researchDomains', idx, e.target.value)} className={inputBase} />
+                  <input id="facultyform-11" name="facultyform-11" aria-label="facultyform field" value={dom} onChange={(e) => handleArrayChange('academic', 'researchDomains', idx, e.target.value)} className={inputBase} />
                   <button type="button" onClick={() => removeArrayItem('academic', 'researchDomains', idx)} className="p-2 text-slate-300 hover:text-red-500 hover:scale-110 transition-all"><svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg></button>
                 </div>
               ))}
@@ -325,7 +325,7 @@ const FacultyForm: React.FC = () => {
               <label className={labelBase}>Consultancy Projects</label>
               {(form.academic?.consultancyProjects || []).map((cp, idx) => (
                 <div key={idx} className="flex gap-2 mb-2">
-                  <input value={cp} onChange={(e) => handleArrayChange('academic', 'consultancyProjects', idx, e.target.value)} className={inputBase} />
+                  <input id="facultyform-12" name="facultyform-12" aria-label="facultyform field" value={cp} onChange={(e) => handleArrayChange('academic', 'consultancyProjects', idx, e.target.value)} className={inputBase} />
                   <button type="button" onClick={() => removeArrayItem('academic', 'consultancyProjects', idx)} className="p-2 text-slate-300 hover:text-red-500 hover:scale-110 transition-all"><svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg></button>
                 </div>
               ))}
@@ -341,8 +341,8 @@ const FacultyForm: React.FC = () => {
               <label className={labelBase}>Books (Dynamic Fields)</label>
               {(form.publications?.books || []).map((book, idx) => (
                 <div key={idx} className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4 p-4 bg-slate-50/50 rounded-2xl relative group">
-                  <input value={book.title} onChange={(e) => handleArrayChange('publications', 'books', idx, { ...book, title: e.target.value })} placeholder="Book Title" className={inputBase + " bg-white"} />
-                  <input value={book.isbn} onChange={(e) => handleArrayChange('publications', 'books', idx, { ...book, isbn: e.target.value })} placeholder="ISBN Number" className={inputBase + " bg-white"} />
+                  <input id="facultyform-13" name="facultyform-13" aria-label="facultyform field" value={book.title} onChange={(e) => handleArrayChange('publications', 'books', idx, { ...book, title: e.target.value })} placeholder="Book Title" className={inputBase + " bg-white"} />
+                  <input id="facultyform-14" name="facultyform-14" aria-label="facultyform field" value={book.isbn} onChange={(e) => handleArrayChange('publications', 'books', idx, { ...book, isbn: e.target.value })} placeholder="ISBN Number" className={inputBase + " bg-white"} />
                   <button type="button" onClick={() => removeArrayItem('publications', 'books', idx)} className="absolute -top-2 -right-2 bg-white shadow-md rounded-full p-1.5 text-red-400 opacity-0 group-hover:opacity-100 transition-all"><svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg></button>
                 </div>
               ))}
@@ -353,8 +353,8 @@ const FacultyForm: React.FC = () => {
               <label className={labelBase}>Patents (Dynamic Fields)</label>
               {(form.publications?.patents || []).map((pat, idx) => (
                 <div key={idx} className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4 p-4 bg-slate-50/50 rounded-2xl relative group">
-                  <input value={pat.title} onChange={(e) => handleArrayChange('publications', 'patents', idx, { ...pat, title: e.target.value })} placeholder="Patent Title" className={inputBase + " bg-white"} />
-                  <input type="date" value={pat.date} onChange={(e) => handleArrayChange('publications', 'patents', idx, { ...pat, date: e.target.value })} className={inputBase + " bg-white"} />
+                  <input id="facultyform-15" name="facultyform-15" aria-label="facultyform field" value={pat.title} onChange={(e) => handleArrayChange('publications', 'patents', idx, { ...pat, title: e.target.value })} placeholder="Patent Title" className={inputBase + " bg-white"} />
+                  <input id="facultyform-16" name="facultyform-16" aria-label="facultyform field" type="date" value={pat.date} onChange={(e) => handleArrayChange('publications', 'patents', idx, { ...pat, date: e.target.value })} className={inputBase + " bg-white"} />
                   <button type="button" onClick={() => removeArrayItem('publications', 'patents', idx)} className="absolute -top-2 -right-2 bg-white shadow-md rounded-full p-1.5 text-red-400 opacity-0 group-hover:opacity-100 transition-all"><svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg></button>
                 </div>
               ))}
@@ -365,7 +365,7 @@ const FacultyForm: React.FC = () => {
               <label className={labelBase}>Research Papers (Links/Titles)</label>
               {(form.publications?.researchPapers || []).map((rp, idx) => (
                 <div key={idx} className="flex gap-2 mb-2">
-                  <input value={rp} onChange={(e) => handleArrayChange('publications', 'researchPapers', idx, e.target.value)} className={inputBase} />
+                  <input id="facultyform-17" name="facultyform-17" aria-label="facultyform field" value={rp} onChange={(e) => handleArrayChange('publications', 'researchPapers', idx, e.target.value)} className={inputBase} />
                   <button type="button" onClick={() => removeArrayItem('publications', 'researchPapers', idx)} className="p-2 text-slate-300 hover:text-red-500"><svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg></button>
                 </div>
               ))}
@@ -381,7 +381,7 @@ const FacultyForm: React.FC = () => {
               <label className={labelBase}>Roles & Responsibilities</label>
               {(form.rolesAndAwards?.roles || []).map((role, idx) => (
                 <div key={idx} className="flex gap-2 mb-2">
-                  <input value={role} onChange={(e) => handleArrayChange('rolesAndAwards', 'roles', idx, e.target.value)} className={inputBase} />
+                  <input id="facultyform-18" name="facultyform-18" aria-label="facultyform field" value={role} onChange={(e) => handleArrayChange('rolesAndAwards', 'roles', idx, e.target.value)} className={inputBase} />
                   <button type="button" onClick={() => removeArrayItem('rolesAndAwards', 'roles', idx)} className="text-red-300 scale-90"><svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg></button>
                 </div>
               ))}
@@ -391,7 +391,7 @@ const FacultyForm: React.FC = () => {
               <label className={labelBase}>Awards & Honors</label>
               {(form.rolesAndAwards?.awards || []).map((award, idx) => (
                 <div key={idx} className="flex gap-2 mb-2">
-                  <input value={award} onChange={(e) => handleArrayChange('rolesAndAwards', 'awards', idx, e.target.value)} className={inputBase} />
+                  <input id="facultyform-19" name="facultyform-19" aria-label="facultyform field" value={award} onChange={(e) => handleArrayChange('rolesAndAwards', 'awards', idx, e.target.value)} className={inputBase} />
                   <button type="button" onClick={() => removeArrayItem('rolesAndAwards', 'awards', idx)} className="text-red-300 scale-90"><svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg></button>
                 </div>
               ))}
@@ -405,15 +405,15 @@ const FacultyForm: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             <div>
               <label className={labelBase}>Personal Website</label>
-              <input value={form.onlineLinks?.website} onChange={(e) => handleNestedChange('onlineLinks', 'website', e.target.value)} placeholder="https://..." className={inputBase} />
+              <input id="facultyform-20" name="facultyform-20" aria-label="facultyform field" value={form.onlineLinks?.website} onChange={(e) => handleNestedChange('onlineLinks', 'website', e.target.value)} placeholder="https://..." className={inputBase} />
             </div>
             <div>
               <label className={labelBase}>YouTube</label>
-              <input value={form.onlineLinks?.youtube} onChange={(e) => handleNestedChange('onlineLinks', 'youtube', e.target.value)} placeholder="Channel Link" className={inputBase} />
+              <input id="facultyform-21" name="facultyform-21" aria-label="facultyform field" value={form.onlineLinks?.youtube} onChange={(e) => handleNestedChange('onlineLinks', 'youtube', e.target.value)} placeholder="Channel Link" className={inputBase} />
             </div>
             <div>
               <label className={labelBase}>GitHub</label>
-              <input value={form.onlineLinks?.github} onChange={(e) => handleNestedChange('onlineLinks', 'github', e.target.value)} placeholder="GitHub Profile" className={inputBase} />
+              <input id="facultyform-22" name="facultyform-22" aria-label="facultyform field" value={form.onlineLinks?.github} onChange={(e) => handleNestedChange('onlineLinks', 'github', e.target.value)} placeholder="GitHub Profile" className={inputBase} />
             </div>
           </div>
         </SectionCard>
@@ -424,7 +424,7 @@ const FacultyForm: React.FC = () => {
             <label className={labelBase}>Organizations (add multiple)</label>
             {(form.memberships?.organizations || []).map((org, idx) => (
               <div key={idx} className="flex gap-2 mb-2">
-                <input value={org} onChange={(e) => handleArrayChange('memberships', 'organizations', idx, e.target.value)} placeholder="e.g., IEEE, ACM" className={inputBase} />
+                <input id="facultyform-23" name="facultyform-23" aria-label="facultyform field" value={org} onChange={(e) => handleArrayChange('memberships', 'organizations', idx, e.target.value)} placeholder="e.g., IEEE, ACM" className={inputBase} />
                 <button type="button" onClick={() => removeArrayItem('memberships', 'organizations', idx)} className="p-2 text-red-300 hover:text-red-500 scale-90 transition-all"><svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg></button>
               </div>
             ))}
@@ -436,7 +436,7 @@ const FacultyForm: React.FC = () => {
         <div className="bg-white rounded-[2rem] shadow-lg shadow-slate-200/40 border border-slate-100 px-8 py-6 flex items-center justify-between">
           <label className="flex items-center gap-3 cursor-pointer group">
             <div className={`relative flex items-center w-12 h-6.5 rounded-full transition-all duration-300 ${form.basicInfo.isActive ? 'bg-[#1e293b]' : 'bg-slate-200'}`}>
-              <input type="checkbox" name="isActive" checked={form.basicInfo.isActive} onChange={handleBasicChange} className="sr-only" />
+              <input id="facultyform-24" aria-label="facultyform field" type="checkbox" name="isActive" checked={form.basicInfo.isActive} onChange={handleBasicChange} className="sr-only" />
               <span className={`w-5 h-5 rounded-full bg-white shadow-md transform transition-transform duration-300 ${form.basicInfo.isActive ? 'translate-x-6' : 'translate-x-1'}`} />
             </div>
             <div className="flex flex-col">

@@ -37,7 +37,7 @@ const FileUpload = ({ label, value, onChange, id, accept = ".pdf" }: { label: st
         <label className="flex-1 flex items-center gap-3 p-3.5 bg-slate-50 ring-1 ring-slate-200 rounded-2xl cursor-pointer hover:bg-slate-100 transition-all overflow-hidden border border-dashed border-slate-300">
           <svg className="w-4 h-4 text-indigo-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
           <span className="text-xs font-bold text-slate-600 truncate">{fileName}</span>
-          <input type="file" className="hidden" accept={accept} onChange={e => { const f = e.target.files?.[0]; if (f) onChange(f); }} />
+          <input id="departmentform-1" name="departmentform-1" aria-label="departmentform field" type="file" className="hidden" accept={accept} onChange={e => { const f = e.target.files?.[0]; if (f) onChange(f); }} />
         </label>
         {value && (
           <button type="button" onClick={() => onChange(undefined)} className="p-3 text-red-400 hover:text-red-600 hover:bg-red-50 rounded-2xl transition-all">
@@ -72,7 +72,7 @@ const ImageUpload = ({ label, value, onChange, id }: { label: string; value: str
         <label className="flex-1 flex items-center gap-3 p-3.5 bg-slate-50 ring-1 ring-slate-200 rounded-2xl cursor-pointer hover:bg-slate-100 transition-all overflow-hidden border border-dashed border-slate-300">
           <svg className="w-4 h-4 text-indigo-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
           <span className="text-xs font-bold text-slate-600 truncate">{value instanceof File ? value.name : (value ? 'Change Image' : 'Upload Image')}</span>
-          <input type="file" className="hidden" accept="image/*" onChange={e => { const f = e.target.files?.[0]; if (f) onChange(f); }} />
+          <input id="departmentform-2" name="departmentform-2" aria-label="departmentform field" type="file" className="hidden" accept="image/*" onChange={e => { const f = e.target.files?.[0]; if (f) onChange(f); }} />
         </label>
         {value && (
           <button type="button" onClick={() => onChange(undefined)} className="p-3 text-red-400 hover:text-red-600 hover:bg-red-50 rounded-2xl transition-all">
@@ -256,7 +256,7 @@ export default function DepartmentForm() {
             <div className="space-y-6">
               <div>
                 <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">Department Name</label>
-                <input
+                <input id="departmentform-3" name="departmentform-3" aria-label="departmentform field"
                   type="text"
                   value={name || ""}
                   onChange={e => setName(e.target.value)}
@@ -268,7 +268,7 @@ export default function DepartmentForm() {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">URL Slug</label>
-                  <input
+                  <input id="departmentform-4" name="departmentform-4" aria-label="departmentform field"
                     type="text"
                     value={slug || ""}
                     onChange={e => setSlug(e.target.value)}
@@ -280,7 +280,7 @@ export default function DepartmentForm() {
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">Status</label>
-                  <select
+                  <select id="departmentform-select-1" name="departmentform-select-1" aria-label="departmentform select field"
                     value={is_active ? 'true' : 'false'}
                     onChange={e => setIsActive(e.target.value === 'true')}
                     className="w-full bg-slate-50 border-0 ring-1 ring-slate-200 focus:ring-2 focus:ring-[#1e293b] rounded-2xl px-5 py-4 text-sm font-bold transition-all outline-none"
@@ -317,7 +317,7 @@ export default function DepartmentForm() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="md:col-span-2">
                       <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Patent Title</label>
-                      <input
+                      <input id="departmentform-5" name="departmentform-5" aria-label="departmentform field"
                         type="text"
                         value={patent.title || ""}
                         onChange={e => updateArrayItem('patents', i, { ...patent, title: e.target.value })}
@@ -327,7 +327,7 @@ export default function DepartmentForm() {
                     </div>
                     <div className="md:col-span-2">
                       <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Description</label>
-                      <textarea
+                      <textarea id="departmentform-textarea-2" name="departmentform-textarea-2" aria-label="departmentform textarea field"
                         value={patent.description || ""}
                         onChange={e => updateArrayItem('patents', i, { ...patent, description: e.target.value })}
                         className="w-full bg-white ring-1 ring-slate-200 focus:ring-2 focus:ring-indigo-500 rounded-2xl px-5 py-3.5 text-sm font-medium outline-none transition-all"
@@ -378,7 +378,7 @@ export default function DepartmentForm() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="md:col-span-2">
                       <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Organization Name</label>
-                      <input
+                      <input id="departmentform-6" name="departmentform-6" aria-label="departmentform field"
                         type="text"
                         value={mou.organization || ""}
                         onChange={e => updateArrayItem('mous', i, { ...mou, organization: e.target.value })}
@@ -388,7 +388,7 @@ export default function DepartmentForm() {
                     </div>
                     <div className="md:col-span-2">
                       <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Description</label>
-                      <textarea
+                      <textarea id="departmentform-textarea-3" name="departmentform-textarea-3" aria-label="departmentform textarea field"
                         value={mou.description || ""}
                         onChange={e => updateArrayItem('mous', i, { ...mou, description: e.target.value })}
                         className="w-full bg-white ring-1 ring-slate-200 focus:ring-2 focus:ring-emerald-500 rounded-2xl px-5 py-3.5 text-sm font-medium outline-none transition-all"
@@ -437,14 +437,14 @@ export default function DepartmentForm() {
                   {content.facultyAchievements?.map((ach, i) => (
                     <div key={i} className="p-5 bg-slate-50/50 rounded-3xl border border-slate-100 relative group/row space-y-4">
                       <button type="button" onClick={() => removeArrayItem('facultyAchievements', i)} className="absolute top-4 right-4 text-slate-300 hover:text-red-500 transition-all"><TrashIcon /></button>
-                      <input
+                      <input id="departmentform-7" name="departmentform-7" aria-label="departmentform field"
                         type="text"
                         value={ach.title || ""}
                         onChange={e => updateArrayItem('facultyAchievements', i, { ...ach, title: e.target.value })}
                         className="w-full bg-white ring-1 ring-slate-200 focus:ring-2 focus:ring-amber-500 rounded-2xl px-4 py-3 text-sm font-bold outline-none"
                         placeholder="Achievement Title"
                       />
-                      <textarea
+                      <textarea id="departmentform-textarea-4" name="departmentform-textarea-4" aria-label="departmentform textarea field"
                         value={ach.description || ""}
                         onChange={e => updateArrayItem('facultyAchievements', i, { ...ach, description: e.target.value })}
                         className="w-full bg-white ring-1 ring-slate-200 focus:ring-2 focus:ring-amber-500 rounded-2xl px-4 py-3 text-sm font-medium outline-none"
@@ -472,14 +472,14 @@ export default function DepartmentForm() {
                   {content.studentAchievements?.map((ach, i) => (
                     <div key={i} className="p-5 bg-slate-50/50 rounded-3xl border border-slate-100 relative group/row space-y-4">
                       <button type="button" onClick={() => removeArrayItem('studentAchievements', i)} className="absolute top-4 right-4 text-slate-300 hover:text-red-500 transition-all"><TrashIcon /></button>
-                      <input
+                      <input id="departmentform-8" name="departmentform-8" aria-label="departmentform field"
                         type="text"
                         value={ach.title || ""}
                         onChange={e => updateArrayItem('studentAchievements', i, { ...ach, title: e.target.value })}
                         className="w-full bg-white ring-1 ring-slate-200 focus:ring-2 focus:ring-blue-500 rounded-2xl px-4 py-3 text-sm font-bold outline-none"
                         placeholder="Achievement Title"
                       />
-                      <textarea
+                      <textarea id="departmentform-textarea-5" name="departmentform-textarea-5" aria-label="departmentform textarea field"
                         value={ach.description || ""}
                         onChange={e => updateArrayItem('studentAchievements', i, { ...ach, description: e.target.value })}
                         className="w-full bg-white ring-1 ring-slate-200 focus:ring-2 focus:ring-blue-500 rounded-2xl px-4 py-3 text-sm font-medium outline-none"
@@ -521,7 +521,7 @@ export default function DepartmentForm() {
                   <div className="grid grid-cols-1 gap-4">
                     <div>
                       <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Activity Title</label>
-                      <input
+                      <input id="departmentform-9" name="departmentform-9" aria-label="departmentform field"
                         type="text"
                         value={act.title || ""}
                         onChange={e => updateArrayItem('activities', i, { ...act, title: e.target.value })}
@@ -531,7 +531,7 @@ export default function DepartmentForm() {
                     </div>
                     <div>
                       <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Description</label>
-                      <textarea
+                      <textarea id="departmentform-textarea-6" name="departmentform-textarea-6" aria-label="departmentform textarea field"
                         value={act.description || ""}
                         onChange={e => updateArrayItem('activities', i, { ...act, description: e.target.value })}
                         className="w-full bg-white ring-1 ring-slate-200 focus:ring-2 focus:ring-purple-500 rounded-2xl px-5 py-3.5 text-sm font-medium outline-none"
@@ -574,21 +574,21 @@ export default function DepartmentForm() {
             <div className="space-y-4">
               {content.dabMembers?.map((member, i) => (
                 <div key={i} className="flex gap-4 items-center group/row">
-                  <input
+                  <input id="departmentform-10" name="departmentform-10" aria-label="departmentform field"
                     type="text"
                     placeholder="Name"
                     value={member.name || ""}
                     onChange={e => updateArrayItem('dabMembers', i, { ...member, name: e.target.value })}
                     className="flex-1 bg-slate-50 border-0 ring-1 ring-slate-200/50 focus:ring-2 focus:ring-indigo-500 rounded-2xl px-5 py-4 text-sm font-medium outline-none transition-all"
                   />
-                  <input
+                  <input id="departmentform-11" name="departmentform-11" aria-label="departmentform field"
                     type="text"
                     placeholder="Designation"
                     value={member.designation || ""}
                     onChange={e => updateArrayItem('dabMembers', i, { ...member, designation: e.target.value })}
                     className="flex-1 bg-slate-50 border-0 ring-1 ring-slate-200/50 focus:ring-2 focus:ring-indigo-500 rounded-2xl px-5 py-4 text-sm font-medium outline-none transition-all"
                   />
-                  <input
+                  <input id="departmentform-12" name="departmentform-12" aria-label="departmentform field"
                     type="text"
                     placeholder="Organization"
                     value={member.organization || ""}
@@ -633,7 +633,7 @@ export default function DepartmentForm() {
                         const isSelected = content.faculty?.includes(f.id as any);
                         return (
                           <label key={`${f.id}-${idx}`} className={`flex items-start gap-3 p-4 rounded-2xl border cursor-pointer transition-all ${isSelected ? 'bg-indigo-50 border-indigo-200 ring-4 ring-indigo-50' : 'bg-white border-slate-100 hover:border-slate-200'}`}>
-                          <input
+                          <input id="departmentform-13" name="departmentform-13" aria-label="departmentform field"
                             type="checkbox"
                             className="mt-1 w-4 h-4 text-indigo-600 rounded-lg border-slate-300 focus:ring-indigo-500"
                             checked={isSelected}
@@ -682,21 +682,21 @@ export default function DepartmentForm() {
             <div className="space-y-4">
               {content.toppers?.map((topper, i) => (
                 <div key={i} className="flex gap-4 items-center group/row">
-                  <input
+                  <input id="departmentform-14" name="departmentform-14" aria-label="departmentform field"
                     type="text"
                     placeholder="Student Name"
                     value={topper.name || ""}
                     onChange={e => updateArrayItem('toppers', i, { ...topper, name: e.target.value })}
                     className="flex-1 bg-slate-50 border-0 ring-1 ring-slate-200/50 focus:ring-2 focus:ring-amber-500 rounded-2xl px-5 py-4 text-sm font-medium outline-none transition-all"
                   />
-                  <input
+                  <input id="departmentform-15" name="departmentform-15" aria-label="departmentform field"
                     type="text"
                     placeholder="Year (e.g. 2023-24)"
                     value={topper.year || ""}
                     onChange={e => updateArrayItem('toppers', i, { ...topper, year: e.target.value })}
                     className="w-48 bg-slate-50 border-0 ring-1 ring-slate-200/50 focus:ring-2 focus:ring-amber-500 rounded-2xl px-5 py-4 text-sm font-medium outline-none transition-all"
                   />
-                  <input
+                  <input id="departmentform-16" name="departmentform-16" aria-label="departmentform field"
                     type="text"
                     placeholder="CGPA"
                     value={topper.cgpa || ""}
@@ -740,7 +740,7 @@ export default function DepartmentForm() {
             <div className="space-y-4">
               {content.syllabus?.map((s, i) => (
                 <div key={i} className="flex flex-col gap-3 p-4 bg-slate-50 rounded-[1.5rem] border border-slate-100 relative group/row hover:border-slate-200 transition-all font-sans">
-                  <input
+                  <input id="departmentform-17" name="departmentform-17" aria-label="departmentform field"
                     type="text"
                     placeholder="e.g. FE Syllabus 2024"
                     value={s.title || ""}
@@ -784,14 +784,14 @@ export default function DepartmentForm() {
             <div className="space-y-4">
               {content.newsletter?.map((n, i) => (
                 <div key={i} className="flex flex-col gap-3 p-4 bg-slate-50 rounded-[1.5rem] relative group/row border border-slate-100 hover:border-slate-200 transition-all font-sans">
-                  <input
+                  <input id="departmentform-18" name="departmentform-18" aria-label="departmentform field"
                     type="text"
                     placeholder="Title (e.g. Jan 2024 Edition)"
                     value={n.title || ""}
                     onChange={e => updateArrayItem('newsletter', i, { ...n, title: e.target.value })}
                     className="w-full bg-white border-0 ring-1 ring-slate-200/50 focus:ring-2 focus:ring-emerald-500 rounded-2xl px-4 py-3 text-xs font-bold outline-none"
                   />
-                  <input
+                  <input id="departmentform-19" name="departmentform-19" aria-label="departmentform field"
                     type="url"
                     placeholder="External Link URL"
                     value={n.link || ""}
@@ -829,7 +829,7 @@ export default function DepartmentForm() {
             <div className="space-y-4">
               {content.timetable?.map((t, i) => (
                 <div key={i} className="flex flex-col gap-3 p-4 bg-slate-50 rounded-[1.5rem] border border-slate-100 relative group/row hover:border-slate-200 transition-all font-sans">
-                  <input
+                  <input id="departmentform-20" name="departmentform-20" aria-label="departmentform field"
                     type="text"
                     placeholder="Class (e.g. SE IT)"
                     value={t.class || ""}

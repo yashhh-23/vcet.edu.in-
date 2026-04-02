@@ -544,7 +544,7 @@ const ScholarshipForm: React.FC<ScholarshipFormProps> = ({ onBack }) => {
             <div className="grid gap-5 md:grid-cols-2">
               <div>
                 <label className={labelBase}>Navigation Title</label>
-                <input
+                <input id="scholarshipform-1" name="scholarshipform-1" aria-label="scholarshipform field"
                   className={inputBase}
                   value={form.navigation_title}
                   onChange={(event) => setForm((current) => (current ? { ...current, navigation_title: event.target.value } : current))}
@@ -552,7 +552,7 @@ const ScholarshipForm: React.FC<ScholarshipFormProps> = ({ onBack }) => {
               </div>
               <div>
                 <label className={labelBase}>Page Title</label>
-                <input
+                <input id="scholarshipform-2" name="scholarshipform-2" aria-label="scholarshipform field"
                   className={inputBase}
                   value={form.title}
                   onChange={(event) => setForm((current) => (current ? { ...current, title: event.target.value } : current))}
@@ -560,7 +560,7 @@ const ScholarshipForm: React.FC<ScholarshipFormProps> = ({ onBack }) => {
               </div>
               <div>
                 <label className={labelBase}>Summary</label>
-                <input
+                <input id="scholarshipform-3" name="scholarshipform-3" aria-label="scholarshipform field"
                   className={inputBase}
                   value={form.summary}
                   onChange={(event) => setForm((current) => (current ? { ...current, summary: event.target.value } : current))}
@@ -568,7 +568,7 @@ const ScholarshipForm: React.FC<ScholarshipFormProps> = ({ onBack }) => {
               </div>
               <div>
                 <label className={labelBase}>Sort Order</label>
-                <input
+                <input id="scholarshipform-4" name="scholarshipform-4" aria-label="scholarshipform field"
                   className={inputBase}
                   type="number"
                   min="0"
@@ -578,7 +578,7 @@ const ScholarshipForm: React.FC<ScholarshipFormProps> = ({ onBack }) => {
               </div>
               <div className="md:col-span-2">
                 <label className={labelBase}>Description</label>
-                <textarea
+                <textarea id="scholarshipform-textarea-1" name="scholarshipform-textarea-1" aria-label="scholarshipform textarea field"
                   className={`${inputBase} min-h-[110px] resize-y`}
                   value={form.description}
                   onChange={(event) => setForm((current) => (current ? { ...current, description: event.target.value } : current))}
@@ -586,7 +586,7 @@ const ScholarshipForm: React.FC<ScholarshipFormProps> = ({ onBack }) => {
               </div>
               <div className="md:col-span-2">
                 <label className="inline-flex items-center gap-3 text-sm font-semibold text-slate-700">
-                  <input
+                  <input id="scholarshipform-5" name="scholarshipform-5" aria-label="scholarshipform field"
                     type="checkbox"
                     checked={form.is_active}
                     onChange={(event) => setForm((current) => (current ? { ...current, is_active: event.target.checked } : current))}
@@ -659,36 +659,36 @@ const ScholarshipForm: React.FC<ScholarshipFormProps> = ({ onBack }) => {
                           <div className="grid gap-4 md:grid-cols-2">
                             <div>
                               <label className={labelBase}>Title</label>
-                              <input className={inputBase} value={item.title} onChange={(event) => updateItem(index, { title: event.target.value })} placeholder="Scholarship title" />
+                              <input id="scholarshipform-6" name="scholarshipform-6" aria-label="scholarshipform field" className={inputBase} value={item.title} onChange={(event) => updateItem(index, { title: event.target.value })} placeholder="Scholarship title" />
                             </div>
                             <div>
                               <label className={labelBase}>Category</label>
-                              <input className={inputBase} value={item.category} onChange={(event) => updateItem(index, { category: event.target.value })} placeholder="e.g. Government / Institutional" />
+                              <input id="scholarshipform-7" name="scholarshipform-7" aria-label="scholarshipform field" className={inputBase} value={item.category} onChange={(event) => updateItem(index, { category: event.target.value })} placeholder="e.g. Government / Institutional" />
                             </div>
                             <div>
                               <label className={labelBase}>Academic Year</label>
-                              <input className={inputBase} value={item.academic_year} onChange={(event) => updateItem(index, { academic_year: event.target.value })} placeholder="2025-26" />
+                              <input id="scholarshipform-8" name="scholarshipform-8" aria-label="scholarshipform field" className={inputBase} value={item.academic_year} onChange={(event) => updateItem(index, { academic_year: event.target.value })} placeholder="2025-26" />
                             </div>
                             <div>
                               <label className={labelBase}>Tag</label>
-                              <input className={inputBase} value={item.tag} onChange={(event) => updateItem(index, { tag: event.target.value })} placeholder="e.g. EBC, OBC, SC, ST" />
+                              <input id="scholarshipform-9" name="scholarshipform-9" aria-label="scholarshipform field" className={inputBase} value={item.tag} onChange={(event) => updateItem(index, { tag: event.target.value })} placeholder="e.g. EBC, OBC, SC, ST" />
                             </div>
                             <div>
                               <label className={labelBase}>Badge</label>
-                              <input className={inputBase} value={item.badge} onChange={(event) => updateItem(index, { badge: event.target.value })} placeholder="e.g. GOV / INST" />
+                              <input id="scholarshipform-10" name="scholarshipform-10" aria-label="scholarshipform field" className={inputBase} value={item.badge} onChange={(event) => updateItem(index, { badge: event.target.value })} placeholder="e.g. GOV / INST" />
                             </div>
                             <div>
                               <label className={labelBase}>Document URL</label>
-                              <input className={inputBase} value={item.external_url} onChange={(event) => updateItem(index, { external_url: event.target.value })} placeholder="https://..." />
+                              <input id="scholarshipform-11" name="scholarshipform-11" aria-label="scholarshipform field" className={inputBase} value={item.external_url} onChange={(event) => updateItem(index, { external_url: event.target.value })} placeholder="https://..." />
                             </div>
                             <div className="md:col-span-2">
                               <label className={labelBase}>Description</label>
-                              <textarea className={`${inputBase} min-h-[110px] resize-y`} value={item.description} onChange={(event) => updateItem(index, { description: event.target.value })} />
+                              <textarea id="scholarshipform-textarea-2" name="scholarshipform-textarea-2" aria-label="scholarshipform textarea field" className={`${inputBase} min-h-[110px] resize-y`} value={item.description} onChange={(event) => updateItem(index, { description: event.target.value })} />
                             </div>
                             <div className="md:col-span-2">
                               <label className={labelBase}>Upload PDF</label>
                               <div className="rounded-2xl border border-dashed border-slate-300 bg-white px-4 py-4">
-                                <input
+                                <input id="scholarshipform-12" name="scholarshipform-12" aria-label="scholarshipform field"
                                   type="file"
                                   accept="application/pdf"
                                   onChange={(event) => updateItem(index, { pdfFile: event.target.files?.[0] ?? null })}
@@ -701,7 +701,7 @@ const ScholarshipForm: React.FC<ScholarshipFormProps> = ({ onBack }) => {
                             </div>
                             <div className="md:col-span-2">
                               <label className="inline-flex items-center gap-3 text-sm font-semibold text-slate-700">
-                                <input type="checkbox" checked={item.is_active} onChange={(event) => updateItem(index, { is_active: event.target.checked })} />
+                                <input id="scholarshipform-13" name="scholarshipform-13" aria-label="scholarshipform field" type="checkbox" checked={item.is_active} onChange={(event) => updateItem(index, { is_active: event.target.checked })} />
                                 Item Active
                               </label>
                             </div>
