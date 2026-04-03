@@ -11,6 +11,7 @@ import {
   ResourceGrid,
 } from './studentLifeShared';
 import { getStudentCareerSection } from '../../services/studentCareer';
+import { resolveApiUrl } from '../../services/api';
 
 const objectiveItems = [
   'To foster a culture of inclusivity, excellence, and sportsmanship that inspires every student to actively engage in sports and wellness activities,',
@@ -82,7 +83,7 @@ const SportsCommittee: React.FC = () => {
     },
     {
       label: 'Committee PDF',
-      href: String(apiData?.hPdf || 'https://vcet.edu.in/wp-content/uploads/2024/04/Avahan-List.pdf'),
+      href: String(resolveApiUrl(apiData?.hPdf) || apiData?.hPdf || 'https://vcet.edu.in/wp-content/uploads/2024/04/Avahan-List.pdf'),
       icon: 'file' as const,
     },
   ];
@@ -99,6 +100,20 @@ const SportsCommittee: React.FC = () => {
   const teamYear = typeof apiData?.teamYear === 'string' && apiData.teamYear.trim() ? apiData.teamYear : '2025-26';
   const resolvedEvents = apiEvents.length > 0 ? apiEvents : events;
   const resolvedTeamRows = apiTeamRows.length > 0 ? apiTeamRows : teamRows;
+  const apiGallery = Array.isArray(apiData?.gallery)
+    ? apiData.gallery
+      .map((item: Record<string, unknown>, index: number) => {
+        const raw = String(item.img ?? item.imageUrl ?? item.image ?? '');
+        const src = resolveApiUrl(raw) || raw;
+        if (!src) return null;
+        return {
+          src,
+          alt: `Sports Committee gallery image ${index + 1}`,
+        };
+      })
+      .filter((item): item is { src: string; alt: string } => !!item)
+    : [];
+  const resolvedGallery = apiGallery.length > 0 ? apiGallery : gallery;
 
   return (
     <PageLayout>
@@ -146,7 +161,7 @@ const SportsCommittee: React.FC = () => {
         subtitle="Official VCET Sports Committee gallery images."
         backgroundClassName="bg-brand-light"
       >
-        <GalleryGrid items={gallery} />
+        <GalleryGrid items={resolvedGallery} />
       </ContentSection>
 
       <ContentSection

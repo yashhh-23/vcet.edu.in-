@@ -3,6 +3,7 @@ import PageLayout from '../../components/PageLayout';
 import PageBanner from '../../components/PageBanner';
 import { Check, FileText } from 'lucide-react';
 import { getCommitteeSection } from '../../services/committees';
+import { resolveUploadedAssetUrl } from '../../utils/uploadedAssets';
 
 type Member = { role: string; name: string };
 type PdfReport = { year: string; url: string };
@@ -98,7 +99,7 @@ const IQAC: React.FC = () => {
     const mapped = source
       .map((row: Record<string, unknown>) => ({
         year: String(row.year ?? '').trim(),
-        url: String(row.fileUrl ?? row.pdfUrl ?? '').trim(),
+        url: String(resolveUploadedAssetUrl(String(row.fileUrl ?? row.pdfUrl ?? '').trim()) || String(row.fileUrl ?? row.pdfUrl ?? '').trim()),
       }))
       .filter((row: PdfReport) => row.year && row.url);
     return mapped.length > 0 ? mapped : fallbackAqarReports;
@@ -109,7 +110,7 @@ const IQAC: React.FC = () => {
     const mapped = source
       .map((row: Record<string, unknown>) => ({
         year: String(row.year ?? '').trim(),
-        url: String(row.fileUrl ?? row.pdfUrl ?? '').trim(),
+        url: String(resolveUploadedAssetUrl(String(row.fileUrl ?? row.pdfUrl ?? '').trim()) || String(row.fileUrl ?? row.pdfUrl ?? '').trim()),
       }))
       .filter((row: PdfReport) => row.year && row.url);
     return mapped.length > 0 ? mapped : fallbackMomReports;

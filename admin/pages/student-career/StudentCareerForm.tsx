@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import PageEditorHeader from '../../../components/admin/PageEditorHeader';
 import { pagesApi } from '../../api/pagesApi';
+import { resolveApiUrl } from '../../api/client';
 
 /* ── Toast ─────────────────────────────────────────────────────────────────── */
 const Toast: React.FC<{ message: string; type: 'success' | 'error'; onClose: () => void }> = ({ message, type, onClose }) => {
@@ -39,7 +40,7 @@ const MediaUploadButton: React.FC<{
 }> = ({ value, previewUrl, onChange, label = 'Upload File', accept = 'image/*,.pdf' }) => {
   const ref = useRef<HTMLInputElement>(null);
   const fileName = value instanceof File ? value.name : (typeof value === 'string' ? value : '');
-  const resolvedPreview = previewUrl || (typeof value === 'string' && /^\/?(images|pdfs)\//i.test(value) ? (value.startsWith('/') ? value : `/${value}`) : '');
+  const resolvedPreview = previewUrl || (typeof value === 'string' ? (resolveApiUrl(value) || value) : '');
   const isPdf = fileName ? /\.pdf$/i.test(fileName) : false;
   const isImage = resolvedPreview && !isPdf;
 
@@ -192,7 +193,13 @@ const StudentCareerForm: React.FC<StudentCareerFormProps> = ({ slug, onBack }) =
   const [activeClub, setActiveClub] = useState<'centurion' | 'airnova' | 'emechto' | 'ethan'>('centurion');
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
 
+  const isFileLike = (value: unknown): value is File | Blob =>
+    typeof File !== 'undefined' && value instanceof File
+      ? true
+      : typeof Blob !== 'undefined' && value instanceof Blob;
+
   const mapPreviewPaths = (value: unknown): unknown => {
+    if (isFileLike(value)) return value;
     if (Array.isArray(value)) {
       return value.map((item) => mapPreviewPaths(item));
     }
@@ -206,9 +213,7 @@ const StudentCareerForm: React.FC<StudentCareerFormProps> = ({ slug, onBack }) =
           typeof mappedChild === 'string' &&
           (/^\/?(images|pdfs)\//i.test(mappedChild) || /^https?:\/\//i.test(mappedChild))
         ) {
-          output[`${key}_preview`] = mappedChild.startsWith('/') || /^https?:\/\//i.test(mappedChild)
-            ? mappedChild
-            : `/${mappedChild}`;
+            output[`${key}_preview`] = resolveApiUrl(mappedChild) || mappedChild;
         }
       });
       return output;
@@ -217,6 +222,7 @@ const StudentCareerForm: React.FC<StudentCareerFormProps> = ({ slug, onBack }) =
   };
 
   const toSubmitPayload = (value: unknown): unknown => {
+    if (isFileLike(value)) return value;
     if (Array.isArray(value)) {
       return value.map((item) => toSubmitPayload(item));
     }

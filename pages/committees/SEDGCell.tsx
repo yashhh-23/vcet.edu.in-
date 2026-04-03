@@ -3,6 +3,7 @@ import PageLayout from '../../components/PageLayout';
 import PageBanner from '../../components/PageBanner';
 import { Heart, Users, BookOpen, HandHeart, Target, Lightbulb, GraduationCap, Award } from 'lucide-react';
 import { getCommitteeSection } from '../../services/committees';
+import { resolveUploadedAssetUrl } from '../../utils/uploadedAssets';
 
 const fallbackAboutPoints = [
   {
@@ -99,7 +100,7 @@ const SEDGCell: React.FC = () => {
     const mapped = source
       .map((row: Record<string, unknown>) => ({
         title: String(row.title ?? row.label ?? 'Document').trim(),
-        url: String(row.fileUrl ?? row.pdfUrl ?? row.url ?? '').trim(),
+        url: String(resolveUploadedAssetUrl(String(row.fileUrl ?? row.pdfUrl ?? row.url ?? '').trim()) || String(row.fileUrl ?? row.pdfUrl ?? row.url ?? '').trim()),
       }))
       .filter((row: DocumentItem) => row.title || row.url);
     return mapped.length > 0 ? mapped : fallbackDocuments;
