@@ -21,8 +21,6 @@ import Testimonials from './components/Testimonials';
 import Footer from './components/Footer';
 import SplashScreen from './components/SplashScreen';
 
-const CAREER_AT_VCET_PDF_URL =
-  'https://drive.google.com/file/d/1grwZ4_QIjC23c4HHFCM4xPJuFywsWtgw/view?usp=sharing';
 
 /* ── Lazy-loaded Pages ── */
 
@@ -94,6 +92,7 @@ const CENTURION = lazy(() => import('./pages/student-life/CENTURION'));
 const AIRNOVA = lazy(() => import('./pages/student-life/AIRNOVA'));
 const EMECHTO = lazy(() => import('./pages/student-life/EMECHTO'));
 const NSDC = lazy(() => import('./pages/student-life/NSDC'));
+const CareerAtVCET = lazy(() => import('./pages/student-life/CareerAtVCET'));
 const Training = lazy(() => import('./pages/student-life/Training'));
 const Placement = lazy(() => import('./pages/student-life/Placement'));
 const ECell = lazy(() => import('./pages/student-life/ECell'));
@@ -410,7 +409,7 @@ function App() {
             <Route path="/differently-abled" element={<DifferentlyAbled />} />
 
             {/* Student Life */}
-            <Route path="/career-at-vcet" element={<ExternalRedirect to={CAREER_AT_VCET_PDF_URL} />} />
+            <Route path="/career-at-vcet" element={<CareerAtVCET />} />
             <Route path="/students-council" element={<Navigate to="/" replace />} />
             <Route path="/cultural-committee" element={<CulturalCommittee />} />
             <Route path="/sports-committee" element={<SportsCommittee />} />

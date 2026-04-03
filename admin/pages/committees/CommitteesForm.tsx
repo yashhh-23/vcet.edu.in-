@@ -4,6 +4,15 @@ import { CommitteeData, CommitteePayload, CommitteeMember, CommitteeReport } fro
 import PageEditorHeader from '../../../components/admin/PageEditorHeader';
 
 /* ── UI Components ────────────────────────────────────────────────────────── */
+const Toast: React.FC<{ message: string; type: 'success' | 'error'; onClose: () => void }> = ({ message, type, onClose }) => {
+  useEffect(() => { const t = setTimeout(onClose, 3500); return () => clearTimeout(t); }, [onClose]);
+  return (
+    <div className={`fixed bottom-6 right-6 z-50 flex items-center gap-3 px-6 py-4 rounded-2xl shadow-2xl text-sm font-bold ${type === 'success' ? 'bg-emerald-600 text-white' : 'bg-red-600 text-white'}`}>
+      {message}
+    </div>
+  );
+};
+
 const SectionCard: React.FC<{ title: string; icon: React.ReactNode; children: React.ReactNode }> = ({ title, icon, children }) => (
   <div className="bg-white border border-slate-200/60 rounded-[2.5rem] overflow-hidden shadow-sm transition-all hover:shadow-md">
     <div className="px-8 py-6 border-b border-slate-100 bg-slate-50/50 flex items-center gap-4">
@@ -311,6 +320,7 @@ const CommitteesForm: React.FC<CommitteesFormProps> = ({ slug, onBack }) => {
   const [payload, setPayload] = useState<CommitteePayload>({});
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
 
   useEffect(() => {
     pagesApi.committees.get(slug)
@@ -332,10 +342,10 @@ const CommitteesForm: React.FC<CommitteesFormProps> = ({ slug, onBack }) => {
     setSaving(true);
     try {
       await pagesApi.committees.update(slug, payload);
-      alert(`${data?.name} updated successfully!`);
+      setToast({ message: `${data?.name || 'Committee'} updated successfully`, type: 'success' });
     } catch (err) {
       console.error(err);
-      alert('Failed to update committee.');
+      setToast({ message: 'Failed to update committee.', type: 'error' });
     } finally {
       setSaving(false);
     }
@@ -356,15 +366,16 @@ const CommitteesForm: React.FC<CommitteesFormProps> = ({ slug, onBack }) => {
   );
 
   return (
-    <form onSubmit={handleSave} className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
-      <PageEditorHeader
-        title={data?.name || 'Committee Editor'}
-        description="Manage professional committee data and records."
-        onSave={saveChanges}
-        isSaving={saving}
-        showBackButton
-        onBack={onBack}
-      />
+    <>
+      <form onSubmit={handleSave} className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+        <PageEditorHeader
+          title={data?.name || 'Committee Editor'}
+          description="Manage professional committee data and records."
+          onSave={saveChanges}
+          isSaving={saving}
+          showBackButton
+          onBack={onBack}
+        />
 
       <div className="space-y-10 pb-20">
         {/* CDC Responsibilities */}
@@ -442,8 +453,10 @@ const CommitteesForm: React.FC<CommitteesFormProps> = ({ slug, onBack }) => {
             />
           </SectionCard>
         )}
-      </div>
-    </form>
+        </div>
+      </form>
+      {toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
+    </>
   );
 };
 

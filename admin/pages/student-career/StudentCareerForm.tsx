@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import PageEditorHeader from '../../../components/admin/PageEditorHeader';
+import { pagesApi } from '../../api/pagesApi';
 
 /* ── Toast ─────────────────────────────────────────────────────────────────── */
 const Toast: React.FC<{ message: string; type: 'success' | 'error'; onClose: () => void }> = ({ message, type, onClose }) => {
@@ -30,25 +31,27 @@ const labelBase = 'block text-xs font-black text-slate-400 uppercase tracking-wi
 
 /* ── Media Upload Button (with preview) ────────────────────────────────────── */
 const MediaUploadButton: React.FC<{
-  value?: string;
+  value?: File | string;
   previewUrl?: string;
-  onChange: (fileName: string, previewUrl: string) => void;
+  onChange: (fileValue: File | string, previewUrl: string) => void;
   label?: string;
   accept?: string;
 }> = ({ value, previewUrl, onChange, label = 'Upload File', accept = 'image/*,.pdf' }) => {
   const ref = useRef<HTMLInputElement>(null);
-  const isPdf = value ? /\.pdf$/i.test(value) : false;
-  const isImage = previewUrl && !isPdf;
+  const fileName = value instanceof File ? value.name : (typeof value === 'string' ? value : '');
+  const resolvedPreview = previewUrl || (typeof value === 'string' && /^\/?(images|pdfs)\//i.test(value) ? (value.startsWith('/') ? value : `/${value}`) : '');
+  const isPdf = fileName ? /\.pdf$/i.test(fileName) : false;
+  const isImage = resolvedPreview && !isPdf;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const f = e.target.files?.[0];
     if (!f) return;
     const url = URL.createObjectURL(f);
-    onChange(f.name, url);
+    onChange(f, url);
   };
 
   const handleClear = () => {
-    if (previewUrl) URL.revokeObjectURL(previewUrl);
+    if (previewUrl?.startsWith('blob:')) URL.revokeObjectURL(previewUrl);
     onChange('', '');
     if (ref.current) ref.current.value = '';
   };
@@ -72,7 +75,7 @@ const MediaUploadButton: React.FC<{
             <svg className="w-4 h-4 text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
-            <span className="text-xs font-bold text-emerald-700 max-w-[180px] truncate">{value}</span>
+            <span className="text-xs font-bold text-emerald-700 max-w-[180px] truncate">{fileName}</span>
             <button type="button" onClick={handleClear} className="text-emerald-500 hover:text-red-500 transition-colors">
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
@@ -80,14 +83,14 @@ const MediaUploadButton: React.FC<{
         )}
         {!value && <span className="text-xs text-slate-400 font-semibold italic">No file chosen</span>}
       </div>
-      {isImage && previewUrl && (
+      {isImage && resolvedPreview && (
         <div className="relative group w-36 h-24 rounded-2xl overflow-hidden border-2 border-slate-200 hover:border-blue-400 transition-all shadow-sm">
-          <img src={previewUrl} alt="preview" className="w-full h-full object-cover" />
+          <img src={resolvedPreview} alt="preview" className="w-full h-full object-cover" />
           <span className="absolute bottom-1.5 right-2 text-[9px] text-white font-black bg-black/50 px-1.5 py-0.5 rounded-md uppercase">Preview</span>
         </div>
       )}
-      {isPdf && previewUrl && (
-        <a href={previewUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 bg-red-50 border border-red-200 rounded-xl text-[10px] font-bold text-red-600 hover:bg-red-100 transition-all">
+      {isPdf && resolvedPreview && (
+        <a href={resolvedPreview} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 bg-red-50 border border-red-200 rounded-xl text-[10px] font-bold text-red-600 hover:bg-red-100 transition-all">
           Preview PDF
         </a>
       )}
@@ -186,20 +189,81 @@ const StudentCareerForm: React.FC<StudentCareerFormProps> = ({ slug, onBack }) =
   const [activeClub, setActiveClub] = useState<'centurion' | 'airnova' | 'emechto' | 'ethan'>('centurion');
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
 
+  const mapPreviewPaths = (value: unknown): unknown => {
+    if (Array.isArray(value)) {
+      return value.map((item) => mapPreviewPaths(item));
+    }
+    if (value && typeof value === 'object') {
+      const input = value as Record<string, unknown>;
+      const output: Record<string, unknown> = {};
+      Object.entries(input).forEach(([key, child]) => {
+        const mappedChild = mapPreviewPaths(child);
+        output[key] = mappedChild;
+        if (
+          typeof mappedChild === 'string' &&
+          (/^\/?(images|pdfs)\//i.test(mappedChild) || /^https?:\/\//i.test(mappedChild))
+        ) {
+          output[`${key}_preview`] = mappedChild.startsWith('/') || /^https?:\/\//i.test(mappedChild)
+            ? mappedChild
+            : `/${mappedChild}`;
+        }
+      });
+      return output;
+    }
+    return value;
+  };
+
+  const toSubmitPayload = (value: unknown): unknown => {
+    if (Array.isArray(value)) {
+      return value.map((item) => toSubmitPayload(item));
+    }
+    if (value && typeof value === 'object') {
+      const input = value as Record<string, unknown>;
+      const output: Record<string, unknown> = {};
+      Object.entries(input).forEach(([key, child]) => {
+        if (key.endsWith('_preview')) return;
+        if (
+          (key === 'fileName' || key === 'updatedAt' || key === 'slug') &&
+          (child === '' || child === null || child === undefined)
+        ) {
+          return;
+        }
+        output[key] = toSubmitPayload(child);
+      });
+      return output;
+    }
+    return value;
+  };
+
   useEffect(() => {
     if (slug === 'centurion') setActiveClub('centurion');
     else if (slug === 'airnova') setActiveClub('airnova');
     else if (slug === 'emechto') setActiveClub('emechto');
     else if (slug === 'external-projects') setActiveClub('ethan');
-    setTimeout(() => setLoading(false), 300);
+    pagesApi.studentCareer.get(slug)
+      .then((res) => {
+        const data = (res?.data as Record<string, unknown>) ?? {};
+        setPayload(mapPreviewPaths(data) as Record<string, unknown>);
+      })
+      .catch(() => {
+        setPayload({});
+      })
+      .finally(() => setLoading(false));
   }, [slug]);
 
-  const save = () => {
+  const save = async () => {
     setSaving(true);
-    setTimeout(() => {
-      setSaving(false);
+    try {
+      const response = await pagesApi.studentCareer.update(slug, toSubmitPayload(payload) as Record<string, unknown>);
+      const data = (response?.data as Record<string, unknown>) ?? payload;
+      setPayload(mapPreviewPaths(data) as Record<string, unknown>);
       setToast({ message: 'Configuration saved successfully', type: 'success' });
-    }, 800);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Failed to save configuration';
+      setToast({ message, type: 'error' });
+    } finally {
+      setSaving(false);
+    }
   };
 
   if (loading) return <div className="p-12 text-center text-slate-400 font-bold animate-pulse">PREPARING FORM...</div>;
