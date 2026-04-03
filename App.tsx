@@ -352,6 +352,7 @@ function App() {
             <Route path="/administration" element={<Administration />} />
             <Route path="/strategic-plan" element={<StrategicPlan />} />
               <Route path="/code-of-conduct" element={<CodeOfConduct />} />
+            <Route path="/courses-and-intake" element={<CoursesIntake />} />
             <Route path="/fees-structure" element={<FeesStructure />} />
             <Route path="/scholarships" element={<Scholarships />} />
             <Route path="/brochure" element={<Brochure />} />
