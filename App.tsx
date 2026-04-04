@@ -246,6 +246,7 @@ const AchievementsList = lazy(() => import('./admin/pages/achievements/Achieveme
 const AchievementsForm = lazy(() => import('./admin/pages/achievements/AchievementsForm'));
 const TestimonialsList = lazy(() => import('./admin/pages/testimonials/TestimonialsList'));
 const TestimonialsForm = lazy(() => import('./admin/pages/testimonials/TestimonialsForm'));
+const ExploreUsList = lazy(() => import('./admin/pages/explore-us/ExploreUsList'));
 const GalleryPage = lazy(() => import('./admin/pages/gallery/GalleryPage'));
 const PlacementPartnersList = lazy(() => import('./admin/pages/placement-partners/PlacementPartnersList'));
 const PlacementPartnersForm = lazy(() => import('./admin/pages/placement-partners/PlacementPartnersForm'));
@@ -584,8 +585,7 @@ element={<MMSStudentsLifeCustomEvent />} />
             <Route path="achievements/:id/edit" element={<AchievementsForm />} />
             <Route path="testimonials" element={<TestimonialsList />} />
             <Route path="testimonials/new" element={<TestimonialsForm />} />
-            <Route path="testimonials/:id/edit" element={<TestimonialsForm />} />
-            <Route path="gallery" element={<GalleryPage />} />
+            <Route path="testimonials/:id/edit" element={<TestimonialsForm />} />              <Route path="explore-us" element={<ExploreUsList />} />            <Route path="gallery" element={<GalleryPage />} />
             <Route path="placement-partners" element={<PlacementPartnersList />} />
             <Route path="placement-partners/new" element={<PlacementPartnersForm />} />
             <Route path="placement-partners/:id/edit" element={<PlacementPartnersForm />} />

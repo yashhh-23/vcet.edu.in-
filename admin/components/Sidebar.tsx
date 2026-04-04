@@ -148,6 +148,7 @@ const navSections: NavSection[] = [
       { label: 'News Ticker', path: '/admin/news-ticker', icon: <HashIcon /> },
       { label: 'Achievements', path: '/admin/achievements', icon: <StarIcon /> },
       { label: 'Testimonials', path: '/admin/testimonials', icon: <QuoteIcon /> },
+      { label: 'Explore Us Links', path: '/admin/explore-us', icon: <MonitorIcon /> },
     ],
   },
   {
