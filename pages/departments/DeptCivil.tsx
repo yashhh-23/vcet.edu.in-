@@ -559,14 +559,14 @@ const DeptCivil: React.FC = () => {
           {/* ════ INNOVATIONS IN TEACHING LEARNING ══════════════ */}
           {activeId === 'teaching-learning' && (() => {
             const innovationLinks = [
-              { label: 'Innovation in Teaching Learning (2022-23)', url: 'pdfs\Department\CivilEngineering\InnovationsinTeachingLearning\2.3.1_Innovation-Index_Civil_2022-23-1.pdf' },
-              { label: 'Innovation in Teaching Learning (2021-22)', url: 'pdfs\Department\CivilEngineering\InnovationsinTeachingLearning\2.3.1_Innovation-Index_Civil_2021-22-1.pdf' },
-              { label: 'Innovation in Teaching Learning (2020-21)', url: 'pdfs\Department\CivilEngineering\InnovationsinTeachingLearning\2.3.1_Innovation-Index_Civil_2020-21-1.pdf' },
+              { label: 'Innovation in Teaching Learning (2022-23)', url: 'pdfs/Department/CivilEngineering/InnovationsinTeachingLearning/2.3.1_Innovation-Index_Civil_2022-23-1.pdf' },
+              { label: 'Innovation in Teaching Learning (2021-22)', url: 'pdfs/Department/CivilEngineering/InnovationsinTeachingLearning/2.3.1_Innovation-Index_Civil_2021-22-1.pdf' },
+              { label: 'Innovation in Teaching Learning (2020-21)', url: 'pdfs/Department/CivilEngineering/InnovationsinTeachingLearning/2.3.1_Innovation-Index_Civil_2020-21-1.pdf' },
             ];
             const ictLinks = [
-              { label: 'ICT Tools in Teaching Learning (2022-23)', url: 'pdfs\Department\CivilEngineering\InnovationsinTeachingLearning\2.3.1_ICT-Index_Civil_22-23-2.pdf' },
-              { label: 'ICT Tools in Teaching Learning (2021-22)', url: 'pdfs\Department\CivilEngineering\InnovationsinTeachingLearning\2.3.1_ICT-Index_Civil_21-22-2.pdf' },
-              { label: 'ICT Tools in Teaching Learning (2020-21)', url: 'pdfs\Department\CivilEngineering\InnovationsinTeachingLearning\2.3.1_ICT-Index_Civil_20-21-2.pdf' },
+              { label: 'ICT Tools in Teaching Learning (2022-23)', url: 'pdfs/Department/CivilEngineering/InnovationsinTeachingLearning/2.3.1_ICT-Index_Civil_22-23-2.pdf' },
+              { label: 'ICT Tools in Teaching Learning (2021-22)', url: 'pdfs/Department/CivilEngineering/InnovationsinTeachingLearning/2.3.1_ICT-Index_Civil_21-22-2.pdf' },
+              { label: 'ICT Tools in Teaching Learning (2020-21)', url: 'pdfs/Department/CivilEngineering/InnovationsinTeachingLearning/2.3.1_ICT-Index_Civil_20-21-2.pdf' },
             ];
             return (
               <section className="reveal bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-sm border border-slate-100 space-y-6">
