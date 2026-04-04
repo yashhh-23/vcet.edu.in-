@@ -216,8 +216,12 @@ const ResearchIIC: React.FC = () => {
   }, [apiData]);
 
   const achievementGridClasses = achievementHolders.length <= 2
-    ? 'grid grid-cols-1 md:grid-cols-2 gap-7 max-w-[980px]'
+    ? 'grid grid-cols-1 md:grid-cols-2 gap-8 max-w-[1100px]'
     : 'grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5';
+
+  const achievementMediaClasses = achievementHolders.length <= 2
+    ? 'bg-[#0E355C] border border-[#CFB46C]/35 h-[260px] md:h-[320px] flex flex-col items-center justify-center text-center overflow-hidden'
+    : 'bg-[#0E355C] border border-[#CFB46C]/35 h-[220px] md:h-[240px] flex flex-col items-center justify-center text-center overflow-hidden';
 
   const galleryHolders = useMemo(() => {
     const rows = Array.isArray(apiData?.iicGalleryDetailed)
@@ -397,9 +401,9 @@ const ResearchIIC: React.FC = () => {
             {achievementHolders.map((holder: { title: string; image: string | null }, index: number) => (
               <article key={holder.title} className="reveal group" style={{ transitionDelay: `${index * 0.04}s` }}>
                 <div className="relative p-[2px] bg-gradient-to-br from-[#D8A215] via-[#F4C84C] to-[#9E7215] shadow-[0_8px_20px_rgba(23,42,79,0.18)]">
-                  <div className="bg-[#0E355C] border border-[#CFB46C]/35 aspect-[4/3] flex flex-col items-center justify-center text-center overflow-hidden">
+                  <div className={achievementMediaClasses}>
                     {holder.image ? (
-                      <img src={holder.image} alt={holder.title} className="w-full h-full object-cover" />
+                      <img src={holder.image} alt={holder.title} className="w-full h-full object-contain bg-[#F8FAFC]" />
                     ) : (
                       <>
                         <Crown className="w-7 h-7 text-[#F4C84C] mb-2" />
