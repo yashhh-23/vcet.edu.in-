@@ -27,20 +27,20 @@ const fallbackMembers: Member[] = [
 ];
 
 const fallbackMomReports: PdfReport[] = [
-  { year: '2022-23', url: 'https://vcet.edu.in/wp-content/uploads/2024/03/IQAC-MoM-2022-23.pdf' },
-  { year: '2021-22', url: 'https://vcet.edu.in/wp-content/uploads/2023/06/IQAC-MoM-2021-22.pdf' },
-  { year: '2020-21', url: 'https://vcet.edu.in/wp-content/uploads/2022/05/IQAC_MoM_2020_21.pdf' },
-  { year: '2019-20', url: 'https://vcet.edu.in/wp-content/uploads/2021/11/IQAC_MoM_2019_20-1.pdf' },
-  { year: '2018-19', url: 'https://vcet.edu.in/wp-content/uploads/2021/11/IQAC_MoM_2018_19-1.pdf' },
-  { year: '2017-18', url: 'https://vcet.edu.in/wp-content/uploads/2021/11/IQAC_MoM_2017_18-1.pdf' },
+  { year: '2022-23', url: '/pdfs/Committees/IQAC/IQAC-MoM-2022-23.pdf' },
+  { year: '2021-22', url: '/pdfs/Committees/IQAC/IQAC-MoM-2021-22.pdf' },
+  { year: '2020-21', url: '/pdfs/Committees/IQAC/IQAC_MoM_2020_21.pdf' },
+  { year: '2019-20', url: '/pdfs/Committees/IQAC/IQAC_MoM_2019_20-1.pdf' },
+  { year: '2018-19', url: '/pdfs/Committees/IQAC/IQAC_MoM_2018_19-1.pdf' },
+  { year: '2017-18', url: '/pdfs/Committees/IQAC/IQAC_MoM_2017_18-1.pdf' },
 ];
 
 const fallbackAqarReports: PdfReport[] = [
-  { year: '2022-23', url: 'https://vcet.edu.in/wp-content/uploads/2024/05/AQAR_2022-23.pdf' },
-  { year: '2021-22', url: 'https://vcet.edu.in/wp-content/uploads/2023/06/AQAR_2021-22.pdf' },
-  { year: '2020-21', url: 'https://vcet.edu.in/wp-content/uploads/2023/05/AQAR_2020-21.pdf' },
-  { year: '2019-20', url: 'https://vcet.edu.in/wp-content/uploads/2022/03/AQAR_2019-20.pdf' },
-  { year: '2018-19', url: 'https://vcet.edu.in/wp-content/uploads/2022/03/AQAR_2018-19.pdf' },
+  { year: '2022-23', url: '/pdfs/Committees/IQAC/AQAR_2022-23.pdf' },
+  { year: '2021-22', url: '/pdfs/Committees/IQAC/AQAR_2021-22.pdf' },
+  { year: '2020-21', url: '/pdfs/Committees/IQAC/AQAR_2020-21.pdf' },
+  { year: '2019-20', url: '/pdfs/Committees/IQAC/AQAR_2019-20.pdf' },
+  { year: '2018-19', url: '/pdfs/Committees/IQAC/AQAR_2018-19.pdf' },
 ];
 
 const prioritizedRoles = ['Chairperson', 'Co-ordinator'];
