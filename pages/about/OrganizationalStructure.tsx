@@ -135,7 +135,6 @@ const OrganizationalStructure: React.FC = () => {
     () => (isLoading ? [] : fetchedHierarchies.length > 0 ? fetchedHierarchies : [{ name: 'Mr. Vikas Vartak', title: 'Chairman', children: [] }]),
     [isLoading, fetchedHierarchies]
   );
-
   const intro = data?.orgIntro || "The organizational framework of Vidyavardhini's College of Engineering and Technology";
   const orgChartImage = resolveUploadedAssetUrl(data?.orgChartImage ?? null);
 
